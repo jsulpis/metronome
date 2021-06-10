@@ -1,18 +1,24 @@
 {
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "serve": "vite preview",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview"
+    "test": "vue-cli-service test:unit",
+    "test:watch": "vue-cli-service test:unit --watch",
+    "dev": "vite"
   },
   "dependencies": {
     "vue": "^3.0.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.2.3",
+    "@vue/cli-plugin-unit-jest": "~4.5.0",
+    "@vue/cli-service": "^4.5.13",
     "@vue/compiler-sfc": "^3.0.5",
+    "@vue/test-utils": "^2.0.0-0",
     "typescript": "^4.3.2",
     "vite": "^2.3.7",
+    "vue-jest": "^5.0.0-0",
     "vue-tsc": "^0.0.24"
   }
 }
