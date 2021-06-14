@@ -10,10 +10,10 @@
 </template>
 
 <script lang="ts">
-import { computed } from "@vue/runtime-core";
+import { computed, defineComponent } from "@vue/runtime-core";
 import { useStore } from "vuex";
 
-export default {
+export default defineComponent({
   setup() {
     const { state, commit } = useStore();
 
@@ -23,7 +23,7 @@ export default {
       decrementByOne: () => commit("decrementBpmByOne")
     };
   }
-};
+});
 </script>
 
 <style lang="scss" scoped>
