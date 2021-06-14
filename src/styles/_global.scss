@@ -1,9 +1,73 @@
+// Reset styles
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+button {
+  border: none;
+  border-radius: 50%;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  color: inherit;
+
+  // overlay for hover and active states with any background
+  &:hover::before,
+  &:active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    background: var(--grey-70);
+    border-radius: 50%;
+    transition: opacity 100ms;
+  }
+
+  &:hover::before {
+    opacity: 0.02;
+  }
+
+  &:active::before {
+    opacity: 0.04;
+  }
+
+  // focus outline alternative that allows to use box-shadows
+  &:focus-visible,
+  &:focus {
+    &::after {
+      $outline-width: 2px;
+      content: "";
+      position: absolute;
+      top: -$outline-width;
+      bottom: -$outline-width;
+      left: -$outline-width;
+      right: -$outline-width;
+      border: $outline-width solid var(--primary);
+      border-radius: 50%;
+    }
+  }
+
+  // for browsers that support :focus-visible
+  &:focus:not(:focus-visible) {
+    &::after {
+      border: none;
+    }
+  }
+}
+
+// global style
 html,
 body {
   min-height: 100%;
 }
 
 body {
+  color: var(--grey-70);
   text-align: center;
   background: linear-gradient(0deg, #cdd9e5 0.39%, #ffffff 111.94%);
 }

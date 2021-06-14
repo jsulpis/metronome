@@ -1,12 +1,13 @@
 <template>
   <button type="button" class="play-button" @click="isPlaying = !isPlaying">
-    <IconPlay v-show="!isPlaying"></IconPlay>
     <IconStop v-show="isPlaying"></IconStop>
+    <IconPlay v-show="!isPlaying"></IconPlay>
   </button>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, watch } from "vue";
+import { useStore } from "vuex";
 import IconPlay from "./IconPlay.vue";
 import IconStop from "./IconStop.vue";
 
@@ -17,8 +18,10 @@ export default defineComponent({
   },
   setup() {
     const sound = new Audio("sounds/click.wav");
-    let timeout: NodeJS.Timeout;
     const isPlaying = ref(false);
+    let timeout: NodeJS.Timeout;
+
+    const { state } = useStore();
 
     function playSound() {
       if (sound.paused) {
@@ -30,11 +33,11 @@ export default defineComponent({
 
     function loop() {
       playSound();
-      timeout = setTimeout(loop, (60 / 120) * 1000);
+      timeout = setTimeout(loop, (60 / state.bpm) * 1000);
     }
 
-    watch(isPlaying, (isPlaying) => {
-      if (isPlaying) {
+    watch(isPlaying, (newVal) => {
+      if (newVal) {
         loop();
       } else {
         clearTimeout(timeout);
@@ -50,41 +53,19 @@ export default defineComponent({
 
 <style lang="scss">
 button.play-button {
-  background: transparent;
+  background: var(--grey-50);
   border: 1px solid var(--grey-60);
-  border-radius: 50%;
-  cursor: pointer;
   width: 10.5rem;
   height: 10.5rem;
   position: fixed;
   bottom: 30%;
   left: 50%;
   transform: translateX(-50%);
-  transition: background 100ms;
-  outline: none;
-
-  &:focus-visible,
-  &:focus {
-    box-shadow: 0 0 2px 2px var(--primary);
-  }
-
-  // for browsers that support :focus-visible
-  &:focus:not(:focus-visible) {
-    box-shadow: none;
-  }
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.05);
-  }
-
-  &:active {
-    background: rgba(0, 0, 0, 0.07);
-  }
 
   svg {
     width: 3rem;
     height: 3rem;
-    color: var(--grey-70);
+    color: inherit;
   }
 }
 </style>

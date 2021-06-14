@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/vue";
-
+import store from "@/store/index";
 import PlayButton from "@/components/PlayButton.vue";
 
 describe("PlayButton.vue", () => {
@@ -7,7 +7,11 @@ describe("PlayButton.vue", () => {
     const playSpy = jest.fn();
     HTMLMediaElement.prototype.play = playSpy;
 
-    const { getByTitle, getByRole } = render(PlayButton);
+    const { getByTitle, getByRole } = render(PlayButton, {
+      global: {
+        plugins: [store]
+      }
+    });
 
     const button = getByRole("button");
     const playIcon = getByTitle("Play Icon").parentElement;
