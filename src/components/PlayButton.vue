@@ -57,10 +57,6 @@ button.play-button {
   border: 1px solid var(--grey-60);
   width: 10.5rem;
   height: 10.5rem;
-  position: fixed;
-  bottom: 30%;
-  left: 50%;
-  transform: translateX(-50%);
 
   svg {
     width: 3rem;

@@ -10,6 +10,12 @@ export default createStore({
     },
     decrementBpmByOne(state) {
       state.bpm--;
+    },
+    incrementBpmByFive(state) {
+      state.bpm += 5;
+    },
+    decrementBpmByFive(state) {
+      state.bpm -= 5;
     }
   }
   // plugins: [createLogger()]

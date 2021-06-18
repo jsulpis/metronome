@@ -12,6 +12,7 @@ button {
   cursor: pointer;
   outline: none;
   color: inherit;
+  position: relative;
 
   // overlay for hover and active states with any background
   &:hover::before,
@@ -52,18 +53,17 @@ button {
     }
   }
 
-  // for browsers that support :focus-visible
-  &:focus:not(:focus-visible) {
-    &::after {
-      border: none;
-    }
+  // no focus ring on browsers that support :focus-visible
+  &:focus:not(:focus-visible)::after {
+    border: none;
   }
 }
 
 // global style
 html,
-body {
-  min-height: 100%;
+body,
+#app {
+  min-height: 100vh;
 }
 
 body {

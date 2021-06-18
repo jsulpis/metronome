@@ -1,7 +1,11 @@
 <template>
-  <h1 class="text-light">Metronome</h1>
-  <TempoSection></TempoSection>
-  <PlayButton></PlayButton>
+  <main>
+    <h1 class="text-light">Metronome</h1>
+    <div class="content-push">
+      <TempoSection class="tempo"></TempoSection>
+      <PlayButton class="play-button"></PlayButton>
+    </div>
+  </main>
 </template>
 
 <script lang="ts">
@@ -21,5 +25,18 @@ h1 {
   letter-spacing: 0.445em;
   margin: 4rem 0 0;
   text-transform: uppercase;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+.play-button {
+  margin-top: 1.5rem;
+  margin-bottom: 25vh;
 }
 </style>
