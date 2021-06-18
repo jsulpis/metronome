@@ -55,12 +55,12 @@ export default defineComponent({
 button.play-button {
   background: var(--grey-50);
   border: 1px solid var(--grey-60);
-  width: 10.5rem;
-  height: 10.5rem;
+  width: 170px;
+  height: 170px;
 
   svg {
-    width: 3rem;
-    height: 3rem;
+    width: 48px;
+    height: 48px;
     color: inherit;
   }
 }

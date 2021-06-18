@@ -21,22 +21,21 @@ export default defineComponent({
 <style scoped>
 h1 {
   font-weight: 500;
-  font-size: 1.125rem;
+  font-size: 1.8rem;
   letter-spacing: 0.445em;
-  margin: 4rem 0 0;
+  margin: 60px 0 0;
   text-transform: uppercase;
 }
 
 main {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
   min-height: 100vh;
 }
 
 .play-button {
-  margin-top: 1.5rem;
+  margin-top: 24px;
   margin-bottom: 25vh;
 }
 </style>

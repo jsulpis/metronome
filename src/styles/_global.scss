@@ -66,6 +66,10 @@ body,
   min-height: 100vh;
 }
 
+html {
+  font-size: 62.5%; // 1rem = 10px
+}
+
 body {
   color: var(--grey-70);
   text-align: center;

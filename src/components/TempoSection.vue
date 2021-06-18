@@ -32,9 +32,35 @@ export default defineComponent({
 
 section {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   position: relative;
+  width: 90%;
+  max-width: 400px;
+  margin: auto;
+
+  > * {
+    flex-shrink: 0;
+  }
+}
+
+.bpm {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+
+  &__value {
+    font-size: 6.4rem;
+    line-height: 6.4rem;
+    font-weight: 500;
+    width: 3ch;
+  }
+
+  &__label {
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 0.185em;
+  }
 }
 
 button {
@@ -44,16 +70,16 @@ button {
   box-shadow: $shadow-03;
 
   &[class$="one"] {
-    width: 3.75rem;
-    height: 3.75rem;
-    font-size: 1.5rem;
+    width: 60px;
+    height: 60px;
+    font-size: 2.4rem;
   }
 
   &[class$="five"] {
-    width: 3rem;
-    height: 3rem;
-    font-size: 1.125rem;
-    margin: 0 1.25rem;
+    width: 48px;
+    height: 48px;
+    font-size: 1.8rem;
+    margin: 0 10px;
   }
 }
 
@@ -72,25 +98,6 @@ button {
       transform: translate(-25%, 120%);
       margin: 0;
     }
-  }
-}
-
-.bpm {
-  display: flex;
-  flex-direction: column;
-  margin: 0 1.75rem;
-
-  &__value {
-    font-size: 4rem;
-    line-height: 4rem;
-    font-weight: 500;
-    width: 3ch;
-  }
-
-  &__label {
-    font-size: 1rem;
-    font-weight: 400;
-    letter-spacing: 0.185em;
   }
 }
 </style>
