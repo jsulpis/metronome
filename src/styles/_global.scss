@@ -13,6 +13,7 @@ button {
   outline: none;
   color: inherit;
   position: relative;
+  -webkit-tap-highlight-color: transparent;
 
   // overlay for hover and active states with any background
   &:hover::before,
@@ -68,6 +69,7 @@ body,
 
 html {
   font-size: 62.5%; // 1rem = 10px
+  touch-action: none;
 }
 
 body {
