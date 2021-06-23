@@ -16,6 +16,9 @@ export default createStore({
     },
     decrementBpmByFive(state) {
       state.bpm -= 5;
+    },
+    setBpmValue(state, payload) {
+      state.bpm = payload;
     }
   }
   // plugins: [createLogger()]

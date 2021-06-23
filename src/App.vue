@@ -4,7 +4,11 @@
     <div class="content-push">
       <TempoSection class="tempo" />
       <div class="wheel-container">
-        <Wheel class="wheel" />
+        <Wheel
+          class="wheel"
+          :value="bpm"
+          @change="commit('setBpmValue', $event)"
+        />
         <PlayButton class="play-button" />
       </div>
     </div>
@@ -12,13 +16,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, watch, ref, computed } from "vue";
 import PlayButton from "./components/PlayButton.vue";
 import TempoSection from "./components/TempoSection.vue";
 import Wheel from "./components/Wheel.vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
-  components: { PlayButton, TempoSection, Wheel }
+  components: { PlayButton, TempoSection, Wheel },
+  setup() {
+    const { state, commit } = useStore();
+
+    return { commit, bpm: computed(() => state.bpm) };
+  }
 });
 </script>
 

@@ -1,5 +1,4 @@
 <template>
-  <!-- <p>{{ value }}</p> -->
   <div
     class="wheel"
     ref="wheel"
@@ -13,61 +12,111 @@
 </template>
 
 <script>
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent, reactive, ref, watch } from "vue";
+import { useMousePressed, useMouse } from "@vueuse/core";
 
 export default defineComponent({
-  data: () => {
+  props: {
+    min: {
+      type: Number,
+      default: 40
+    },
+    max: {
+      type: Number,
+      default: 180
+    },
+    speed: {
+      type: Number,
+      default: 3
+    },
+    value: {
+      type: Number,
+      default: 100
+    }
+  },
+  emits: ["increment", "decrement", "change"],
+  setup(props) {
+    const internalValue = ref(props.value);
+    const wheel = ref(null);
+
+    const { pressed } = useMousePressed();
+
+    // watch(pressed, (isPressed) => {
+    //   if (isPressed) {
+    //     const { x, y } = useMouse();
+    //     console.log(x.value, y.value);
+    //   }
+    // });
+
+    watch(
+      () => props.value,
+      (val) => {
+        // only update if the change is not being made by the wheel itself
+        if (!pressed.value) {
+          internalValue.value = val;
+        }
+      }
+    );
+
     return {
-      initialValue: 100,
-      angle: 0,
-      lastPos: {},
-      origin: {},
-      speed: 1,
-      min: 40,
-      max: 240
+      wheel,
+      internalValue,
+      angle: ref(0),
+      lastPos: reactive({}),
+      origin: reactive({}),
+      waitForNextFrame: ref(false),
+      lastEmittedValue: ref(null)
     };
   },
   mounted() {
     this.setOrigin();
     window.addEventListener("resize", this.setOrigin);
   },
-  computed: {
-    value() {
-      const internalValue = Math.floor(
-        this.initialValue + 0.05 * this.speed * this.angle
-      );
-      return Math.max(Math.min(internalValue, this.max), this.min);
-    }
-  },
   methods: {
     setOrigin() {
-      const { right, left, top, bottom } =
-        this.$refs.wheel.getBoundingClientRect();
+      const { right, left, top, bottom } = this.wheel.getBoundingClientRect();
       this.origin = {
         x: left + (right - left) / 2,
         y: top + (bottom - top) / 2
       };
     },
     onDrag(e) {
-      let x, y;
-      if (e.type === "touchmove") {
-        x = Math.floor(e.touches[0].clientX);
-        y = Math.floor(e.touches[0].clientY);
-      } else {
-        x = e.x;
-        y = e.y;
-      }
+      if (this.waitForNextFrame) return;
 
-      const currentPos = {
-        x: x - this.origin.x,
-        y: y - this.origin.y
-      };
+      this.waitForNextFrame = true;
+      requestAnimationFrame(() => {
+        let x, y;
+        if (e.type === "touchmove") {
+          x = Math.floor(e.touches[0].clientX);
+          y = Math.floor(e.touches[0].clientY);
+        } else {
+          x = e.x;
+          y = e.y;
+        }
 
-      const diffInRad = this.getAngleBetween(this.lastPos, currentPos);
+        const currentPos = {
+          x: x - this.origin.x,
+          y: y - this.origin.y
+        };
 
-      this.angle += this.radiansToDegrees(diffInRad);
+        const diffInRad = this.getAngleBetween(this.lastPos, currentPos);
 
-      this.lastPos = currentPos;
+        this.angle += this.radiansToDegrees(diffInRad);
+
+        this.internalValue = Math.max(
+          Math.min(this.internalValue + this.speed * diffInRad, this.max),
+          this.min
+        );
+
+        if (Math.floor(this.internalValue) !== this.lastEmittedValue) {
+          this.$emit("change", Math.floor(this.internalValue));
+          this.lastEmittedValue = Math.floor(this.internalValue);
+        }
+
+        this.lastPos = currentPos;
+
+        this.waitForNextFrame = false;
+      });
     },
     getAngleBetween(u, v) {
       let diffInRad = Math.atan2(v.y, v.x) - Math.atan2(u.y, u.x);
@@ -111,6 +160,7 @@ export default defineComponent({
   height: 280px;
   border-radius: 50%;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .wheel__dot-container {
