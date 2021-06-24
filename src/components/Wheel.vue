@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="wheel"
-    ref="wheel"
-    @mousedown="onMouseDown"
-    @touchstart="onTouchStart"
-  >
+  <div class="wheel" ref="wheel">
     <div class="wheel__dot-container" :style="`transform: rotate(${angle}deg)`">
       <span class="wheel__dot"></span>
     </div>
@@ -12,8 +7,14 @@
 </template>
 
 <script>
-import { defineComponent, reactive, ref, watch } from "vue";
-import { useMousePressed, useMouse } from "@vueuse/core";
+import { defineComponent, onMounted, reactive, ref, watch } from "vue";
+import {
+  useMousePressed,
+  useMouse,
+  useRafFn,
+  toRefs,
+  useEventListener
+} from "@vueuse/core";
 
 export default defineComponent({
   props: {
@@ -34,24 +35,92 @@ export default defineComponent({
       default: 100
     }
   },
-  emits: ["increment", "decrement", "change"],
-  setup(props) {
-    const internalValue = ref(props.value);
+  emits: ["change"],
+  setup(props, { emit }) {
+    const { min, max, speed } = toRefs(props);
     const wheel = ref(null);
+    const angle = ref(0);
+    const internalValue = ref(props.value);
+    let lastEmittedValue = ref(null);
+    let lastPos = reactive({});
+    let origin = reactive({
+      x: 0,
+      y: 0
+    });
 
+    function onDrag(x, y) {
+      const currentPos = {
+        x: x - origin.x,
+        y: y - origin.y
+      };
+
+      const diffInRad = getAngleBetween(lastPos, currentPos);
+
+      angle.value += radiansToDegrees(diffInRad);
+
+      internalValue.value = Math.max(
+        Math.min(internalValue.value + speed.value * diffInRad, max.value),
+        min.value
+      );
+
+      if (Math.floor(internalValue.value) !== lastEmittedValue.value) {
+        emit("change", Math.floor(internalValue.value));
+        lastEmittedValue.value = Math.floor(internalValue.value);
+      }
+
+      lastPos = currentPos;
+    }
+
+    function getAngleBetween(u, v) {
+      let diffInRad = Math.atan2(v.y, v.x) - Math.atan2(u.y, u.x);
+      if (diffInRad < -Math.PI) diffInRad += 2 * Math.PI;
+      if (diffInRad > Math.PI) diffInRad -= 2 * Math.PI;
+      return diffInRad;
+    }
+
+    function radiansToDegrees(radians) {
+      return radians * (180 / Math.PI);
+    }
+
+    const { x, y } = useMouse();
+
+    const { pause, resume } = useRafFn(() => onDrag(x.value, y.value), {
+      immediate: false
+    });
+
+    function onDragStart(x, y) {
+      lastPos.x = x - origin.x;
+      lastPos.y = y - origin.y;
+      resume();
+      useEventListener(document, "touchend", pause, { once: true });
+      useEventListener(document, "mouseup", pause, { once: true });
+    }
+
+    useEventListener(wheel, "touchstart", (e) => {
+      onDragStart(e.touches[0].clientX, e.touches[0].clientY);
+    });
+
+    useEventListener(wheel, "mousedown", (e) => {
+      onDragStart(e.x, e.y);
+    });
+
+    // Origin
+    function setOrigin() {
+      const { right, left, top, bottom } = wheel.value.getBoundingClientRect();
+      origin.x = left + (right - left) / 2;
+      origin.y = top + (bottom - top) / 2;
+    }
+
+    onMounted(() => {
+      setOrigin();
+      useEventListener(window, "resize", setOrigin);
+    });
+
+    // update the value if the change is not being made by the wheel itself
     const { pressed } = useMousePressed();
-
-    // watch(pressed, (isPressed) => {
-    //   if (isPressed) {
-    //     const { x, y } = useMouse();
-    //     console.log(x.value, y.value);
-    //   }
-    // });
-
     watch(
       () => props.value,
       (val) => {
-        // only update if the change is not being made by the wheel itself
         if (!pressed.value) {
           internalValue.value = val;
         }
@@ -60,93 +129,8 @@ export default defineComponent({
 
     return {
       wheel,
-      internalValue,
-      angle: ref(0),
-      lastPos: reactive({}),
-      origin: reactive({}),
-      waitForNextFrame: ref(false),
-      lastEmittedValue: ref(null)
+      angle
     };
-  },
-  mounted() {
-    this.setOrigin();
-    window.addEventListener("resize", this.setOrigin);
-  },
-  methods: {
-    setOrigin() {
-      const { right, left, top, bottom } = this.wheel.getBoundingClientRect();
-      this.origin = {
-        x: left + (right - left) / 2,
-        y: top + (bottom - top) / 2
-      };
-    },
-    onDrag(e) {
-      if (this.waitForNextFrame) return;
-
-      this.waitForNextFrame = true;
-      requestAnimationFrame(() => {
-        let x, y;
-        if (e.type === "touchmove") {
-          x = Math.floor(e.touches[0].clientX);
-          y = Math.floor(e.touches[0].clientY);
-        } else {
-          x = e.x;
-          y = e.y;
-        }
-
-        const currentPos = {
-          x: x - this.origin.x,
-          y: y - this.origin.y
-        };
-
-        const diffInRad = this.getAngleBetween(this.lastPos, currentPos);
-
-        this.angle += this.radiansToDegrees(diffInRad);
-
-        this.internalValue = Math.max(
-          Math.min(this.internalValue + this.speed * diffInRad, this.max),
-          this.min
-        );
-
-        if (Math.floor(this.internalValue) !== this.lastEmittedValue) {
-          this.$emit("change", Math.floor(this.internalValue));
-          this.lastEmittedValue = Math.floor(this.internalValue);
-        }
-
-        this.lastPos = currentPos;
-
-        this.waitForNextFrame = false;
-      });
-    },
-    getAngleBetween(u, v) {
-      let diffInRad = Math.atan2(v.y, v.x) - Math.atan2(u.y, u.x);
-      if (diffInRad < -Math.PI) diffInRad += 2 * Math.PI;
-      if (diffInRad > Math.PI) diffInRad -= 2 * Math.PI;
-      return diffInRad;
-    },
-    radiansToDegrees(radians) {
-      return radians * (180 / Math.PI);
-    },
-    onMouseDown(e) {
-      this.lastPos = {
-        x: e.x - this.origin.x,
-        y: e.y - this.origin.y
-      };
-      document.addEventListener("mousemove", this.onDrag);
-      document.addEventListener("mouseup", () => {
-        document.removeEventListener("mousemove", this.onDrag);
-      });
-    },
-    onTouchStart(e) {
-      this.lastPos = {
-        x: Math.floor(e.touches[0].clientX) - this.origin.x,
-        y: Math.floor(e.touches[0].clientY) - this.origin.y
-      };
-      document.addEventListener("touchmove", this.onDrag);
-      document.addEventListener("touchend", () => {
-        document.removeEventListener("touchmove", this.onDrag);
-      });
-    }
   }
 });
 </script>
