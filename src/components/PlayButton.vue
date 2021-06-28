@@ -17,7 +17,7 @@ export default defineComponent({
     IconStop
   },
   setup() {
-    const sound = new Audio("sounds/click.wav");
+    const sound = new Audio("sounds/click.mp3");
     const isPlaying = ref(false);
     let timeout: NodeJS.Timeout;
 
