@@ -1,20 +1,23 @@
 <template>
-  <div class="wheel" ref="wheel">
-    <div class="wheel__dot-container" :style="`transform: rotate(${angle}deg)`">
-      <span class="wheel__dot"></span>
+  <div
+    class="wheel"
+    ref="wheel"
+    tabindex="0"
+    @keydown.down.prevent="decrement"
+    @keydown.left.prevent="decrement"
+    @keydown.up.prevent="increment"
+    @keydown.right.prevent="increment"
+  >
+    <div class="wheel__dot-wrapper" :style="`transform: rotate(${angle}deg)`">
+      <span class="wheel__dot-element"></span>
     </div>
   </div>
 </template>
 
-<script>
-import { defineComponent, onMounted, reactive, ref, watch } from "vue";
-import {
-  useMousePressed,
-  useMouse,
-  useRafFn,
-  toRefs,
-  useEventListener
-} from "@vueuse/core";
+<script lang="ts">
+import { defineComponent, onMounted, ref, toRefs, unref, watch } from "vue";
+import { useMousePressed, useMouse, useRafFn, useEventListener } from "@vueuse/core";
+import { Vector2 } from "./Vector2";
 
 export default defineComponent({
   props: {
@@ -28,7 +31,7 @@ export default defineComponent({
     },
     speed: {
       type: Number,
-      default: 3
+      default: 0.1
     },
     value: {
       type: Number,
@@ -38,83 +41,76 @@ export default defineComponent({
   emits: ["change"],
   setup(props, { emit }) {
     const { min, max, speed } = toRefs(props);
-    const wheel = ref(null);
+    const wheel = ref();
     const angle = ref(0);
-    const internalValue = ref(props.value);
-    let lastEmittedValue = ref(null);
-    let lastPos = reactive({});
-    let origin = reactive({
-      x: 0,
-      y: 0
-    });
-
-    function onDrag(x, y) {
-      const currentPos = {
-        x: x - origin.x,
-        y: y - origin.y
-      };
-
-      const diffInRad = getAngleBetween(lastPos, currentPos);
-
-      angle.value += radiansToDegrees(diffInRad);
-
-      internalValue.value = Math.max(
-        Math.min(internalValue.value + speed.value * diffInRad, max.value),
-        min.value
-      );
-
-      if (Math.floor(internalValue.value) !== lastEmittedValue.value) {
-        emit("change", Math.floor(internalValue.value));
-        lastEmittedValue.value = Math.floor(internalValue.value);
-      }
-
-      lastPos = currentPos;
-    }
-
-    function getAngleBetween(u, v) {
-      let diffInRad = Math.atan2(v.y, v.x) - Math.atan2(u.y, u.x);
-      if (diffInRad < -Math.PI) diffInRad += 2 * Math.PI;
-      if (diffInRad > Math.PI) diffInRad -= 2 * Math.PI;
-      return diffInRad;
-    }
-
-    function radiansToDegrees(radians) {
-      return radians * (180 / Math.PI);
-    }
+    let internalValue = unref(props.value);
+    let lastEmittedValue: number;
+    let lastMousePos = new Vector2(0, 0);
+    let wheelCenter = new Vector2(0, 0);
 
     const { x, y } = useMouse();
+    const { pause: pauseLoop, resume: resumeLoop } = useRafFn(
+      () => {
+        const currentMousePos = new Vector2(x.value, y.value).minus(wheelCenter);
+        loop(currentMousePos);
+      },
+      { immediate: false }
+    );
 
-    const { pause, resume } = useRafFn(() => onDrag(x.value, y.value), {
-      immediate: false
-    });
-
-    function onDragStart(x, y) {
-      lastPos.x = x - origin.x;
-      lastPos.y = y - origin.y;
-      resume();
-      useEventListener(document, "touchend", pause, { once: true });
-      useEventListener(document, "mouseup", pause, { once: true });
-    }
-
-    useEventListener(wheel, "touchstart", (e) => {
+    useEventListener(wheel, "touchstart", (e: TouchEvent) => {
       onDragStart(e.touches[0].clientX, e.touches[0].clientY);
     });
 
-    useEventListener(wheel, "mousedown", (e) => {
+    useEventListener(wheel, "mousedown", (e: MouseEvent) => {
       onDragStart(e.x, e.y);
     });
 
-    // Origin
-    function setOrigin() {
+    function onDragStart(x: number, y: number) {
+      lastMousePos = new Vector2(x, y).minus(wheelCenter);
+      resumeLoop();
+      useEventListener(document, "touchend", pauseLoop, { once: true });
+      useEventListener(document, "mouseup", pauseLoop, { once: true });
+    }
+
+    function loop(currentPos: Vector2) {
+      const diff = Vector2.angleBetween(lastMousePos, currentPos);
+      updateValue(diff);
+
+      lastMousePos = currentPos;
+    }
+
+    function updateValue(diff: number) {
+      angle.value += diff;
+
+      internalValue = Math.max(Math.min(internalValue + speed.value * diff, max.value), min.value);
+
+      const roundedValue = Math.floor(internalValue);
+      if (roundedValue !== lastEmittedValue) {
+        emit("change", roundedValue);
+        lastEmittedValue = roundedValue;
+      }
+    }
+
+    // wheelCenter of the wheel
+    function setCenter() {
       const { right, left, top, bottom } = wheel.value.getBoundingClientRect();
-      origin.x = left + (right - left) / 2;
-      origin.y = top + (bottom - top) / 2;
+      wheelCenter.x = left + (right - left) / 2;
+      wheelCenter.y = top + (bottom - top) / 2;
     }
 
     onMounted(() => {
-      setOrigin();
-      useEventListener(window, "resize", setOrigin);
+      setCenter();
+      useEventListener(window, "resize", setCenter);
     });
+
+    // Keyboard
+    function decrement() {
+      updateValue(-10);
+    }
+
+    function increment() {
+      updateValue(10);
+    }
 
     // update the value if the change is not being made by the wheel itself
     const { pressed } = useMousePressed();
@@ -122,14 +118,16 @@ export default defineComponent({
       () => props.value,
       (val) => {
         if (!pressed.value) {
-          internalValue.value = val;
+          internalValue = val;
         }
       }
     );
 
     return {
       wheel,
-      angle
+      angle,
+      decrement,
+      increment
     };
   }
 });
@@ -147,13 +145,13 @@ export default defineComponent({
   -webkit-tap-highlight-color: transparent;
 }
 
-.wheel__dot-container {
+.wheel__dot-wrapper {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
-.wheel__dot {
+.wheel__dot-element {
   position: absolute;
   left: 70%;
   top: 14%;
@@ -161,8 +159,7 @@ export default defineComponent({
   height: 30px;
   border-radius: 50%;
   background: #e5ebf0;
-  box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.03),
-    inset 1px 1px 4px rgba(147, 147, 147, 0.4);
+  box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.03), inset 1px 1px 4px rgba(147, 147, 147, 0.4);
 }
 
 .wheel__handle {
@@ -170,12 +167,5 @@ export default defineComponent({
   left: 50%;
   bottom: 50%;
   transform-origin: bottom left;
-}
-
-svg > circle {
-  background: #e5ebf0;
-  box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.03),
-    inset 1px 1px 4px rgba(147, 147, 147, 0.4),
-    inset -1px -2px 4px rgba(255, 255, 255, 0.8);
 }
 </style>
