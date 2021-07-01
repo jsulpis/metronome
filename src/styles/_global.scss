@@ -4,6 +4,7 @@
   margin: 0;
   box-sizing: border-box;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 button {
@@ -44,8 +45,22 @@ button,
   outline: none;
 
   // focus outline alternative that allows to use box-shadows
-  &:focus-visible,
   &:focus {
+    &::after {
+      $outline-width: 2px;
+      content: "";
+      position: absolute;
+      top: -$outline-width;
+      bottom: -$outline-width;
+      left: -$outline-width;
+      right: -$outline-width;
+      border: $outline-width solid var(--primary);
+      border-radius: 50%;
+    }
+  }
+
+  // focus outline alternative that allows to use box-shadows
+  &:focus-visible {
     &::after {
       $outline-width: 2px;
       content: "";
