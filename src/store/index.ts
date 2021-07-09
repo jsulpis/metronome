@@ -2,24 +2,23 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    bpm: 120
+    bpm: 120,
+    min: 40,
+    max: 180
   },
   mutations: {
-    incrementBpmByOne(state) {
-      state.bpm++;
+    incrementBpmBy(state, value) {
+      state.bpm = Math.min(state.bpm + value, state.max);
     },
-    decrementBpmByOne(state) {
-      state.bpm--;
+    decrementBpmBy(state, value) {
+      state.bpm = Math.max(state.bpm - value, state.min);
     },
-    incrementBpmByFive(state) {
-      state.bpm += 5;
-    },
-    decrementBpmByFive(state) {
-      state.bpm -= 5;
-    },
-    setBpmValue(state, payload) {
-      state.bpm = payload;
+    setBpmValue(state, value) {
+      if (value >= state.min && value <= state.max) {
+        state.bpm = value;
+      }
     }
-  }
+  },
+  strict: true
   // plugins: [createLogger()]
 });

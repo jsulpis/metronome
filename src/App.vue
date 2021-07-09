@@ -4,7 +4,13 @@
     <div class="content-push">
       <TempoSection class="tempo" />
       <div class="wheel-container">
-        <Wheel class="wheel" :value="bpm" @change="commit('setBpmValue', $event)" />
+        <Wheel
+          class="wheel"
+          :value="bpm"
+          :min="min"
+          :max="max"
+          @change="commit('setBpmValue', $event)"
+        />
         <PlayButton class="play-button" />
       </div>
     </div>
@@ -12,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { computed, defineComponent } from "vue";
 import PlayButton from "./components/PlayButton.vue";
 import TempoSection from "./components/TempoSection.vue";
 import Wheel from "./components/Wheel.vue";
@@ -22,8 +28,11 @@ export default defineComponent({
   components: { PlayButton, TempoSection, Wheel },
   setup() {
     const { state, commit } = useStore();
+    const bpm = computed(() => state.bpm);
+    const min = computed(() => state.min);
+    const max = computed(() => state.max);
 
-    return { commit, bpm: computed(() => state.bpm) };
+    return { commit, bpm, min, max };
   }
 });
 </script>

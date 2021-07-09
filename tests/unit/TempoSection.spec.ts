@@ -54,4 +54,52 @@ describe("TempoSection.vue", () => {
     await fireEvent.click(btnMinusFive);
     expect(getByText("120")).toBeVisible();
   });
+
+  it("cannot decrement the bpm below the min value", async () => {
+    store.commit("setBpmValue", store.state.min + 2);
+
+    const { getByText } = render(TempoSection, {
+      global: {
+        plugins: [store]
+      }
+    });
+    const btnMinusOne = getByText("-1", { selector: "button" });
+    const btnMinusFive = getByText("-5", { selector: "button" });
+    // Initial state
+    expect(getByText(store.state.min + 2)).toBeVisible();
+
+    // Try to decrement by 5
+    await fireEvent.click(btnMinusFive);
+    // Only - 2 bpm before hitting the min value
+    expect(getByText(store.state.min)).toBeVisible();
+
+    // Try to decrement by 1
+    await fireEvent.click(btnMinusOne);
+    // No change
+    expect(getByText(store.state.min)).toBeVisible();
+  });
+
+  it("cannot increment the bpm above the max value", async () => {
+    store.commit("setBpmValue", store.state.max - 3);
+
+    const { getByText } = render(TempoSection, {
+      global: {
+        plugins: [store]
+      }
+    });
+    const btnPlusOne = getByText("+1", { selector: "button" });
+    const btnPlusFive = getByText("+5", { selector: "button" });
+    // Initial state
+    expect(getByText(store.state.max - 3)).toBeVisible();
+
+    // Try to increment by 5
+    await fireEvent.click(btnPlusFive);
+    // Only + 3 bpm before hitting the max value
+    expect(getByText(store.state.max)).toBeVisible();
+
+    // Try to increment by 1
+    await fireEvent.click(btnPlusOne);
+    // No change
+    expect(getByText(store.state.max)).toBeVisible();
+  });
 });

@@ -1,13 +1,13 @@
 <template>
   <section>
-    <button @click="commit('decrementBpmByFive')" class="minus-five">-5</button>
-    <button @click="commit('decrementBpmByOne')" class="minus-one">-1</button>
+    <button @click="commit('decrementBpmBy', 5)" class="minus-five">-5</button>
+    <button @click="commit('decrementBpmBy', 1)" class="minus-one">-1</button>
     <div class="bpm">
       <span class="bpm__value">{{ bpm }}</span>
       <span class="bpm__label">BPM</span>
     </div>
-    <button @click="commit('incrementBpmByOne')" class="plus-one">+1</button>
-    <button @click="commit('incrementBpmByFive')" class="plus-five">+5</button>
+    <button @click="commit('incrementBpmBy', 1)" class="plus-one">+1</button>
+    <button @click="commit('incrementBpmBy', 5)" class="plus-five">+5</button>
   </section>
 </template>
 
@@ -18,11 +18,9 @@ import { useStore } from "vuex";
 export default defineComponent({
   setup() {
     const { state, commit } = useStore();
+    const bpm = computed(() => state.bpm);
 
-    return {
-      commit,
-      bpm: computed(() => state.bpm)
-    };
+    return { commit, bpm };
   }
 });
 </script>
