@@ -4,11 +4,7 @@
     <div class="content-push">
       <TempoSection class="tempo" />
       <div class="wheel-container">
-        <Wheel
-          class="wheel"
-          :value="bpm"
-          @change="commit('setBpmValue', $event)"
-        />
+        <Wheel class="wheel" :value="bpm" @change="commit('setBpmValue', $event)" />
         <PlayButton class="play-button" />
       </div>
     </div>
@@ -16,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch, ref, computed } from "vue";
+import { defineComponent, computed } from "vue";
 import PlayButton from "./components/PlayButton.vue";
 import TempoSection from "./components/TempoSection.vue";
 import Wheel from "./components/Wheel.vue";

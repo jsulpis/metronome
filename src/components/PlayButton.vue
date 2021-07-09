@@ -6,6 +6,7 @@
 </template>
 
 <script lang="ts">
+import { Howl } from "howler";
 import { defineComponent, ref, watch } from "vue";
 import { useStore } from "vuex";
 import IconPlay from "./IconPlay.vue";
@@ -17,22 +18,17 @@ export default defineComponent({
     IconStop
   },
   setup() {
-    const sound = new Audio("sounds/click.mp3");
+    const sound = new Howl({
+      src: ["sounds/click.mp3"]
+    });
+
     const isPlaying = ref(false);
     let timeout: NodeJS.Timeout;
 
     const { state } = useStore();
 
-    function playSound() {
-      if (sound.paused) {
-        sound.play();
-      } else {
-        sound.currentTime = 0;
-      }
-    }
-
     function loop() {
-      playSound();
+      sound.play();
       timeout = setTimeout(loop, (60 / state.bpm) * 1000);
     }
 

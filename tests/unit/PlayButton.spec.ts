@@ -1,11 +1,12 @@
 import { render, fireEvent } from "@testing-library/vue";
 import store from "@/store/index";
 import PlayButton from "@/components/PlayButton.vue";
+import { Howl } from "howler";
 
 describe("PlayButton.vue", () => {
   it("should play a sound and change the visible icon when clicking on the button", async () => {
     const playSpy = jest.fn();
-    HTMLMediaElement.prototype.play = playSpy;
+    Howl.prototype.play = playSpy;
 
     const { getByTitle, getByRole } = render(PlayButton, {
       global: {
