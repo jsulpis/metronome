@@ -3,6 +3,10 @@
     class="wheel"
     ref="wheel"
     tabindex="0"
+    role="slider"
+    :aria-valuemin="min"
+    :aria-valuemax="max"
+    :aria-valuenow="Math.floor(internalValue)"
     @keydown.down.prevent="decrement"
     @keydown.left.prevent="decrement"
     @keydown.up.prevent="increment"
@@ -15,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, toRefs, unref, watch } from "vue";
+import { defineComponent, onMounted, ref, toRefs, watch } from "vue";
 import { useMousePressed, useMouse, useRafFn, useEventListener } from "@vueuse/core";
 import { Vector2 } from "./Vector2";
 
@@ -35,7 +39,7 @@ export default defineComponent({
     },
     value: {
       type: Number,
-      default: 100
+      default: 120
     }
   },
   emits: ["change"],
@@ -43,7 +47,7 @@ export default defineComponent({
     const { min, max, speed } = toRefs(props);
     const wheel = ref();
     const angle = ref(0);
-    let internalValue = unref(props.value);
+    const internalValue = ref(props.value);
     let lastEmittedValue: number;
     let lastMousePos = new Vector2(0, 0);
     let wheelCenter = new Vector2(0, 0);
@@ -82,9 +86,12 @@ export default defineComponent({
     function updateValue(diff: number) {
       angle.value += diff;
 
-      internalValue = Math.max(Math.min(internalValue + speed.value * diff, max.value), min.value);
+      internalValue.value = Math.max(
+        Math.min(internalValue.value + speed.value * diff, max.value),
+        min.value
+      );
 
-      const roundedValue = Math.floor(internalValue);
+      const roundedValue = Math.floor(internalValue.value);
       if (roundedValue !== lastEmittedValue) {
         emit("change", roundedValue);
         lastEmittedValue = roundedValue;
@@ -118,7 +125,7 @@ export default defineComponent({
       () => props.value,
       (val) => {
         if (!pressed.value) {
-          internalValue = val;
+          internalValue.value = val;
         }
       }
     );
@@ -127,7 +134,8 @@ export default defineComponent({
       wheel,
       angle,
       decrement,
-      increment
+      increment,
+      internalValue
     };
   }
 });
