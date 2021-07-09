@@ -78,6 +78,7 @@ button {
     height: 48px;
     font-size: 1.8rem;
     margin: 0 10px;
+    transform: translateY(30%);
   }
 }
 
