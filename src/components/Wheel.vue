@@ -143,9 +143,9 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .wheel {
+  @include shadow-02;
   position: relative;
   background: linear-gradient(330.65deg, #e2e8f0 13%, #f8fafc 92.84%);
-  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.15), inset 1px 1px 2px #ffffff;
   width: 280px;
   height: 280px;
   border-radius: 50%;

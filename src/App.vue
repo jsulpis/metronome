@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1 class="text-light">Metronome</h1>
+    <h1>Metronome</h1>
     <div class="content-push">
       <TempoSection class="tempo" />
       <div class="wheel-container">
@@ -39,11 +39,7 @@ export default defineComponent({
 
 <style scoped>
 h1 {
-  font-weight: 500;
-  font-size: 1.8rem;
-  letter-spacing: 0.445em;
-  margin: 60px 0 0;
-  text-transform: uppercase;
+  margin-top: 60px;
 }
 
 main {

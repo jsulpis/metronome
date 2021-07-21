@@ -2,10 +2,10 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-.text-light {
+h1 {
   color: var(--grey-60);
-}
-
-.text-dark {
-  color: var(--grey-70);
+  font-weight: 500;
+  font-size: 1.8rem;
+  letter-spacing: 0.445em;
+  text-transform: uppercase;
 }
