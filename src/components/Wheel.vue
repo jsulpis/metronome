@@ -143,11 +143,11 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .wheel {
+  @include shadow-02;
   position: relative;
   background: linear-gradient(330.65deg, #e2e8f0 13%, #f8fafc 92.84%);
-  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.15), inset 1px 1px 2px #ffffff;
-  width: 280px;
-  height: 280px;
+  width: 270px;
+  height: 270px;
   border-radius: 50%;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -162,9 +162,9 @@ export default defineComponent({
 .wheel__dot-element {
   position: absolute;
   left: 70%;
-  top: 14%;
-  width: 30px;
-  height: 30px;
+  top: 13%;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: #e5ebf0;
   box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.03), inset 1px 1px 4px rgba(147, 147, 147, 0.4);

@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgressTrack.vue should match snapshot with progress = 0 1`] = `
+<div>
+  <svg
+    height="300"
+    viewBox="0 0 300 300"
+    width="300"
+  >
+    <circle
+      cx="150"
+      cy="150"
+      fill="none"
+      r="144"
+      stroke="var(--grey-70)"
+      stroke-dasharray="942.4777960769379"
+      stroke-dashoffset="320.4424506661589"
+      stroke-linecap="round"
+      stroke-width="12"
+    />
+    <circle
+      cx="150"
+      cy="150"
+      fill="none"
+      r="144"
+      stroke="var(--primary)"
+      stroke-dasharray="942.4777960769379"
+      stroke-dashoffset="942.4777960769379"
+      stroke-linecap="round"
+      stroke-width="12"
+    />
+  </svg>
+  
+  
+</div>
+`;
+
+exports[`ProgressTrack.vue should match snapshot with progress = 60 1`] = `
+<div>
+  <svg
+    height="300"
+    viewBox="0 0 300 300"
+    width="300"
+  >
+    <circle
+      cx="150"
+      cy="150"
+      fill="none"
+      r="144"
+      stroke="var(--grey-70)"
+      stroke-dasharray="942.4777960769379"
+      stroke-dashoffset="320.4424506661589"
+      stroke-linecap="round"
+      stroke-width="12"
+    />
+    <circle
+      cx="150"
+      cy="150"
+      fill="none"
+      r="144"
+      stroke="var(--primary)"
+      stroke-dasharray="942.4777960769379"
+      stroke-dashoffset="569.2565888304705"
+      stroke-linecap="round"
+      stroke-width="12"
+    />
+  </svg>
+  
+  
+</div>
+`;
+
+exports[`ProgressTrack.vue should match snapshot with progress = 100 1`] = `
+<div>
+  <svg
+    height="300"
+    viewBox="0 0 300 300"
+    width="300"
+  >
+    <circle
+      cx="150"
+      cy="150"
+      fill="none"
+      r="144"
+      stroke="var(--grey-70)"
+      stroke-dasharray="942.4777960769379"
+      stroke-dashoffset="320.4424506661589"
+      stroke-linecap="round"
+      stroke-width="12"
+    />
+    <circle
+      cx="150"
+      cy="150"
+      fill="none"
+      r="144"
+      stroke="var(--primary)"
+      stroke-dasharray="942.4777960769379"
+      stroke-dashoffset="320.4424506661589"
+      stroke-linecap="round"
+      stroke-width="12"
+    />
+  </svg>
+  
+  
+</div>
+`;

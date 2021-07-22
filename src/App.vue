@@ -1,18 +1,12 @@
 <template>
   <main>
-    <h1 class="text-light">Metronome</h1>
+    <h1>Metronome</h1>
     <div class="content-push">
-      <TempoSection class="tempo" />
-      <div class="wheel-container">
-        <Wheel
-          class="wheel"
-          :value="bpm"
-          :min="min"
-          :max="max"
-          @change="commit('setBpmValue', $event)"
-        />
+      <TempoSection />
+      <ProgressTrack :progress="(bpm - min) / (max - min)" class="progress-track">
+        <Wheel :value="bpm" :min="min" :max="max" @change="commit('setBpmValue', $event)" />
         <PlayButton class="play-button" />
-      </div>
+      </ProgressTrack>
     </div>
   </main>
 </template>
@@ -21,11 +15,12 @@
 import { computed, defineComponent } from "vue";
 import PlayButton from "./components/PlayButton.vue";
 import TempoSection from "./components/TempoSection.vue";
+import ProgressTrack from "./components/ProgressTrack.vue";
 import Wheel from "./components/Wheel.vue";
 import { useStore } from "vuex";
 
 export default defineComponent({
-  components: { PlayButton, TempoSection, Wheel },
+  components: { PlayButton, TempoSection, Wheel, ProgressTrack },
   setup() {
     const { state, commit } = useStore();
     const bpm = computed(() => state.bpm);
@@ -37,13 +32,9 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 h1 {
-  font-weight: 500;
-  font-size: 1.8rem;
-  letter-spacing: 0.445em;
-  margin: 60px 0 0;
-  text-transform: uppercase;
+  margin-top: 60px;
 }
 
 main {
@@ -53,18 +44,16 @@ main {
   min-height: 100vh;
 }
 
+.progress-track {
+  position: relative;
+  margin-bottom: 25vh;
+  margin-top: 24px;
+}
+
 .play-button {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.wheel-container {
-  position: relative;
-  margin-bottom: 25vh;
-  margin-top: 24px;
-  display: flex;
-  justify-content: center;
 }
 </style>

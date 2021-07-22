@@ -26,8 +26,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/abstract";
-
 section {
   display: flex;
   justify-content: space-evenly;
@@ -62,10 +60,10 @@ section {
 }
 
 button {
+  @include shadow-03;
   background: var(--grey-40);
   font-weight: 600;
   border: 1px solid var(--grey-50);
-  box-shadow: $shadow-03;
 
   &[class$="one"] {
     width: 60px;
