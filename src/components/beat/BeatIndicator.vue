@@ -2,9 +2,14 @@
   <div class="beat">
     <p class="value">{{ currentBeat }}</p>
     <p class="label">beat</p>
-  </div>
-  <div class="beat-indicator">
-    <span v-for="i in beatCount" :class="{ active: i === currentBeat }" :key="i"></span>
+
+    <div class="controls">
+      <button aria-label="remove one beat" @click="commit('removeBeat')">-</button>
+      <div class="dots">
+        <span v-for="i in beatCount" :class="{ active: i === currentBeat }" :key="i"></span>
+      </div>
+      <button aria-label="add one beat" @click="commit('addBeat')">+</button>
+    </div>
   </div>
 </template>
 
@@ -14,10 +19,10 @@ import { useStore } from "vuex";
 
 export default defineComponent({
   setup() {
-    const { state } = useStore();
+    const { state, commit } = useStore();
     const currentBeat = computed(() => state.beat.current);
     const beatCount = computed(() => state.beat.count);
-    return { currentBeat, beatCount };
+    return { currentBeat, beatCount, commit };
   }
 });
 </script>
@@ -35,16 +40,20 @@ export default defineComponent({
     letter-spacing: 0.185em;
     text-transform: uppercase;
   }
+
+  .controls {
+    display: flex;
+    gap: 28px;
+    margin-top: 16px;
+  }
 }
 
-.beat-indicator {
+.dots {
   @include shadow-01;
   display: inline-flex;
   justify-content: space-evenly;
   align-items: center;
-  gap: 35px;
-  min-width: 200px;
-  padding: 0 22px;
+  width: 250px;
   height: 40px;
   border-radius: 20px;
   background: var(--grey-40);
@@ -59,5 +68,14 @@ export default defineComponent({
       background: var(--primary);
     }
   }
+}
+
+button {
+  @include shadow-01;
+  background: var(--grey-40);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 2.1rem;
 }
 </style>
