@@ -25,11 +25,14 @@ export default defineComponent({
     const isPlaying = ref(false);
     let timeout: NodeJS.Timeout;
 
-    const { state } = useStore();
+    const { state, commit } = useStore();
 
     function loop() {
       sound.play();
-      timeout = setTimeout(loop, (60 / state.bpm) * 1000);
+      timeout = setTimeout(() => {
+        commit("nextBeat");
+        loop();
+      }, (60 / state.bpm.value) * 1000);
     }
 
     watch(isPlaying, (newVal) => {

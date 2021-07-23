@@ -18,7 +18,7 @@ import { useStore } from "vuex";
 export default defineComponent({
   setup() {
     const { state, commit } = useStore();
-    const bpm = computed(() => state.bpm);
+    const bpm = computed(() => state.bpm.value);
 
     return { commit, bpm };
   }

@@ -1,6 +1,7 @@
 <template>
   <main>
     <h1>Metronome</h1>
+    <BeatIndicator></BeatIndicator>
     <div class="content-push">
       <TempoSection />
       <ProgressTrack :progress="(bpm - min) / (max - min)" class="progress-track">
@@ -13,19 +14,20 @@
 
 <script lang="ts">
 import { computed, defineComponent } from "vue";
-import PlayButton from "./components/PlayButton.vue";
-import TempoSection from "./components/TempoSection.vue";
-import ProgressTrack from "./components/ProgressTrack.vue";
-import Wheel from "./components/Wheel.vue";
+import PlayButton from "./components/bpm/PlayButton.vue";
+import TempoSection from "./components/bpm/TempoSection.vue";
+import ProgressTrack from "./components/bpm/ProgressTrack.vue";
+import Wheel from "./components/bpm/Wheel.vue";
 import { useStore } from "vuex";
+import BeatIndicator from "./components/beat/BeatIndicator.vue";
 
 export default defineComponent({
-  components: { PlayButton, TempoSection, Wheel, ProgressTrack },
+  components: { PlayButton, TempoSection, Wheel, ProgressTrack, BeatIndicator },
   setup() {
     const { state, commit } = useStore();
-    const bpm = computed(() => state.bpm);
-    const min = computed(() => state.min);
-    const max = computed(() => state.max);
+    const bpm = computed(() => state.bpm.value);
+    const min = computed(() => state.bpm.min);
+    const max = computed(() => state.bpm.max);
 
     return { commit, bpm, min, max };
   }

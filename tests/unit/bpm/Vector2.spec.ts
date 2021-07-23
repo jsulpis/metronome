@@ -1,4 +1,4 @@
-import { Vector2 } from "@/components/Vector2";
+import { Vector2 } from "@/components/bpm/Vector2";
 
 describe("Vector2", () => {
   it("has a constructor with x and y coordinates", () => {

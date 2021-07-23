@@ -1,6 +1,6 @@
 import { render, fireEvent } from "@testing-library/vue";
 import store from "@/store/index";
-import PlayButton from "@/components/PlayButton.vue";
+import PlayButton from "@/components/bpm/PlayButton.vue";
 import { Howl } from "howler";
 
 describe("PlayButton.vue", () => {

@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import ProgressTrack from "@/components/ProgressTrack.vue";
+import ProgressTrack from "@/components/bpm/ProgressTrack.vue";
 
 describe("ProgressTrack.vue", () => {
   it("should match snapshot with progress = 0", async () => {

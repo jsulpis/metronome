@@ -1,5 +1,5 @@
 import { fireEvent, render } from "@testing-library/vue";
-import TempoSection from "@/components/TempoSection.vue";
+import TempoSection from "@/components/bpm/TempoSection.vue";
 import store from "@/store/index";
 
 describe("TempoSection.vue", () => {
@@ -56,7 +56,7 @@ describe("TempoSection.vue", () => {
   });
 
   it("cannot decrement the bpm below the min value", async () => {
-    store.commit("setBpmValue", store.state.min + 2);
+    store.commit("setBpmValue", store.state.bpm.min + 2);
 
     const { getByText } = render(TempoSection, {
       global: {
@@ -66,21 +66,21 @@ describe("TempoSection.vue", () => {
     const btnMinusOne = getByText("-1", { selector: "button" });
     const btnMinusFive = getByText("-5", { selector: "button" });
     // Initial state
-    expect(getByText(store.state.min + 2)).toBeVisible();
+    expect(getByText(store.state.bpm.min + 2)).toBeVisible();
 
     // Try to decrement by 5
     await fireEvent.click(btnMinusFive);
     // Only - 2 bpm before hitting the min value
-    expect(getByText(store.state.min)).toBeVisible();
+    expect(getByText(store.state.bpm.min)).toBeVisible();
 
     // Try to decrement by 1
     await fireEvent.click(btnMinusOne);
     // No change
-    expect(getByText(store.state.min)).toBeVisible();
+    expect(getByText(store.state.bpm.min)).toBeVisible();
   });
 
   it("cannot increment the bpm above the max value", async () => {
-    store.commit("setBpmValue", store.state.max - 3);
+    store.commit("setBpmValue", store.state.bpm.max - 3);
 
     const { getByText } = render(TempoSection, {
       global: {
@@ -90,16 +90,16 @@ describe("TempoSection.vue", () => {
     const btnPlusOne = getByText("+1", { selector: "button" });
     const btnPlusFive = getByText("+5", { selector: "button" });
     // Initial state
-    expect(getByText(store.state.max - 3)).toBeVisible();
+    expect(getByText(store.state.bpm.max - 3)).toBeVisible();
 
     // Try to increment by 5
     await fireEvent.click(btnPlusFive);
     // Only + 3 bpm before hitting the max value
-    expect(getByText(store.state.max)).toBeVisible();
+    expect(getByText(store.state.bpm.max)).toBeVisible();
 
     // Try to increment by 1
     await fireEvent.click(btnPlusOne);
     // No change
-    expect(getByText(store.state.max)).toBeVisible();
+    expect(getByText(store.state.bpm.max)).toBeVisible();
   });
 });
