@@ -1,16 +1,15 @@
 <template>
-  <button type="button" class="play-button" @click="isPlaying = !isPlaying">
+  <button type="button" class="play-button" @click="isPlaying ? stop() : play()">
     <IconStop v-show="isPlaying"></IconStop>
     <IconPlay v-show="!isPlaying"></IconPlay>
   </button>
 </template>
 
 <script lang="ts">
-import { Howl } from "howler";
-import { defineComponent, ref, watch } from "vue";
-import { useStore } from "vuex";
+import { defineComponent } from "vue";
 import IconPlay from "./IconPlay.vue";
 import IconStop from "./IconStop.vue";
+import usePlayer from "../../composables/usePlayer";
 
 export default defineComponent({
   components: {
@@ -18,33 +17,12 @@ export default defineComponent({
     IconStop
   },
   setup() {
-    const sound = new Howl({
-      src: ["sounds/click.mp3"]
-    });
-
-    const isPlaying = ref(false);
-    let timeout: NodeJS.Timeout;
-
-    const { state, commit } = useStore();
-
-    function loop() {
-      sound.play();
-      timeout = setTimeout(() => {
-        commit("nextBeat");
-        loop();
-      }, (60 / state.bpm.value) * 1000);
-    }
-
-    watch(isPlaying, (newVal) => {
-      if (newVal) {
-        loop();
-      } else {
-        clearTimeout(timeout);
-      }
-    });
+    const { isPlaying, play, stop } = usePlayer();
 
     return {
-      isPlaying
+      isPlaying,
+      play,
+      stop
     };
   }
 });
