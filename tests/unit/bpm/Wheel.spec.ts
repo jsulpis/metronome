@@ -1,5 +1,5 @@
 import { fireEvent, render } from "@testing-library/vue";
-import Wheel from "@/components/Wheel.vue";
+import Wheel from "@/components/bpm/Wheel.vue";
 
 describe("Wheel.vue", () => {
   it("should update the value when pressing the arrow keys", async () => {

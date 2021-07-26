@@ -146,8 +146,8 @@ export default defineComponent({
   @include shadow-02;
   position: relative;
   background: linear-gradient(330.65deg, #e2e8f0 13%, #f8fafc 92.84%);
-  width: 270px;
-  height: 270px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -162,7 +162,7 @@ export default defineComponent({
 .wheel__dot-element {
   position: absolute;
   left: 70%;
-  top: 13%;
+  top: 15%;
   width: 28px;
   height: 28px;
   border-radius: 50%;

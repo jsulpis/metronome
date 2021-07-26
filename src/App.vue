@@ -1,31 +1,33 @@
 <template>
   <main>
     <h1>Metronome</h1>
-    <div class="content-push">
+    <BeatIndicator></BeatIndicator>
+    <section>
       <TempoSection />
-      <ProgressTrack :progress="(bpm - min) / (max - min)" class="progress-track">
+      <ProgressTrack :progress="(bpm - min) / (max - min)">
         <Wheel :value="bpm" :min="min" :max="max" @change="commit('setBpmValue', $event)" />
         <PlayButton class="play-button" />
       </ProgressTrack>
-    </div>
+    </section>
   </main>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from "vue";
-import PlayButton from "./components/PlayButton.vue";
-import TempoSection from "./components/TempoSection.vue";
-import ProgressTrack from "./components/ProgressTrack.vue";
-import Wheel from "./components/Wheel.vue";
+import PlayButton from "./components/bpm/PlayButton.vue";
+import TempoSection from "./components/bpm/TempoSection.vue";
+import ProgressTrack from "./components/bpm/ProgressTrack.vue";
+import Wheel from "./components/bpm/Wheel.vue";
 import { useStore } from "vuex";
+import BeatIndicator from "./components/beat/BeatIndicator.vue";
 
 export default defineComponent({
-  components: { PlayButton, TempoSection, Wheel, ProgressTrack },
+  components: { PlayButton, TempoSection, Wheel, ProgressTrack, BeatIndicator },
   setup() {
     const { state, commit } = useStore();
-    const bpm = computed(() => state.bpm);
-    const min = computed(() => state.min);
-    const max = computed(() => state.max);
+    const bpm = computed(() => state.bpm.value);
+    const min = computed(() => state.bpm.min);
+    const max = computed(() => state.bpm.max);
 
     return { commit, bpm, min, max };
   }
@@ -33,21 +35,17 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  margin-top: 60px;
-}
-
 main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  align-items: center;
   min-height: 100vh;
+  padding: 4vh 0;
 }
 
 .progress-track {
-  position: relative;
-  margin-bottom: 25vh;
-  margin-top: 24px;
+  margin-top: 10px;
 }
 
 .play-button {
@@ -55,5 +53,11 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 640px) {
+  .progress-track {
+    margin-top: 20px;
+  }
 }
 </style>

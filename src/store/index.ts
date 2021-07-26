@@ -2,21 +2,36 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    bpm: 120,
-    min: 40,
-    max: 180
+    bpm: {
+      value: 120,
+      min: 40,
+      max: 180
+    },
+    beat: {
+      current: 1,
+      count: 4
+    }
   },
   mutations: {
     incrementBpmBy(state, value) {
-      state.bpm = Math.min(state.bpm + value, state.max);
+      state.bpm.value = Math.min(state.bpm.value + value, state.bpm.max);
     },
     decrementBpmBy(state, value) {
-      state.bpm = Math.max(state.bpm - value, state.min);
+      state.bpm.value = Math.max(state.bpm.value - value, state.bpm.min);
     },
     setBpmValue(state, value) {
-      if (value >= state.min && value <= state.max) {
-        state.bpm = value;
+      if (value >= state.bpm.min && value <= state.bpm.max) {
+        state.bpm.value = value;
       }
+    },
+    nextBeat(state) {
+      state.beat.current = (state.beat.current + 1) % (state.beat.count + 1) || 1;
+    },
+    addBeat(state) {
+      state.beat.count = Math.min(state.beat.count + 1, 6);
+    },
+    removeBeat(state) {
+      state.beat.count = Math.max(state.beat.count - 1, 1);
     }
   },
   strict: true
