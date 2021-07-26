@@ -28,7 +28,7 @@ export default createStore({
       state.beat.current = (state.beat.current + 1) % (state.beat.count + 1) || 1;
     },
     addBeat(state) {
-      state.beat.count = Math.min(state.beat.count + 1, 9);
+      state.beat.count = Math.min(state.beat.count + 1, 6);
     },
     removeBeat(state) {
       state.beat.count = Math.max(state.beat.count - 1, 1);

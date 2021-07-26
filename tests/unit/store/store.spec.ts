@@ -23,19 +23,13 @@ describe("store mutations", () => {
   });
 
   describe("addBeat", () => {
-    it("should increment the beat count with a maximum of 9 beats", () => {
+    it("should increment the beat count with a maximum of 6 beats", () => {
       store.commit("addBeat");
       expect(store.state.beat.count).toBe(5);
       store.commit("addBeat");
       expect(store.state.beat.count).toBe(6);
       store.commit("addBeat");
-      expect(store.state.beat.count).toBe(7);
-      store.commit("addBeat");
-      expect(store.state.beat.count).toBe(8);
-      store.commit("addBeat");
-      expect(store.state.beat.count).toBe(9);
-      store.commit("addBeat");
-      expect(store.state.beat.count).toBe(9);
+      expect(store.state.beat.count).toBe(6);
     });
   });
 

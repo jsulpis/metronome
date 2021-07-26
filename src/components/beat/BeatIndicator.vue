@@ -1,5 +1,5 @@
 <template>
-  <div class="beat">
+  <section>
     <p class="value">{{ currentBeat }}</p>
     <p class="label">beat</p>
 
@@ -10,7 +10,7 @@
       </div>
       <button aria-label="add one beat" @click="commit('addBeat')">+</button>
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
@@ -28,24 +28,22 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.beat {
-  .value {
-    font-size: 3.6rem;
-    line-height: 4.4rem;
-  }
+.value {
+  font-size: 3.6rem;
+  line-height: 4.4rem;
+}
 
-  .label {
-    font-size: 1.2rem;
-    line-height: 1.5rem;
-    letter-spacing: 0.185em;
-    text-transform: uppercase;
-  }
+.label {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.185em;
+  text-transform: uppercase;
+}
 
-  .controls {
-    display: flex;
-    gap: 28px;
-    margin-top: 16px;
-  }
+.controls {
+  display: flex;
+  gap: 24px;
+  margin-top: 16px;
 }
 
 .dots {
@@ -53,7 +51,7 @@ export default defineComponent({
   display: inline-flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 250px;
+  width: 200px;
   height: 40px;
   border-radius: 20px;
   background: var(--grey-40);
@@ -71,7 +69,7 @@ export default defineComponent({
 }
 
 button {
-  @include shadow-01;
+  @include shadow-02;
   background: var(--grey-40);
   width: 40px;
   height: 40px;

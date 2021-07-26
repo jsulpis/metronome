@@ -2,13 +2,13 @@
   <main>
     <h1>Metronome</h1>
     <BeatIndicator></BeatIndicator>
-    <div class="content-push">
+    <section>
       <TempoSection />
-      <ProgressTrack :progress="(bpm - min) / (max - min)" class="progress-track">
+      <ProgressTrack :progress="(bpm - min) / (max - min)">
         <Wheel :value="bpm" :min="min" :max="max" @change="commit('setBpmValue', $event)" />
         <PlayButton class="play-button" />
       </ProgressTrack>
-    </div>
+    </section>
   </main>
 </template>
 
@@ -35,22 +35,17 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  margin-top: 60px;
-}
-
 main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   min-height: 100vh;
+  padding: 4vh 0;
 }
 
 .progress-track {
-  position: relative;
-  margin-bottom: 25vh;
-  margin-top: 24px;
+  margin-top: 10px;
 }
 
 .play-button {
@@ -58,5 +53,11 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 640px) {
+  .progress-track {
+    margin-top: 20px;
+  }
 }
 </style>

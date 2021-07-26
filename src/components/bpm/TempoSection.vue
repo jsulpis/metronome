@@ -1,14 +1,14 @@
 <template>
-  <section>
+  <div class="bpm">
     <button @click="commit('decrementBpmBy', 5)" class="minus-five">-5</button>
     <button @click="commit('decrementBpmBy', 1)" class="minus-one">-1</button>
-    <div class="bpm">
+    <div class="bpm__display">
       <span class="bpm__value">{{ bpm }}</span>
       <span class="bpm__label">BPM</span>
     </div>
     <button @click="commit('incrementBpmBy', 1)" class="plus-one">+1</button>
     <button @click="commit('incrementBpmBy', 5)" class="plus-five">+5</button>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">
@@ -26,7 +26,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-section {
+.bpm {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -41,9 +41,11 @@ section {
 }
 
 .bpm {
-  display: flex;
-  flex-direction: column;
-  margin: 0 10px;
+  &__display {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+  }
 
   &__value {
     font-size: 6.4rem;
