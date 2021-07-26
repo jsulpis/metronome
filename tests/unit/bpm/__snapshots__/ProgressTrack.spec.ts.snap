@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ProgressTrack.vue should match snapshot with progress = 0 1`] = `
-<div>
+<div
+  class="progress-track"
+>
   <svg
     height="300"
     viewBox="0 0 300 300"
@@ -36,7 +38,9 @@ exports[`ProgressTrack.vue should match snapshot with progress = 0 1`] = `
 `;
 
 exports[`ProgressTrack.vue should match snapshot with progress = 60 1`] = `
-<div>
+<div
+  class="progress-track"
+>
   <svg
     height="300"
     viewBox="0 0 300 300"
@@ -71,7 +75,9 @@ exports[`ProgressTrack.vue should match snapshot with progress = 60 1`] = `
 `;
 
 exports[`ProgressTrack.vue should match snapshot with progress = 100 1`] = `
-<div>
+<div
+  class="progress-track"
+>
   <svg
     height="300"
     viewBox="0 0 300 300"
