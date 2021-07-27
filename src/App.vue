@@ -3,7 +3,7 @@
     <h1>Metronome</h1>
     <BeatIndicator></BeatIndicator>
     <section>
-      <TempoSection />
+      <TempoControls />
       <ProgressTrack :progress="(bpm - min) / (max - min)">
         <Wheel :value="bpm" :min="min" :max="max" @change="commit('setBpmValue', $event)" />
         <PlayButton class="play-button" />
@@ -15,15 +15,18 @@
 <script lang="ts">
 import { computed, defineComponent } from "vue";
 import PlayButton from "./components/bpm/PlayButton.vue";
-import TempoSection from "./components/bpm/TempoSection.vue";
+import TempoControls from "./components/bpm/TempoControls.vue";
 import ProgressTrack from "./components/bpm/ProgressTrack.vue";
 import Wheel from "./components/bpm/Wheel.vue";
 import { useStore } from "vuex";
 import BeatIndicator from "./components/beat/BeatIndicator.vue";
+import { useRegisterSW } from "virtual:pwa-register/vue";
 
 export default defineComponent({
-  components: { PlayButton, TempoSection, Wheel, ProgressTrack, BeatIndicator },
+  components: { PlayButton, TempoControls, Wheel, ProgressTrack, BeatIndicator },
   setup() {
+    useRegisterSW();
+
     const { state, commit } = useStore();
     const bpm = computed(() => state.bpm.value);
     const min = computed(() => state.bpm.min);
