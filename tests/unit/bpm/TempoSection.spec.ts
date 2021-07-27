@@ -1,10 +1,10 @@
 import { fireEvent, render } from "@testing-library/vue";
-import TempoSection from "@/components/bpm/TempoSection.vue";
+import TempoControls from "@/components/bpm/TempoControls.vue";
 import store from "@/store/index";
 
-describe("TempoSection.vue", () => {
+describe("TempoControls.vue", () => {
   it("should allow to change the tempo with increments of 1 bpm", async () => {
-    const { getByText } = render(TempoSection, {
+    const { getByText } = render(TempoControls, {
       global: {
         plugins: [store]
       }
@@ -30,7 +30,7 @@ describe("TempoSection.vue", () => {
   });
 
   it("should allow to change the tempo with increments of 5 bpm", async () => {
-    const { getByText } = render(TempoSection, {
+    const { getByText } = render(TempoControls, {
       global: {
         plugins: [store]
       }
@@ -58,7 +58,7 @@ describe("TempoSection.vue", () => {
   it("cannot decrement the bpm below the min value", async () => {
     store.commit("setBpmValue", store.state.bpm.min + 2);
 
-    const { getByText } = render(TempoSection, {
+    const { getByText } = render(TempoControls, {
       global: {
         plugins: [store]
       }
@@ -82,7 +82,7 @@ describe("TempoSection.vue", () => {
   it("cannot increment the bpm above the max value", async () => {
     store.commit("setBpmValue", store.state.bpm.max - 3);
 
-    const { getByText } = render(TempoSection, {
+    const { getByText } = render(TempoControls, {
       global: {
         plugins: [store]
       }

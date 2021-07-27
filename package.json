@@ -1,5 +1,6 @@
 {
   "version": "0.0.0",
+  "description": "Metronome web application with a modern UI",
   "scripts": {
     "dev": "vite",
     "serve": "vite preview",
@@ -38,6 +39,7 @@
     "sass": "^1.34.1",
     "typescript": "^4.3.2",
     "vite": "^2.3.7",
+    "vite-plugin-pwa": "^0.8.2",
     "vue-jest": "^5.0.0-0",
     "vue-tsc": "^0.1.7"
   },
