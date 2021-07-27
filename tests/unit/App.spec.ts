@@ -2,6 +2,12 @@ import { render, fireEvent } from "@testing-library/vue";
 import store from "@/store/index";
 import App from "@/App.vue";
 
+const mockUseRegisterSW = jest.fn();
+
+jest.mock("virtual:pwa-register/vue", () => ({
+  useRegisterSW: () => mockUseRegisterSW()
+}));
+
 describe("App.vue", () => {
   describe("Tempo Section", () => {
     beforeEach(() => {
@@ -50,5 +56,17 @@ describe("App.vue", () => {
       expect(getByText("119")).toBeVisible();
       expect(wheel.getAttribute("aria-valuenow")).toBe("119");
     });
+  });
+
+  it("should register a service worker for PWA", () => {
+    mockUseRegisterSW.mockClear();
+
+    render(App, {
+      global: {
+        plugins: [store]
+      }
+    });
+
+    expect(mockUseRegisterSW).toHaveBeenCalledTimes(1);
   });
 });
