@@ -1,17 +1,19 @@
 import { createStore } from "vuex";
 
-export default createStore({
-  state: {
-    bpm: {
-      value: 120,
-      min: 40,
-      max: 180
-    },
-    beat: {
-      current: 1,
-      count: 4
-    }
+const getDefaultState = () => ({
+  bpm: {
+    value: 120,
+    min: 40,
+    max: 180
   },
+  beat: {
+    current: 0,
+    count: 4
+  }
+});
+
+export default createStore({
+  state: getDefaultState(),
   mutations: {
     incrementBpmBy(state, value) {
       state.bpm.value = Math.min(state.bpm.value + value, state.bpm.max);
@@ -32,6 +34,9 @@ export default createStore({
     },
     removeBeat(state) {
       state.beat.count = Math.max(state.beat.count - 1, 1);
+    },
+    resetState(state) {
+      Object.assign(state, getDefaultState());
     }
   },
   strict: true
