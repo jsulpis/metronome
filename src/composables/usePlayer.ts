@@ -11,14 +11,12 @@ export default function usePlayer() {
   const isFirstBeat = computed(() => state.beat.current === 1);
 
   function loop() {
+    commit("nextBeat");
     sound.rate(isFirstBeat.value ? 1.5 : 1); // increase the pitch
     sound.volume(isFirstBeat.value ? 1 : 0.8);
     sound.play();
 
-    timeout = setTimeout(() => {
-      commit("nextBeat");
-      loop();
-    }, (60 / state.bpm.value) * 1000);
+    timeout = setTimeout(loop, (60 / state.bpm.value) * 1000);
   }
 
   function play() {

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <p class="value">{{ currentBeat }}</p>
+    <p class="value">{{ currentBeat || 1 }}</p>
     <p class="label">beat</p>
 
     <div class="controls">
