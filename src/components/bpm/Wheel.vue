@@ -4,6 +4,7 @@
     ref="wheel"
     tabindex="0"
     role="slider"
+    aria-label="BPM"
     :aria-valuemin="min"
     :aria-valuemax="max"
     :aria-valuenow="Math.floor(internalValue)"

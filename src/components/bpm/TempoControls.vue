@@ -1,13 +1,21 @@
 <template>
   <div class="bpm">
-    <button @click="commit('decrementBpmBy', 5)" class="minus-five">-5</button>
-    <button @click="commit('decrementBpmBy', 1)" class="minus-one">-1</button>
+    <button @click="commit('decrementBpmBy', 5)" class="minus-five" aria-label="substract 5 BPMs">
+      -5
+    </button>
+    <button @click="commit('decrementBpmBy', 1)" class="minus-one" aria-label="substract 1 BPM">
+      -1
+    </button>
     <div class="bpm__display">
       <span class="bpm__value">{{ bpm }}</span>
       <span class="bpm__label">BPM</span>
     </div>
-    <button @click="commit('incrementBpmBy', 1)" class="plus-one">+1</button>
-    <button @click="commit('incrementBpmBy', 5)" class="plus-five">+5</button>
+    <button @click="commit('incrementBpmBy', 1)" class="plus-one" aria-label="add 5 BPMs">
+      +1
+    </button>
+    <button @click="commit('incrementBpmBy', 5)" class="plus-five" aria-label="add 1 BPM">
+      +5
+    </button>
   </div>
 </template>
 
