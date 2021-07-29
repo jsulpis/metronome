@@ -11,14 +11,22 @@ jest.mock("vuex", () => {
   };
 });
 
+const playSpy = jest.fn();
+const rateSpy = jest.fn();
+const volumeSpy = jest.fn();
+Howl.prototype.play = playSpy;
+Howl.prototype.rate = rateSpy;
+Howl.prototype.volume = volumeSpy;
+
 describe("usePlayer", () => {
+  beforeEach(() => {
+    store.commit("resetState");
+    jest.clearAllMocks();
+  });
+
   const { isPlaying, play } = usePlayer();
 
   it("should play a sound", () => {
-    // Given
-    const playSpy = jest.fn();
-    Howl.prototype.play = playSpy;
-
     expect(isPlaying.value).toBe(false);
 
     // When
@@ -29,13 +37,7 @@ describe("usePlayer", () => {
     expect(playSpy).toHaveBeenCalledTimes(1);
   });
 
-  it("should play a louder sound on the first beat", () => {
-    // Given
-    const rateSpy = jest.fn();
-    const volumeSpy = jest.fn();
-    Howl.prototype.rate = rateSpy;
-    Howl.prototype.volume = volumeSpy;
-
+  it("should play a louder sound on the first beat", async () => {
     // When
     play();
 

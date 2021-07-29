@@ -29,7 +29,7 @@ describe("PlayButton.vue", () => {
     expect(playIcon).not.toBeVisible();
     expect(stopIcon).toBeVisible();
 
-    expect(playSpy).toHaveBeenCalledTimes(1);
+    expect(playSpy).toHaveBeenCalled();
 
     // When : back to pause
     await fireEvent.click(button);
@@ -37,7 +37,5 @@ describe("PlayButton.vue", () => {
     // Then
     expect(playIcon).toBeVisible();
     expect(stopIcon).not.toBeVisible();
-
-    expect(playSpy).toHaveBeenCalledTimes(1);
   });
 });
