@@ -26,6 +26,21 @@ body {
   background: linear-gradient(0deg, #cdd9e5 0.39%, #ffffff 111.94%);
 }
 
+#app {
+  display: grid;
+  grid-template: auto / 1fr 1fr 1fr;
+}
+
+@media screen and (max-width: 1200px) {
+  aside {
+    display: none;
+  }
+
+  #app {
+    grid-template: auto / 1fr;
+  }
+}
+
 button {
   border: none;
   border-radius: 50%;

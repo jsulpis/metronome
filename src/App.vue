@@ -1,4 +1,7 @@
 <template>
+  <aside>
+    <h2>Sound</h2>
+  </aside>
   <main>
     <h1>Metronome</h1>
     <BeatIndicator></BeatIndicator>
@@ -10,6 +13,9 @@
       </ProgressTrack>
     </section>
   </main>
+  <aside>
+    <h2>BPM</h2>
+  </aside>
 </template>
 
 <script lang="ts">
@@ -45,6 +51,40 @@ main {
   align-items: center;
   min-height: 100vh;
   padding: 4vh 0;
+}
+
+aside {
+  position: relative;
+  padding-top: 50vh;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(213.1deg, #f8fafb 29.32%, #dee6ed 75.06%);
+    border-radius: 20% 80% 100% 0% / 0% 100% 0% 100%;
+  }
+
+  > * {
+    position: relative;
+  }
+}
+
+aside:first-of-type {
+  padding-left: 4vw;
+  text-align: left;
+}
+
+aside:last-of-type {
+  padding-right: 4vw;
+  text-align: right;
+
+  &::before {
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+  }
 }
 
 .progress-track {
