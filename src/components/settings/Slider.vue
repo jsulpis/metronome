@@ -1,23 +1,24 @@
 <template>
   <span class="slider-container">
     <span class="slider">
-      <input v-model="model" type="range" :min="min" :max="max" :aria-label="label" />
+      <input v-model.number="model" type="range" :min="min" :max="max" :aria-label="label" />
       <span
         class="track"
-        :style="`width: calc(2.4rem + ${(model - min) / (max - min)} * calc(20rem - 2.4rem))`"
+        :style="`width: calc(2.2rem + ${percentCompleted} * calc(100% - 2.2rem))`"
       ></span>
       <span
         class="dot"
-        :style="`transform: translateX(calc(${
-          (model - min) / (max - min)
-        } * calc(20rem - 2.4rem) - 50%))`"
+        :style="{
+          left: `calc(${percentCompleted} * 100%)`,
+          transform: `translateX(calc(${percentCompleted} * -100%))`
+        }"
       ></span>
     </span>
   </span>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
+import { computed, defineComponent, ref, watch } from "vue";
 
 export default defineComponent({
   props: {
@@ -30,6 +31,8 @@ export default defineComponent({
   setup(props, { emit }) {
     const model = ref(props.modelValue);
 
+    const percentCompleted = computed(() => (model.value - props.min) / (props.max - props.min));
+
     watch(
       () => props.modelValue,
       (newValue) => (model.value = newValue)
@@ -37,7 +40,7 @@ export default defineComponent({
 
     watch(model, (value) => emit("update:modelValue", value));
 
-    return { model };
+    return { model, percentCompleted };
   }
 });
 </script>
@@ -48,14 +51,16 @@ export default defineComponent({
   background: var(--grey-40);
   padding: 6px;
   border-radius: 40px;
+  width: 250px;
 }
 
 $track-height: 1rem;
-$thumb-size: 2.4rem;
+$thumb-size: 2.2rem;
 
 .slider {
   position: relative;
   display: inline-flex;
+  width: 100%;
 }
 
 .track {
@@ -66,7 +71,7 @@ $thumb-size: 2.4rem;
   position: absolute;
   left: 0;
   pointer-events: none;
-  min-width: 2.4rem;
+  min-width: 2.2rem;
 }
 
 @mixin track() {
@@ -84,13 +89,13 @@ $thumb-size: 2.4rem;
   width: $thumb-size;
   height: $thumb-size;
   border-radius: 50%;
-  background: var(--primary);
+  background: transparent;
   cursor: pointer;
 }
 
 [type="range"] {
   background: transparent;
-  width: 200px;
+  width: 100%;
 
   &,
   &::-webkit-slider-thumb {
@@ -125,17 +130,27 @@ $thumb-size: 2.4rem;
 }
 
 .dot {
-  $dot-size: 1.2rem;
   border-radius: 50%;
-  border: 4px solid white;
-  background: transparent;
-  height: $dot-size;
-  width: $dot-size;
+  background: var(--primary);
+  height: $thumb-size;
+  width: $thumb-size;
   position: absolute;
-  top: calc(50% - 1rem);
-  transform: translateY(-50%);
+  top: calc(50% - calc(#{$thumb-size} / 2));
   pointer-events: none;
   left: 1.2rem;
-  padding: 0.6rem;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+
+  &::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    border: 4px solid white;
+    background: transparent;
+    margin: 1px;
+  }
 }
 </style>
