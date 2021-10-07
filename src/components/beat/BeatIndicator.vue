@@ -13,18 +13,13 @@
   </section>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
 import { useStore } from "vuex";
 
-export default defineComponent({
-  setup() {
-    const { state, commit } = useStore();
-    const currentBeat = computed(() => state.beat.current);
-    const beatCount = computed(() => state.beat.count);
-    return { currentBeat, beatCount, commit };
-  }
-});
+const { state, commit } = useStore();
+const currentBeat = computed(() => state.beat.current);
+const beatCount = computed(() => state.beat.count);
 </script>
 
 <style lang="scss" scoped>

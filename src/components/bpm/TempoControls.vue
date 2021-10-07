@@ -19,18 +19,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from "@vue/runtime-core";
+<script setup lang="ts">
+import { computed } from "@vue/runtime-core";
 import { useStore } from "vuex";
 
-export default defineComponent({
-  setup() {
-    const { state, commit } = useStore();
-    const bpm = computed(() => state.bpm.value);
-
-    return { commit, bpm };
-  }
-});
+const { state, commit } = useStore();
+const bpm = computed(() => state.bpm.value);
 </script>
 
 <style lang="scss" scoped>

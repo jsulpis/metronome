@@ -3,6 +3,7 @@
     <h2>Sound</h2>
     <Volume></Volume>
   </Aside>
+
   <main>
     <h1>Metronome</h1>
     <BeatIndicator></BeatIndicator>
@@ -14,13 +15,14 @@
       </ProgressTrack>
     </section>
   </main>
+
   <Aside position="right">
     <h2>BPM</h2>
   </Aside>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
 import PlayButton from "./components/bpm/PlayButton.vue";
 import TempoControls from "./components/bpm/TempoControls.vue";
 import ProgressTrack from "./components/bpm/ProgressTrack.vue";
@@ -31,19 +33,12 @@ import { useRegisterSW } from "virtual:pwa-register/vue";
 import Volume from "./components/settings/Volume.vue";
 import Aside from "./components/Aside.vue";
 
-export default defineComponent({
-  components: { PlayButton, TempoControls, Wheel, ProgressTrack, BeatIndicator, Volume, Aside },
-  setup() {
-    useRegisterSW();
+useRegisterSW();
 
-    const { state, commit } = useStore();
-    const bpm = computed(() => state.bpm.value);
-    const min = computed(() => state.bpm.min);
-    const max = computed(() => state.bpm.max);
-
-    return { commit, bpm, min, max };
-  }
-});
+const { state, commit } = useStore();
+const bpm = computed(() => state.bpm.value);
+const min = computed(() => state.bpm.min);
+const max = computed(() => state.bpm.max);
 </script>
 
 <style lang="scss" scoped>

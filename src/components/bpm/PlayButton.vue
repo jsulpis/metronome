@@ -5,27 +5,12 @@
   </button>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
 import IconPlay from "./IconPlay.vue";
 import IconStop from "./IconStop.vue";
 import usePlayer from "../../composables/usePlayer";
 
-export default defineComponent({
-  components: {
-    IconPlay,
-    IconStop
-  },
-  setup() {
-    const { isPlaying, play, stop } = usePlayer();
-
-    return {
-      isPlaying,
-      play,
-      stop
-    };
-  }
-});
+const { isPlaying, play, stop } = usePlayer();
 </script>
 
 <style lang="scss">

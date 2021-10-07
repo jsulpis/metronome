@@ -26,12 +26,8 @@
   </aside>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  props: { position: String }
-});
+<script setup lang="ts">
+defineProps({ position: String });
 </script>
 
 <style lang="scss" scoped>
