@@ -2,9 +2,28 @@ import store from "@/store";
 
 const { state, commit } = store;
 
+const DEFAULT_STORE_VALUE = {
+  bpm: {
+    value: 120,
+    min: 40,
+    max: 180
+  },
+  beat: {
+    current: 0,
+    count: 4
+  },
+  settings: {
+    volume: 100
+  }
+};
+
 describe("store mutations", () => {
   beforeEach(() => {
     commit("resetState");
+  });
+
+  it("should have a default state", () => {
+    expect(store.state).toEqual(DEFAULT_STORE_VALUE);
   });
 
   describe("nextBeat", () => {
@@ -48,6 +67,17 @@ describe("store mutations", () => {
     });
   });
 
+  describe("setVolume", () => {
+    it("should set the volume with a min of 0 and a max of 100", () => {
+      commit("setVolume", 42);
+      expect(state.settings.volume).toBe(42);
+      commit("setVolume", -1);
+      expect(state.settings.volume).toBe(0);
+      commit("setVolume", 101);
+      expect(state.settings.volume).toBe(100);
+    });
+  });
+
   describe("resetState", () => {
     it("should reset the default state", () => {
       // Given
@@ -59,17 +89,7 @@ describe("store mutations", () => {
       commit("resetState");
 
       // Then
-      expect(state).toEqual({
-        bpm: {
-          value: 120,
-          min: 40,
-          max: 180
-        },
-        beat: {
-          current: 0,
-          count: 4
-        }
-      });
+      expect(state).toEqual(DEFAULT_STORE_VALUE);
 
       // Then: state is still reactive
       commit("addBeat");

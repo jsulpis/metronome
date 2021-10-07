@@ -13,7 +13,7 @@ export default function usePlayer() {
   function loop() {
     commit("nextBeat");
     sound.rate(isFirstBeat.value ? 1.5 : 1); // increase the pitch
-    sound.volume(isFirstBeat.value ? 1 : 0.8);
+    sound.volume(((isFirstBeat.value ? 1 : 0.8) * state.settings.volume) / 100);
     sound.play();
 
     timeout = setTimeout(loop, (60 / state.bpm.value) * 1000);

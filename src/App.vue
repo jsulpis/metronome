@@ -1,4 +1,8 @@
 <template>
+  <Aside position="left">
+    <h2>Sound</h2>
+    <Volume></Volume>
+  </Aside>
   <main>
     <h1>Metronome</h1>
     <BeatIndicator></BeatIndicator>
@@ -10,6 +14,9 @@
       </ProgressTrack>
     </section>
   </main>
+  <Aside position="right">
+    <h2>BPM</h2>
+  </Aside>
 </template>
 
 <script lang="ts">
@@ -21,9 +28,11 @@ import Wheel from "./components/bpm/Wheel.vue";
 import { useStore } from "vuex";
 import BeatIndicator from "./components/beat/BeatIndicator.vue";
 import { useRegisterSW } from "virtual:pwa-register/vue";
+import Volume from "./components/settings/Volume.vue";
+import Aside from "./components/Aside.vue";
 
 export default defineComponent({
-  components: { PlayButton, TempoControls, Wheel, ProgressTrack, BeatIndicator },
+  components: { PlayButton, TempoControls, Wheel, ProgressTrack, BeatIndicator, Volume, Aside },
   setup() {
     useRegisterSW();
 
@@ -58,7 +67,7 @@ main {
   transform: translate(-50%, -50%);
 }
 
-@media screen and (min-width: 640px) {
+@include tablet-portrait-up {
   .progress-track {
     margin-top: 20px;
   }

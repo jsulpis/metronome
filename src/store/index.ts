@@ -9,6 +9,9 @@ const getDefaultState = () => ({
   beat: {
     current: 0,
     count: 4
+  },
+  settings: {
+    volume: 100
   }
 });
 
@@ -34,6 +37,9 @@ export default createStore({
     },
     removeBeat(state) {
       state.beat.count = Math.max(state.beat.count - 1, 1);
+    },
+    setVolume(state, payload) {
+      state.settings.volume = Math.min(100, Math.max(0, payload));
     },
     resetState(state) {
       Object.assign(state, getDefaultState());

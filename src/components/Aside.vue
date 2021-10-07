@@ -1,0 +1,80 @@
+<template>
+  <aside :class="position">
+    <slot></slot>
+    <svg
+      width="502"
+      height="1024"
+      viewBox="0 0 502 1024"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M0 0H92C92 0 420.5 200 502 1024H0V0Z" fill="url(#paint0_linear)" />
+      <defs>
+        <linearGradient
+          id="paint0_linear"
+          x1="450.5"
+          y1="427.5"
+          x2="15"
+          y2="755"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#F8FAFB" />
+          <stop offset="0.853346" stop-color="#DEE6ED" />
+        </linearGradient>
+      </defs>
+    </svg>
+  </aside>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  props: { position: String }
+});
+</script>
+
+<style lang="scss" scoped>
+aside {
+  position: relative;
+  padding-top: 50vh;
+  display: none;
+  flex-direction: column;
+  max-width: 550px;
+  gap: 3rem;
+
+  @include laptop-up {
+    display: flex;
+  }
+
+  svg {
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+    height: 100%;
+    width: auto;
+  }
+
+  &.left {
+    padding-left: 4vw;
+    padding-right: 10vw;
+    text-align: left;
+
+    svg {
+      left: 0;
+    }
+  }
+
+  &.right {
+    padding-right: 4vw;
+    padding-left: 10vw;
+    margin-left: auto;
+    text-align: right;
+
+    svg {
+      right: 0;
+      transform: matrix(-1, 0, 0, 1, 0, 0);
+    }
+  }
+}
+</style>

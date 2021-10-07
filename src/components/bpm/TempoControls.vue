@@ -90,7 +90,7 @@ button {
   }
 }
 
-@media screen and (max-width: 640px) {
+@include phone-only {
   button {
     &[class$="one"] {
       transform: translateY(15%);
