@@ -17,23 +17,16 @@
   </article>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
 import { useStore } from "vuex";
 import Slider from "./Slider.vue";
 import VolumeIcon from "./VolumeIcon.vue";
 import VolumeMuteIcon from "./VolumeMuteIcon.vue";
 
-export default defineComponent({
-  components: { VolumeIcon, VolumeMuteIcon, Slider },
-  setup() {
-    const { state, commit } = useStore();
+const { state, commit } = useStore();
 
-    const volume = computed(() => state.settings.volume);
-
-    return { volume, commit };
-  }
-});
+const volume = computed(() => state.settings.volume);
 </script>
 
 <style lang="scss" scoped>

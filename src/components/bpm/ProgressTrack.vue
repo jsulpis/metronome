@@ -28,33 +28,23 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+<script setup lang="ts">
+import { computed, ref } from "vue";
 
-export default defineComponent({
-  props: {
-    progress: {
-      type: Number,
-      required: true,
-      validator(value: number) {
-        return value >= 0 && value <= 1;
-      }
+defineProps({
+  progress: {
+    type: Number,
+    required: true,
+    validator(value: number) {
+      return value >= 0 && value <= 1;
     }
-  },
-  setup() {
-    const radius = ref(150);
-    const diameter = computed(() => 2 * radius.value);
-    const perimeter = computed(() => 2 * Math.PI * radius.value);
-    const strokeWidth = ref(12);
-
-    return {
-      radius,
-      diameter,
-      perimeter,
-      strokeWidth
-    };
   }
 });
+
+const radius = ref(150);
+const diameter = computed(() => 2 * radius.value);
+const perimeter = computed(() => 2 * Math.PI * radius.value);
+const strokeWidth = ref(12);
 </script>
 
 <style lang="scss" scoped>

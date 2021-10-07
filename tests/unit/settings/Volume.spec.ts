@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from "@testing-library/vue";
+import { fireEvent, render } from "@testing-library/vue";
 import Volume from "@/components/settings/Volume.vue";
 import store from "@/store/index";
 
