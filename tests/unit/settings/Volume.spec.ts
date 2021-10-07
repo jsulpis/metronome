@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@testing-library/vue";
+import { fireEvent, render, waitFor } from "@testing-library/vue";
 import Volume from "@/components/settings/Volume.vue";
 import store from "@/store/index";
 
@@ -25,5 +25,18 @@ describe("Volume.vue", () => {
     slider.value = "12";
     await fireEvent(slider, new Event("input"));
     expect(store.state.settings.volume).toBe(12);
+  });
+
+  it("should display the mute icon when the volume is at zero", async () => {
+    store.commit("setVolume", 0);
+
+    const { getByTitle } = render(Volume, {
+      global: {
+        plugins: [store]
+      }
+    });
+
+    const muteIcon = getByTitle("Volume Mute Icon").parentElement;
+    expect(muteIcon).toBeVisible();
   });
 });
