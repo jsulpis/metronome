@@ -52,6 +52,6 @@ describe("Slider.vue", () => {
     await fireEvent(nativeInput, new Event("input"));
 
     expect(emitted()["update:modelValue"].length).toBe(1);
-    expect(emitted()["update:modelValue"][0]).toEqual(["40"]);
+    expect(emitted()["update:modelValue"][0]).toEqual([40]);
   });
 });

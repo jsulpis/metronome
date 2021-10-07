@@ -10,3 +10,34 @@
   box-shadow: -3px -3px 15px rgba(255, 255, 255, 0.7), 4px 6px 20px rgba(0, 0, 0, 0.15),
     inset -4px -6px 15px -2px rgba(0, 0, 0, 0.1), inset 6px 4px 12px rgba(255, 255, 255, 0.54);
 }
+
+@mixin phone-only {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+@mixin tablet-portrait-up {
+  @media (min-width: 600px) {
+    @content;
+  }
+}
+@mixin tablet-landscape-up {
+  @media (min-width: 900px) {
+    @content;
+  }
+}
+@mixin laptop-up {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+@mixin big-laptop-up {
+  @media (min-width: 1400px) {
+    @content;
+  }
+}
+@mixin desktop-up {
+  @media (min-width: 1800px) {
+    @content;
+  }
+}

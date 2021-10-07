@@ -23,9 +23,8 @@ describe("App.vue", () => {
           plugins: [store]
         }
       });
-
       const btnPlusOne = getByText("+1", { selector: "button" });
-      const wheel = getByRole("slider");
+      const wheel = getByRole("slider", { name: "BPM" });
 
       // Initial State
       expect(getByText("120")).toBeVisible();
@@ -46,7 +45,7 @@ describe("App.vue", () => {
         }
       });
 
-      const wheel = getByRole("slider");
+      const wheel = getByRole("slider", { name: "BPM" });
 
       // Initial State
       expect(getByText("120")).toBeVisible();

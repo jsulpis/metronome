@@ -1,7 +1,8 @@
 <template>
-  <aside>
+  <Aside position="left">
     <h2>Sound</h2>
-  </aside>
+    <Volume></Volume>
+  </Aside>
   <main>
     <h1>Metronome</h1>
     <BeatIndicator></BeatIndicator>
@@ -13,9 +14,9 @@
       </ProgressTrack>
     </section>
   </main>
-  <aside>
+  <Aside position="right">
     <h2>BPM</h2>
-  </aside>
+  </Aside>
 </template>
 
 <script lang="ts">
@@ -27,9 +28,11 @@ import Wheel from "./components/bpm/Wheel.vue";
 import { useStore } from "vuex";
 import BeatIndicator from "./components/beat/BeatIndicator.vue";
 import { useRegisterSW } from "virtual:pwa-register/vue";
+import Volume from "./components/settings/Volume.vue";
+import Aside from "./components/Aside.vue";
 
 export default defineComponent({
-  components: { PlayButton, TempoControls, Wheel, ProgressTrack, BeatIndicator },
+  components: { PlayButton, TempoControls, Wheel, ProgressTrack, BeatIndicator, Volume, Aside },
   setup() {
     useRegisterSW();
 
@@ -53,40 +56,6 @@ main {
   padding: 4vh 0;
 }
 
-aside {
-  position: relative;
-  padding-top: 50vh;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(213.1deg, #f8fafb 29.32%, #dee6ed 75.06%);
-    border-radius: 20% 80% 100% 0% / 0% 100% 0% 100%;
-  }
-
-  > * {
-    position: relative;
-  }
-}
-
-aside:first-of-type {
-  padding-left: 4vw;
-  text-align: left;
-}
-
-aside:last-of-type {
-  padding-right: 4vw;
-  text-align: right;
-
-  &::before {
-    transform: matrix(-1, 0, 0, 1, 0, 0);
-  }
-}
-
 .progress-track {
   margin-top: 10px;
 }
@@ -98,7 +67,7 @@ aside:last-of-type {
   transform: translate(-50%, -50%);
 }
 
-@media screen and (min-width: 640px) {
+@include tablet-portrait-up {
   .progress-track {
     margin-top: 20px;
   }

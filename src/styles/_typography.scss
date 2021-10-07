@@ -10,3 +10,11 @@ h2 {
   letter-spacing: 0.445em;
   text-transform: uppercase;
 }
+
+h3 {
+  color: var(--grey-70);
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 2.4rem;
+  text-transform: capitalize;
+}
