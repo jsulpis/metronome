@@ -11,7 +11,8 @@ const getDefaultState = () => ({
     count: 4
   },
   settings: {
-    volume: 100
+    volume: 100,
+    sound: "click"
   }
 });
 
@@ -40,6 +41,9 @@ export default createStore({
     },
     setVolume(state, payload) {
       state.settings.volume = Math.min(100, Math.max(0, payload));
+    },
+    setSound(state, payload) {
+      state.settings.sound = payload;
     },
     resetState(state) {
       Object.assign(state, getDefaultState());
