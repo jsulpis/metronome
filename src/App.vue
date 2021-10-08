@@ -1,5 +1,5 @@
 <template>
-  <Aside class="settings" position="left">
+  <Aside position="left">
     <h2>Sound</h2>
     <Volume></Volume>
     <Sound></Sound>
@@ -68,11 +68,5 @@ main {
   .progress-track {
     margin-top: 20px;
   }
-}
-
-.settings {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
 }
 </style>

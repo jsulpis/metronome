@@ -16,6 +16,10 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
+label {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .checkbox {
   @include shadow-02;
   display: inline-flex;
