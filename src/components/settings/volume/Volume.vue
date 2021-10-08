@@ -20,9 +20,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useStore } from "vuex";
-import Slider from "./Slider.vue";
-import VolumeIcon from "./VolumeIcon.vue";
-import VolumeMuteIcon from "./VolumeMuteIcon.vue";
+import Slider from "../Slider.vue";
+import VolumeIcon from "./icons/VolumeIcon.vue";
+import VolumeMuteIcon from "./icons/VolumeMuteIcon.vue";
 
 const { state, commit } = useStore();
 
