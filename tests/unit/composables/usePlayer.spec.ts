@@ -42,7 +42,7 @@ describe("usePlayer", () => {
     play();
 
     // Then: louder
-    expect(rateSpy).toHaveBeenCalledWith(1.5);
+    expect(rateSpy).toHaveBeenCalledWith(1.4);
     expect(volumeSpy).toHaveBeenCalledWith(1);
 
     // Then When
