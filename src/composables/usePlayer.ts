@@ -4,17 +4,24 @@ import { Howl } from "howler";
 
 export default function usePlayer() {
   let timeout: NodeJS.Timeout;
-  const sound = new Howl({ src: ["sounds/click.mp3"] });
-
   const { state, commit } = useStore();
+
+  const sounds = new Map<string, Howl>();
+  ["click", "hi-hat", "kick", "sticks"].forEach((sound) => {
+    sounds.set(sound, new Howl({ src: [`sounds/${sound}.mp3`] }));
+  });
+
   const isPlaying = ref(false);
   const isFirstBeat = computed(() => state.beat.current === 1);
 
   function loop() {
     commit("nextBeat");
-    sound.rate(isFirstBeat.value ? 1.5 : 1); // increase the pitch
-    sound.volume(((isFirstBeat.value ? 1 : 0.8) * state.settings.volume) / 100);
-    sound.play();
+    const sound = sounds.get(state.settings.sound);
+    if (sound) {
+      sound.rate(isFirstBeat.value ? 1.4 : 1); // increase the pitch
+      sound.volume(((isFirstBeat.value ? 1 : 0.8) * state.settings.volume) / 100);
+      sound.play();
+    }
 
     timeout = setTimeout(loop, (60 / state.bpm.value) * 1000);
   }

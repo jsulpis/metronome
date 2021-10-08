@@ -85,7 +85,7 @@ button,
       left: -$outline-width;
       right: -$outline-width;
       border: $outline-width solid var(--primary);
-      border-radius: 50%;
+      border-radius: inherit;
     }
   }
 
@@ -100,7 +100,7 @@ button,
       left: -$outline-width;
       right: -$outline-width;
       border: $outline-width solid var(--primary);
-      border-radius: 50%;
+      border-radius: inherit;
     }
   }
 

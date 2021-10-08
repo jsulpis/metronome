@@ -1,7 +1,8 @@
 <template>
-  <Aside position="left">
+  <Aside class="settings" position="left">
     <h2>Sound</h2>
     <Volume></Volume>
+    <Sound></Sound>
   </Aside>
 
   <main>
@@ -30,8 +31,9 @@ import Wheel from "./components/bpm/Wheel.vue";
 import { useStore } from "vuex";
 import BeatIndicator from "./components/beat/BeatIndicator.vue";
 import { useRegisterSW } from "virtual:pwa-register/vue";
-import Volume from "./components/settings/Volume.vue";
 import Aside from "./components/Aside.vue";
+import Volume from "./components/settings/volume/Volume.vue";
+import Sound from "./components/settings/sound/Sound.vue";
 
 useRegisterSW();
 
@@ -66,5 +68,11 @@ main {
   .progress-track {
     margin-top: 20px;
   }
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
 }
 </style>

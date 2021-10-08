@@ -13,7 +13,8 @@ const DEFAULT_STORE_VALUE = {
     count: 4
   },
   settings: {
-    volume: 100
+    volume: 100,
+    sound: "click"
   }
 };
 
@@ -75,6 +76,15 @@ describe("store mutations", () => {
       expect(state.settings.volume).toBe(0);
       commit("setVolume", 101);
       expect(state.settings.volume).toBe(100);
+    });
+  });
+
+  describe("setSound", () => {
+    it("should set the sound", () => {
+      commit("setSound", "sticks");
+      expect(state.settings.sound).toBe("sticks");
+      commit("setSound", "hi-hat");
+      expect(state.settings.sound).toBe("hi-hat");
     });
   });
 

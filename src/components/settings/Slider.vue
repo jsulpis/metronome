@@ -63,6 +63,10 @@ $thumb-size: 2.2rem;
   width: 100%;
 }
 
+input:focus-visible {
+  outline: var(--primary) auto 1px;
+}
+
 .track {
   height: $track-height;
   display: inline-block;
