@@ -15,7 +15,7 @@ defineProps({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .checkbox {
   @include shadow-02;
   display: inline-flex;
