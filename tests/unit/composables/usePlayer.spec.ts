@@ -37,7 +37,7 @@ describe("usePlayer", () => {
     expect(playSpy).toHaveBeenCalledTimes(1);
   });
 
-  it("should play a louder sound on the first beat", async () => {
+  it("should play a louder sound on the first beat if accentuateFirstBeat = true (default)", async () => {
     // When
     play();
 
@@ -47,6 +47,17 @@ describe("usePlayer", () => {
 
     // Then When
     store.commit("nextBeat");
+    play();
+
+    // Then: normal
+    expect(rateSpy).toHaveBeenCalledWith(1);
+    expect(volumeSpy).toHaveBeenCalledWith(0.8);
+  });
+
+  it("should NOT play a louder sound on the first beat if accentuateFirstBeat = false", async () => {
+    store.commit("setAccentuateFirstBeat", false);
+
+    // When
     play();
 
     // Then: normal

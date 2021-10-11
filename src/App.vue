@@ -3,6 +3,7 @@
     <h2>Sound</h2>
     <Volume></Volume>
     <Sound></Sound>
+    <FirstBeat></FirstBeat>
   </Aside>
 
   <main>
@@ -34,6 +35,7 @@ import { useRegisterSW } from "virtual:pwa-register/vue";
 import Aside from "./components/Aside.vue";
 import Volume from "./components/settings/volume/Volume.vue";
 import Sound from "./components/settings/sound/Sound.vue";
+import FirstBeat from "./components/settings/FirstBeat.vue";
 
 useRegisterSW();
 

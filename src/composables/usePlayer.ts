@@ -13,13 +13,16 @@ export default function usePlayer() {
 
   const isPlaying = ref(false);
   const isFirstBeat = computed(() => state.beat.current === 1);
+  const accentuateFirstBeat = computed(() => state.settings.accentuateFirstBeat);
 
   function loop() {
     commit("nextBeat");
     const sound = sounds.get(state.settings.sound);
     if (sound) {
-      sound.rate(isFirstBeat.value ? 1.4 : 1); // increase the pitch
-      sound.volume(((isFirstBeat.value ? 1 : 0.8) * state.settings.volume) / 100);
+      sound.rate(accentuateFirstBeat.value && isFirstBeat.value ? 1.4 : 1); // increase the pitch
+      sound.volume(
+        ((accentuateFirstBeat.value && isFirstBeat.value ? 1 : 0.8) * state.settings.volume) / 100
+      );
       sound.play();
     }
 
