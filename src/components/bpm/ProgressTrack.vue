@@ -17,7 +17,7 @@
         :cy="radius"
         :r="radius - strokeWidth / 2"
         fill="none"
-        stroke="var(--primary)"
+        stroke="var(--primary-50)"
         :stroke-width="strokeWidth"
         :stroke-dasharray="perimeter"
         :stroke-dashoffset="perimeter * (1 - 0.66 * progress)"

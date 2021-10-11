@@ -41,6 +41,8 @@ aside {
 
   @include laptop-up {
     display: flex;
+    flex-direction: column;
+    gap: 4rem;
   }
 
   svg {

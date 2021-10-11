@@ -12,20 +12,21 @@ const getDefaultState = () => ({
   },
   settings: {
     volume: 100,
-    sound: "click"
+    sound: "click",
+    accentuateFirstBeat: true
   }
 });
 
 export default createStore({
   state: getDefaultState(),
   mutations: {
-    incrementBpmBy(state, value) {
+    incrementBpmBy(state, value: number) {
       state.bpm.value = Math.min(state.bpm.value + value, state.bpm.max);
     },
-    decrementBpmBy(state, value) {
+    decrementBpmBy(state, value: number) {
       state.bpm.value = Math.max(state.bpm.value - value, state.bpm.min);
     },
-    setBpmValue(state, value) {
+    setBpmValue(state, value: number) {
       if (value >= state.bpm.min && value <= state.bpm.max) {
         state.bpm.value = value;
       }
@@ -39,11 +40,14 @@ export default createStore({
     removeBeat(state) {
       state.beat.count = Math.max(state.beat.count - 1, 1);
     },
-    setVolume(state, payload) {
+    setVolume(state, payload: number) {
       state.settings.volume = Math.min(100, Math.max(0, payload));
     },
-    setSound(state, payload) {
+    setSound(state, payload: string) {
       state.settings.sound = payload;
+    },
+    setAccentuateFirstBeat(state, payload: boolean) {
+      state.settings.accentuateFirstBeat = payload;
     },
     resetState(state) {
       Object.assign(state, getDefaultState());
