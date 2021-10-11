@@ -14,7 +14,8 @@ const DEFAULT_STORE_VALUE = {
   },
   settings: {
     volume: 100,
-    sound: "click"
+    sound: "click",
+    accentuateFirstBeat: true
   }
 };
 
@@ -85,6 +86,15 @@ describe("store mutations", () => {
       expect(state.settings.sound).toBe("sticks");
       commit("setSound", "hi-hat");
       expect(state.settings.sound).toBe("hi-hat");
+    });
+  });
+
+  describe("setAccentuateFirstBeat", () => {
+    it("should set the option to accentuate the first beat", () => {
+      commit("setAccentuateFirstBeat", true);
+      expect(state.settings.accentuateFirstBeat).toBe(true);
+      commit("setAccentuateFirstBeat", false);
+      expect(state.settings.accentuateFirstBeat).toBe(false);
     });
   });
 
