@@ -15,7 +15,8 @@ const DEFAULT_STORE_VALUE = {
   settings: {
     volume: 100,
     sound: "click",
-    accentuateFirstBeat: true
+    accentuateFirstBeat: true,
+    largeIncrement: 5
   }
 };
 
@@ -95,6 +96,15 @@ describe("store mutations", () => {
       expect(state.settings.accentuateFirstBeat).toBe(true);
       commit("setAccentuateFirstBeat", false);
       expect(state.settings.accentuateFirstBeat).toBe(false);
+    });
+  });
+
+  describe("setLargeIncrement", () => {
+    it("should set the value of the large increment", () => {
+      commit("setLargeIncrement", 6);
+      expect(state.settings.largeIncrement).toBe(6);
+      commit("setLargeIncrement", 2);
+      expect(state.settings.largeIncrement).toBe(2);
     });
   });
 

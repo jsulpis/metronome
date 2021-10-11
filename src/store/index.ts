@@ -13,7 +13,8 @@ const getDefaultState = () => ({
   settings: {
     volume: 100,
     sound: "click",
-    accentuateFirstBeat: true
+    accentuateFirstBeat: true,
+    largeIncrement: 5
   }
 });
 
@@ -48,6 +49,9 @@ export default createStore({
     },
     setAccentuateFirstBeat(state, payload: boolean) {
       state.settings.accentuateFirstBeat = payload;
+    },
+    setLargeIncrement(state, payload: number) {
+      state.settings.largeIncrement = payload;
     },
     resetState(state) {
       Object.assign(state, getDefaultState());
