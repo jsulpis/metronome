@@ -64,13 +64,13 @@ $thumb-size: 2.2rem;
 }
 
 input:focus-visible {
-  outline: var(--primary) auto 1px;
+  outline: var(--primary-50) auto 1px;
 }
 
 .track {
   height: $track-height;
   display: inline-block;
-  background: var(--primary);
+  background: var(--primary-50);
   border-radius: 0.5rem;
   position: absolute;
   left: 0;
@@ -135,7 +135,7 @@ input:focus-visible {
 
 .dot {
   border-radius: 50%;
-  background: var(--primary);
+  background: var(--primary-50);
   height: $thumb-size;
   width: $thumb-size;
   position: absolute;

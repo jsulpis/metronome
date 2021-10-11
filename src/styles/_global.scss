@@ -75,31 +75,17 @@ button,
   outline: none;
 
   // focus outline alternative that allows to use box-shadows
-  &:focus {
-    &::after {
-      $outline-width: 2px;
-      content: "";
-      position: absolute;
-      top: -$outline-width;
-      bottom: -$outline-width;
-      left: -$outline-width;
-      right: -$outline-width;
-      border: $outline-width solid var(--primary);
-      border-radius: inherit;
-    }
-  }
-
-  // focus outline alternative that allows to use box-shadows
+  &:focus,
   &:focus-visible {
     &::after {
-      $outline-width: 2px;
+      $outline-width: 3px;
       content: "";
       position: absolute;
       top: -$outline-width;
       bottom: -$outline-width;
       left: -$outline-width;
       right: -$outline-width;
-      border: $outline-width solid var(--primary);
+      border: $outline-width solid var(--primary-40);
       border-radius: inherit;
     }
   }

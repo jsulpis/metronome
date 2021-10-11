@@ -1,9 +1,9 @@
 <template>
   <label>
     <input type="radio" :name="name" :value="value" :checked="checked" />
-    <div class="checkbox">
+    <span class="custom-radio">
       <slot></slot>
-    </div>
+    </span>
   </label>
 </template>
 
@@ -20,7 +20,7 @@ label {
   -webkit-tap-highlight-color: transparent;
 }
 
-.checkbox {
+.custom-radio {
   @include shadow-02;
   display: inline-flex;
   flex-direction: column;
@@ -35,56 +35,31 @@ label {
   position: relative;
   color: var(--grey-60);
   font-size: 1.25rem;
-  transition: all 100ms ease-in-out;
+  transition: color 100ms ease-in-out, background-color 100ms ease-in-out;
 }
 
 input {
-  width: 1px;
-  height: 1px;
   opacity: 0;
+  position: absolute;
 
-  &:checked + .checkbox {
+  &:checked + .custom-radio {
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--primary);
-    color: var(--primary);
+    border: 1px solid var(--primary-50);
+    color: var(--primary-50);
     font-weight: bold;
   }
 
-  &:focus + .checkbox {
-    &::after {
-      $outline-width: 3px;
-      content: "";
-      position: absolute;
-      top: -$outline-width;
-      bottom: -$outline-width;
-      left: -$outline-width;
-      right: -$outline-width;
-      border: $outline-width solid var(--primary);
-      border-radius: inherit;
-    }
-  }
-
-  // focus outline alternative that allows to use box-shadows
-  &:focus-visible + .checkbox {
-    &::after {
-      $outline-width: 3px;
-      content: "";
-      position: absolute;
-      top: -$outline-width;
-      bottom: -$outline-width;
-      left: -$outline-width;
-      right: -$outline-width;
-      border: $outline-width solid var(--primary);
-      border-radius: inherit;
-    }
+  &:focus + .custom-radio,
+  &:focus-visible + .custom-radio {
+    box-shadow: 0 0 0 3px var(--primary-40);
   }
 
   // no focus ring on browsers that support :focus-visible
-  &:focus:not(:focus-visible) + .checkbox::after {
-    border: none;
+  &:focus:not(:focus-visible) + .custom-radio {
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
   }
 
-  &:hover:not(:checked) + .checkbox::before {
+  &:hover:not(:checked) + .custom-radio::before {
     content: "";
     position: absolute;
     top: 0;

@@ -1,7 +1,8 @@
 :root {
-  --grey-40: #f8fafc;
-  --grey-50: #dfe6ec;
-  --grey-60: #94a3b8;
   --grey-70: #475569;
-  --primary: #1fa8f4;
+  --grey-60: #94a3b8;
+  --grey-50: #dfe6ec;
+  --grey-40: #f8fafc;
+  --primary-50: #1fa8f4;
+  --primary-40: #{lighten(#1fa8f4, 10%)};
 }

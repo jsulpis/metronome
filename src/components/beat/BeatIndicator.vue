@@ -58,7 +58,7 @@ const beatCount = computed(() => state.beat.count);
     background: var(--grey-50);
 
     &.active {
-      background: var(--primary);
+      background: var(--primary-50);
     }
   }
 }
