@@ -32,6 +32,20 @@ export default createStore({
         state.bpm.value = value;
       }
     },
+    setMinBpmValue(state, value: number) {
+      const newMin = Math.min(Math.max(value, 40), state.bpm.max);
+      state.bpm.min = newMin;
+      if (state.bpm.value < newMin) {
+        state.bpm.value = newMin;
+      }
+    },
+    setMaxBpmValue(state, value: number) {
+      const newMax = Math.max(Math.min(value, 180), state.bpm.min);
+      state.bpm.max = newMax;
+      if (state.bpm.value > newMax) {
+        state.bpm.value = newMax;
+      }
+    },
     nextBeat(state) {
       state.beat.current = (state.beat.current + 1) % (state.beat.count + 1) || 1;
     },
