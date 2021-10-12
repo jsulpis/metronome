@@ -33,7 +33,7 @@ body {
   grid-template: auto / 1fr;
 
   @include laptop-up {
-    grid-template: auto / 1fr 1fr 1fr;
+    grid-template: auto / repeat(3, minmax(0, 1fr));
   }
 }
 

@@ -1,6 +1,8 @@
 <template>
   <aside :class="position">
-    <slot></slot>
+    <div class="aside__content">
+      <slot></slot>
+    </div>
     <svg
       width="502"
       height="1024"
@@ -33,29 +35,41 @@ defineProps({ position: String });
 <style lang="scss" scoped>
 aside {
   position: relative;
-  padding-top: 50vh;
   display: none;
-  flex-direction: column;
-  max-width: 550px;
-  gap: 3rem;
+  align-items: flex-end;
+  padding-bottom: 10vh;
+
+  .aside__content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
 
   @include laptop-up {
     display: flex;
-    flex-direction: column;
-    gap: 4rem;
+    max-width: 30vw;
+  }
+
+  @include big-laptop-up {
+    max-width: 27vw;
+  }
+
+  @include desktop-up {
+    max-width: 23vw;
   }
 
   svg {
     position: absolute;
     bottom: 0;
     z-index: -1;
-    height: 100%;
+    max-height: 125%;
+    min-height: 100%;
     width: auto;
   }
 
   &.left {
-    padding-left: 4vw;
-    padding-right: 10vw;
+    padding-left: 3vw;
+    padding-right: 4vw;
     text-align: left;
 
     svg {
@@ -64,8 +78,8 @@ aside {
   }
 
   &.right {
-    padding-right: 4vw;
-    padding-left: 10vw;
+    padding-right: 3vw;
+    padding-left: 4vw;
     margin-left: auto;
     text-align: right;
 
