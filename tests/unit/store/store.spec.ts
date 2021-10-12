@@ -108,6 +108,36 @@ describe("store mutations", () => {
     });
   });
 
+  describe("setMinBpmValue", () => {
+    it("should set the min bpm value with a min of 40", () => {
+      commit("setMinBpmValue", 42);
+      expect(state.bpm.min).toBe(42);
+      commit("setMinBpmValue", 39);
+      expect(state.bpm.min).toBe(40);
+    });
+
+    it("should not allow to set a min bpm value above the max bpm value", () => {
+      commit("setMaxBpmValue", 120);
+      commit("setMinBpmValue", 121);
+      expect(state.bpm.min).toBe(120);
+    });
+  });
+
+  describe("setMaxBpmValue", () => {
+    it("should set the max bpm value with a max of 180", () => {
+      commit("setMaxBpmValue", 128);
+      expect(state.bpm.max).toBe(128);
+      commit("setMaxBpmValue", 181);
+      expect(state.bpm.max).toBe(180);
+    });
+
+    it("should not allow to set a max bpm value below the min bpm value", () => {
+      commit("setMinBpmValue", 80);
+      commit("setMaxBpmValue", 79);
+      expect(state.bpm.max).toBe(80);
+    });
+  });
+
   describe("resetState", () => {
     it("should reset the default state", () => {
       // Given
