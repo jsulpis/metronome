@@ -37,6 +37,7 @@ label {
   flex-direction: row;
   align-items: center;
   gap: 16px;
+  cursor: pointer;
 }
 
 input {

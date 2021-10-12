@@ -56,6 +56,7 @@ svg {
   width: 100%;
   padding: 4px;
   height: auto;
+  pointer-events: none;
 }
 
 circle {
