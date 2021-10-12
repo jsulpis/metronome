@@ -1,8 +1,6 @@
 <template>
-  <article class="sound">
-    <div class="header">
-      <h3>Sound</h3>
-    </div>
+  <article>
+    <h3>Sound</h3>
     <div class="content" @change="updateSound">
       <RadioButton :checked="sound === 'click'" name="sound" value="click">
         <ClickIcon></ClickIcon>

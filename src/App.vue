@@ -11,7 +11,7 @@
     <BeatIndicator></BeatIndicator>
     <section>
       <TempoControls />
-      <ProgressTrack :progress="(bpm - min) / (max - min)">
+      <ProgressTrack :progress="(bpm - min) / (max - min || 1)">
         <Wheel :value="bpm" :min="min" :max="max" @change="commit('setBpmValue', $event)" />
         <PlayButton class="play-button" />
       </ProgressTrack>
@@ -21,6 +21,7 @@
   <Aside position="right">
     <h2>BPM</h2>
     <LargeIncrement></LargeIncrement>
+    <BpmRange></BpmRange>
   </Aside>
 </template>
 
@@ -38,6 +39,7 @@ import Volume from "./components/settings/volume/Volume.vue";
 import Sound from "./components/settings/sound/Sound.vue";
 import FirstBeat from "./components/settings/FirstBeat.vue";
 import LargeIncrement from "./components/settings/LargeIncrement.vue";
+import BpmRange from "./components/settings/BpmRange.vue";
 
 useRegisterSW();
 

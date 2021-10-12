@@ -1,7 +1,7 @@
 <template>
   <article class="large-increment">
     <div class="header">
-      <h3>Large Increment</h3>
+      <h3>Large increment</h3>
       <p class="value">{{ largeIncrement }}</p>
     </div>
     <div class="content">
@@ -42,7 +42,7 @@ const largeIncrement = computed(() => state.settings.largeIncrement);
     margin-top: 24px;
 
     > p {
-      color: var(--gray-60);
+      color: var(--grey-60);
       font-size: 1.7rem;
     }
   }

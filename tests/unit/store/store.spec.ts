@@ -121,6 +121,12 @@ describe("store mutations", () => {
       commit("setMinBpmValue", 121);
       expect(state.bpm.min).toBe(120);
     });
+
+    it("should increase the current bpm value if it is lower than the new min", () => {
+      commit("setBpmValue", 60);
+      commit("setMinBpmValue", 80);
+      expect(state.bpm.value).toBe(80);
+    });
   });
 
   describe("setMaxBpmValue", () => {
@@ -135,6 +141,12 @@ describe("store mutations", () => {
       commit("setMinBpmValue", 80);
       commit("setMaxBpmValue", 79);
       expect(state.bpm.max).toBe(80);
+    });
+
+    it("should decrease the current bpm value if it is higher than the new max", () => {
+      commit("setBpmValue", 130);
+      commit("setMaxBpmValue", 120);
+      expect(state.bpm.value).toBe(120);
     });
   });
 

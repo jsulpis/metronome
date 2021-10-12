@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue-demi";
+import { computed } from "vue";
 import { useStore } from "vuex";
 
 const { state, commit } = useStore();
@@ -89,7 +89,7 @@ input {
   position: relative;
   display: grid;
   place-items: center;
-  transition: all 100ms ease-out;
+  transition: background 100ms ease-out;
 
   path {
     stroke-dashoffset: 12;
