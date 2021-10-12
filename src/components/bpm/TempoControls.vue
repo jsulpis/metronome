@@ -1,7 +1,11 @@
 <template>
   <div class="bpm">
-    <button @click="commit('decrementBpmBy', 5)" class="minus-five" aria-label="substract 5 BPMs">
-      -5
+    <button
+      @click="commit('decrementBpmBy', largeIncrement)"
+      class="minus-more"
+      :aria-label="`substract ${largeIncrement} BPMs`"
+    >
+      -{{ largeIncrement }}
     </button>
     <button @click="commit('decrementBpmBy', 1)" class="minus-one" aria-label="substract 1 BPM">
       -1
@@ -10,11 +14,13 @@
       <span class="bpm__value">{{ bpm }}</span>
       <span class="bpm__label">BPM</span>
     </div>
-    <button @click="commit('incrementBpmBy', 1)" class="plus-one" aria-label="add 5 BPMs">
-      +1
-    </button>
-    <button @click="commit('incrementBpmBy', 5)" class="plus-five" aria-label="add 1 BPM">
-      +5
+    <button @click="commit('incrementBpmBy', 1)" class="plus-one" aria-label="add 1 BPM">+1</button>
+    <button
+      @click="commit('incrementBpmBy', largeIncrement)"
+      class="plus-more"
+      :aria-label="`add ${largeIncrement} BPMs`"
+    >
+      +{{ largeIncrement }}
     </button>
   </div>
 </template>
@@ -25,6 +31,7 @@ import { useStore } from "vuex";
 
 const { state, commit } = useStore();
 const bpm = computed(() => state.bpm.value);
+const largeIncrement = computed(() => state.settings.largeIncrement);
 </script>
 
 <style lang="scss" scoped>
@@ -75,7 +82,7 @@ button {
     font-size: 2.4rem;
   }
 
-  &[class$="five"] {
+  &[class$="more"] {
     width: 48px;
     height: 48px;
     font-size: 1.8rem;
@@ -90,12 +97,12 @@ button {
       transform: translateY(15%);
     }
 
-    &.minus-five {
+    &.minus-more {
       transform: translate(25%, 120%);
       margin: 0;
     }
 
-    &.plus-five {
+    &.plus-more {
       transform: translate(-25%, 120%);
       margin: 0;
     }

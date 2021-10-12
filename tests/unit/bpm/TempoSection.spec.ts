@@ -3,6 +3,10 @@ import TempoControls from "@/components/bpm/TempoControls.vue";
 import store from "@/store/index";
 
 describe("TempoControls.vue", () => {
+  beforeEach(() => {
+    store.commit("resetState");
+  });
+
   it("should allow to change the tempo with increments of 1 bpm", async () => {
     const { getByText } = render(TempoControls, {
       global: {
@@ -42,15 +46,43 @@ describe("TempoControls.vue", () => {
     const btnPlusFive = getByText("+5", { selector: "button" });
     const btnMinusFive = getByText("-5", { selector: "button" });
 
-    // Increment by 1
+    // Increment by 5
     await fireEvent.click(btnPlusFive);
     expect(getByText("125")).toBeVisible();
     await fireEvent.click(btnPlusFive);
     expect(getByText("130")).toBeVisible();
 
-    // Decrement by 1
+    // Decrement by 5
     await fireEvent.click(btnMinusFive);
     expect(getByText("125")).toBeVisible();
+    await fireEvent.click(btnMinusFive);
+    expect(getByText("120")).toBeVisible();
+  });
+
+  it("should use the value of the store for the large increment", async () => {
+    store.commit("setLargeIncrement", 7);
+
+    const { getByText } = render(TempoControls, {
+      global: {
+        plugins: [store]
+      }
+    });
+
+    // 120 bpm by default
+    expect(getByText("120")).toBeVisible();
+
+    const btnPlusFive = getByText("+7", { selector: "button" });
+    const btnMinusFive = getByText("-7", { selector: "button" });
+
+    // Increment by 7
+    await fireEvent.click(btnPlusFive);
+    expect(getByText("127")).toBeVisible();
+    await fireEvent.click(btnPlusFive);
+    expect(getByText("134")).toBeVisible();
+
+    // Decrement by 7
+    await fireEvent.click(btnMinusFive);
+    expect(getByText("127")).toBeVisible();
     await fireEvent.click(btnMinusFive);
     expect(getByText("120")).toBeVisible();
   });

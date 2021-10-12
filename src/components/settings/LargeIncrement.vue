@@ -1,18 +1,20 @@
 <template>
-  <article class="volume">
+  <article class="large-increment">
     <div class="header">
-      <h3>Volume</h3>
-      <p class="value">{{ volume }}%</p>
+      <h3>Large Increment</h3>
+      <p class="value">{{ largeIncrement }}</p>
     </div>
     <div class="content">
-      <VolumeIcon v-if="volume > 0"></VolumeIcon>
-      <VolumeMuteIcon v-else></VolumeMuteIcon>
+      <p>2</p>
       <Slider
-        :modelValue="volume"
-        @update:modelValue="commit('setVolume', $event)"
-        label="volume"
+        :modelValue="largeIncrement"
+        :min="2"
+        :max="10"
+        @update:modelValue="commit('setLargeIncrement', $event)"
+        label="large increment"
         class="slider"
       ></Slider>
+      <p>10</p>
     </div>
   </article>
 </template>
@@ -20,25 +22,29 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useStore } from "vuex";
-import Slider from "../Slider.vue";
-import VolumeIcon from "./icons/VolumeIcon.vue";
-import VolumeMuteIcon from "./icons/VolumeMuteIcon.vue";
+import Slider from "./Slider.vue";
 
 const { state, commit } = useStore();
 
-const volume = computed(() => state.settings.volume);
+const largeIncrement = computed(() => state.settings.largeIncrement);
 </script>
 
 <style lang="scss" scoped>
-.volume {
+.large-increment {
   .header,
   .content {
     display: flex;
     justify-content: space-between;
+    gap: 15px;
   }
 
   .content {
     margin-top: 24px;
+
+    > p {
+      color: var(--gray-60);
+      font-size: 1.7rem;
+    }
   }
 
   .value {
@@ -47,7 +53,7 @@ const volume = computed(() => state.settings.volume);
   }
 
   .slider {
-    width: 230px;
+    width: 200px;
   }
 }
 </style>

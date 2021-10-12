@@ -20,6 +20,7 @@
 
   <Aside position="right">
     <h2>BPM</h2>
+    <LargeIncrement></LargeIncrement>
   </Aside>
 </template>
 
@@ -36,6 +37,7 @@ import Aside from "./components/Aside.vue";
 import Volume from "./components/settings/volume/Volume.vue";
 import Sound from "./components/settings/sound/Sound.vue";
 import FirstBeat from "./components/settings/FirstBeat.vue";
+import LargeIncrement from "./components/settings/LargeIncrement.vue";
 
 useRegisterSW();
 
