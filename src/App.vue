@@ -23,6 +23,8 @@
     <LargeIncrement></LargeIncrement>
     <BpmRange></BpmRange>
   </Aside>
+
+  <MobileSettings></MobileSettings>
 </template>
 
 <script setup lang="ts">
@@ -40,6 +42,7 @@ import Sound from "./components/settings/sound/Sound.vue";
 import FirstBeat from "./components/settings/FirstBeat.vue";
 import LargeIncrement from "./components/settings/LargeIncrement.vue";
 import BpmRange from "./components/settings/BpmRange.vue";
+import MobileSettings from "./components/settings/MobileSettings.vue";
 
 useRegisterSW();
 

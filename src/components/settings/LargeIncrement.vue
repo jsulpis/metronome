@@ -40,6 +40,7 @@ const largeIncrement = computed(() => state.settings.largeIncrement);
 
   .content {
     margin-top: 24px;
+    justify-content: center;
 
     > p {
       color: var(--grey-60);

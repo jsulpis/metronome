@@ -42,8 +42,14 @@ function updateSound(e: Event) {
 
 <style lang="scss" scoped>
 .content {
-  display: flex;
-  margin-top: 12px;
-  gap: 10px;
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr;
+  gap: 12px;
+  width: fit-content;
+  margin: 12px auto 0;
+
+  @include tablet-portrait-up {
+    grid-template: auto / repeat(4, 1fr);
+  }
 }
 </style>
