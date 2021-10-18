@@ -70,8 +70,8 @@ circle {
   border-radius: 50%;
   padding: 20px;
   display: inline-block;
-  width: 42vh;
-  height: 42vh;
+  width: 38vh;
+  height: 38vh;
   max-width: 360px;
   max-height: 360px;
 
@@ -87,14 +87,6 @@ circle {
     box-shadow: inset -2px -4px 3px rgba(0, 0, 0, 0.05),
       inset 6px 4px 12px rgba(255, 255, 255, 0.54), -3px -3px 15px rgba(255, 255, 255, 0.7),
       4px 6px 20px rgba(0, 0, 0, 0.2);
-  }
-}
-
-// Adjustment for tall mobile displays
-@media screen and (min-height: 750px) and (max-width: 500px) {
-  .progress-track {
-    max-width: 315px;
-    max-height: 315px;
   }
 }
 </style>

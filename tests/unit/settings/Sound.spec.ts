@@ -27,4 +27,22 @@ describe("Sound.vue", () => {
     await fireEvent(sticksRadio, new Event("change", { bubbles: true }));
     expect(store.state.settings.sound).toBe("sticks");
   });
+
+  it("should have a property to change the group name", async () => {
+    const { container } = render(Sound, {
+      props: {
+        context: "desktop"
+      },
+      global: {
+        plugins: [store]
+      }
+    });
+
+    const radioButtons = container.querySelectorAll(
+      "input[type=radio]"
+    ) as NodeListOf<HTMLInputElement>;
+
+    expect(radioButtons.length).toBe(4);
+    radioButtons.forEach((radio) => expect(radio.name).toBe("desktop-sound"));
+  });
 });

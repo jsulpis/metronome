@@ -39,6 +39,8 @@ const volume = computed(() => state.settings.volume);
 
   .content {
     margin-top: 24px;
+    justify-content: center;
+    gap: 16px;
   }
 
   .value {
