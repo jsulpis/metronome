@@ -28,8 +28,8 @@
 </template>
 
 <script setup lang="ts">
-import Volume from "./volume/Volume.vue";
-import Sound from "./sound/Sound.vue";
+import Volume from "./Volume.vue";
+import Sound from "./Sound.vue";
 import FirstBeat from "./FirstBeat.vue";
 import LargeIncrement from "./LargeIncrement.vue";
 import BpmRange from "./BpmRange.vue";

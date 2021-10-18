@@ -1,5 +1,5 @@
 import { fireEvent, render } from "@testing-library/vue";
-import RadioButton from "@/components/settings/sound/RadioButton.vue";
+import RadioButton from "@/components/RadioButton.vue";
 
 describe("RadioButton.vue", () => {
   it("should forward the name and value props to the native input", async () => {

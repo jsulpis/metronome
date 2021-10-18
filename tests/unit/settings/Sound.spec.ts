@@ -1,5 +1,5 @@
 import { fireEvent, render } from "@testing-library/vue";
-import Sound from "@/components/settings/sound/Sound.vue";
+import Sound from "@/components/settings/Sound.vue";
 import store from "@/store/index";
 
 describe("Sound.vue", () => {

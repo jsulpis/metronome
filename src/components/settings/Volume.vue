@@ -5,8 +5,8 @@
       <p class="value">{{ volume }}%</p>
     </div>
     <div class="content">
-      <VolumeIcon v-if="volume > 0"></VolumeIcon>
-      <VolumeMuteIcon v-else></VolumeMuteIcon>
+      <Icon name="volume" v-if="volume > 0"></Icon>
+      <Icon name="volume-mute" v-else></Icon>
       <Slider
         :modelValue="volume"
         @update:modelValue="commit('setVolume', $event)"
@@ -20,9 +20,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useStore } from "vuex";
-import Slider from "../Slider.vue";
-import VolumeIcon from "./icons/VolumeIcon.vue";
-import VolumeMuteIcon from "./icons/VolumeMuteIcon.vue";
+import Slider from "./Slider.vue";
+import Icon from "../icons/Icon.vue";
 
 const { state, commit } = useStore();
 
