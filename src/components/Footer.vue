@@ -18,5 +18,9 @@ footer {
     color: var(--primary-50);
     font-weight: bold;
   }
+
+  a:focus-visible {
+    outline-color: var(--primary-50);
+  }
 }
 </style>

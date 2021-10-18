@@ -2,19 +2,19 @@
   <article>
     <h3>Sound</h3>
     <div class="content" @change="updateSound">
-      <RadioButton :checked="sound === 'click'" name="sound" value="click">
+      <RadioButton :checked="sound === 'click'" :name="`${context}-sound`" value="click">
         <ClickIcon></ClickIcon>
         <p>Click</p>
       </RadioButton>
-      <RadioButton :checked="sound === 'sticks'" name="sound" value="sticks">
+      <RadioButton :checked="sound === 'sticks'" :name="`${context}-sound`" value="sticks">
         <SticksIcon></SticksIcon>
         <p>Sticks</p>
       </RadioButton>
-      <RadioButton :checked="sound === 'hi-hat'" name="sound" value="hi-hat">
+      <RadioButton :checked="sound === 'hi-hat'" :name="`${context}-sound`" value="hi-hat">
         <HiHatIcon></HiHatIcon>
         <p>Hi-hat</p>
       </RadioButton>
-      <RadioButton :checked="sound === 'kick'" name="sound" value="kick">
+      <RadioButton :checked="sound === 'kick'" :name="`${context}-sound`" value="kick">
         <KickIcon></KickIcon>
         <p>Kick</p>
       </RadioButton>
@@ -30,6 +30,10 @@ import HiHatIcon from "./icons/HiHatIcon.vue";
 import KickIcon from "./icons/KickIcon.vue";
 import { useStore } from "vuex";
 import { computed } from "vue-demi";
+
+defineProps({
+  context: String
+});
 
 const { state, commit } = useStore();
 

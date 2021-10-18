@@ -2,7 +2,7 @@
   <Aside position="left">
     <h2>Sound</h2>
     <Volume></Volume>
-    <Sound></Sound>
+    <Sound context="desktop"></Sound>
     <FirstBeat></FirstBeat>
     <Footer></Footer>
   </Aside>
