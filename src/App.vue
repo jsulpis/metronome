@@ -4,6 +4,7 @@
     <Volume></Volume>
     <Sound></Sound>
     <FirstBeat></FirstBeat>
+    <Footer></Footer>
   </Aside>
 
   <main>
@@ -43,6 +44,7 @@ import FirstBeat from "./components/settings/FirstBeat.vue";
 import LargeIncrement from "./components/settings/LargeIncrement.vue";
 import BpmRange from "./components/settings/BpmRange.vue";
 import MobileSettings from "./components/settings/MobileSettings.vue";
+import Footer from "./components/Footer.vue";
 
 useRegisterSW();
 
@@ -81,6 +83,14 @@ main {
 @include tablet-portrait-up {
   .progress-track {
     margin-top: 20px;
+  }
+}
+
+footer {
+  display: none;
+
+  @include laptop-up {
+    display: initial;
   }
 }
 </style>

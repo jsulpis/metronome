@@ -22,6 +22,7 @@
       <FirstBeat></FirstBeat>
       <LargeIncrement></LargeIncrement>
       <BpmRange></BpmRange>
+      <Footer></Footer>
     </div>
   </section>
 </template>
@@ -32,6 +33,7 @@ import Sound from "./sound/Sound.vue";
 import FirstBeat from "./FirstBeat.vue";
 import LargeIncrement from "./LargeIncrement.vue";
 import BpmRange from "./BpmRange.vue";
+import Footer from "../Footer.vue";
 import { ref } from "vue";
 import { useDrag } from "@vueuse/gesture";
 import { useWindowSize } from "@vueuse/core";
@@ -163,11 +165,5 @@ h1 {
     opacity: 0.5;
     pointer-events: initial;
   }
-}
-
-footer {
-  color: var(--grey-60);
-  text-align: center;
-  margin-top: 20px;
 }
 </style>
