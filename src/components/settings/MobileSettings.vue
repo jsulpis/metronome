@@ -1,5 +1,5 @@
 <template>
-  <button id="open-settings" aria-label="open settings" @click="openSettings">
+  <button ref="buttonOpen" id="open-settings" aria-label="open settings" @click="openSettings">
     <svg width="26" height="22" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fill-rule="evenodd"
@@ -10,10 +10,10 @@
     </svg>
   </button>
 
-  <div class="backdrop" :class="{ visible: isOpen }" @click="closeSettings"></div>
+  <div ref="backdrop" class="backdrop" :class="{ visible: isOpen }" @click="closeSettings"></div>
 
-  <section class="mobile-settings" :class="{ visible: isOpen }">
-    <button class="handle" @click="closeSettings" aria-label="close settings"></button>
+  <section ref="panel" class="mobile-settings" :class="{ visible: isOpen }">
+    <button ref="handle" class="handle" @click="closeSettings" aria-label="close settings"></button>
 
     <div class="content">
       <h1>Settings</h1>
@@ -33,11 +33,44 @@ import FirstBeat from "./FirstBeat.vue";
 import LargeIncrement from "./LargeIncrement.vue";
 import BpmRange from "./BpmRange.vue";
 import { ref } from "vue";
+import { useDrag } from "@vueuse/gesture";
+import { useWindowSize } from "@vueuse/core";
 
 const isOpen = ref(false);
+const handle = ref<HTMLElement>();
+const panel = ref<HTMLElement>();
+const backdrop = ref<HTMLElement>();
+const buttonOpen = ref<HTMLElement>();
 
 const openSettings = () => (isOpen.value = true);
 const closeSettings = () => (isOpen.value = false);
+
+const { height: windowHeight } = useWindowSize();
+
+useDrag(
+  ({ movement: [, y], dragging, direction }) => {
+    if (!panel.value || !backdrop.value) {
+      return; // avoid typescript warning
+    }
+    if (y > 0) {
+      panel.value.style.transition = "none";
+      panel.value.style.transform = `translate3d(-50%, calc(-100% + ${y}px), 0)`;
+      backdrop.value.style.transition = "none";
+      backdrop.value.style.opacity = `${0.5 * (1 - y / windowHeight.value)}`;
+    }
+
+    if (!dragging) {
+      panel.value?.removeAttribute("style");
+      backdrop.value?.removeAttribute("style");
+
+      if (direction[1] > 0) {
+        isOpen.value = false;
+        buttonOpen.value?.focus();
+      }
+    }
+  },
+  { domTarget: handle }
+);
 </script>
 
 <style lang="scss" scoped>
@@ -66,9 +99,10 @@ button#open-settings {
   transform: translateX(-50%);
   border-radius: 25px 25px 0 0;
   border: 1px solid var(--grey-60);
+  display: grid;
   grid-template: 44px auto / auto;
   transition: transform 300ms ease;
-  display: none;
+  overflow: hidden;
 
   &.visible {
     display: grid;
@@ -79,7 +113,7 @@ button#open-settings {
 .content {
   display: flex;
   flex-direction: column;
-  padding: 0 30px 50px 30px;
+  padding: 0 30px 70px 30px;
   gap: 40px;
   overflow: auto;
   text-align: left;
@@ -88,11 +122,24 @@ button#open-settings {
 }
 
 .handle {
-  width: 72px;
-  height: 4px;
-  background: var(--grey-60);
-  border-radius: 2px;
-  margin: 20px auto 20px;
+  width: 100%;
+  height: 44px;
+  position: relative;
+  border-radius: 0;
+  background: none;
+
+  &::before {
+    position: absolute;
+    content: "";
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 4px;
+    width: 72px;
+    background: var(--grey-60);
+    border-radius: 2px;
+    opacity: 1 !important; // override global style on the buttons
+  }
 }
 
 h1 {
@@ -104,7 +151,10 @@ h1 {
   position: absolute;
   content: "";
   background: var(--grey-70);
-  inset: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
+  right: 0;
   transition: opacity 200ms;
   opacity: 0;
   pointer-events: none;
@@ -113,5 +163,11 @@ h1 {
     opacity: 0.5;
     pointer-events: initial;
   }
+}
+
+footer {
+  color: var(--grey-60);
+  text-align: center;
+  margin-top: 20px;
 }
 </style>

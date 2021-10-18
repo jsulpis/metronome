@@ -13,13 +13,14 @@
 html,
 body,
 #app {
-  min-height: 100vh;
+  min-height: 100%;
   overflow: hidden;
+  position: fixed; // avoid hiding the address bar when scrolling on mobile browsers
+  width: 100vw;
 }
 
 html {
   font-size: 62.5%; // 1rem = 10px
-  touch-action: none;
 }
 
 body {

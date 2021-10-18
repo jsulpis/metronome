@@ -56,10 +56,15 @@ const max = computed(() => state.bpm.max);
 main {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 2.4rem;
   align-items: center;
   min-height: 100vh;
   padding: 4vh 0;
+
+  @include tablet-portrait-up {
+    gap: 5rem;
+  }
 }
 
 .progress-track {
