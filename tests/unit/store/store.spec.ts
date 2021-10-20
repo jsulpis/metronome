@@ -10,7 +10,8 @@ const DEFAULT_STORE_VALUE = {
   },
   beat: {
     current: 0,
-    count: 4
+    count: 4,
+    rythm: "quarter"
   },
   settings: {
     volume: 100,
@@ -67,6 +68,17 @@ describe("store mutations", () => {
       expect(state.beat.count).toBe(1);
       commit("removeBeat");
       expect(state.beat.count).toBe(1);
+    });
+  });
+
+  describe("setRythm", () => {
+    it("should set the rythm amongst valid values", () => {
+      ["quarter", "eighth", "sixteenth", "triplet", "triplet-rest"].forEach((rythm) => {
+        commit("setRythm", rythm);
+        expect(state.beat.rythm).toBe(rythm);
+      });
+      commit("setRythm", "wrong");
+      expect(state.beat.rythm).toBe("triplet-rest");
     });
   });
 

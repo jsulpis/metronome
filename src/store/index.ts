@@ -8,7 +8,8 @@ const getDefaultState = () => ({
   },
   beat: {
     current: 0,
-    count: 4
+    count: 4,
+    rythm: "quarter"
   },
   settings: {
     volume: 100,
@@ -17,6 +18,9 @@ const getDefaultState = () => ({
     largeIncrement: 5
   }
 });
+
+const VALID_RYTHMS = ["quarter", "eighth", "sixteenth", "triplet", "triplet-rest"] as const;
+type Rythm = typeof VALID_RYTHMS[number];
 
 export default createStore({
   state: getDefaultState(),
@@ -54,6 +58,11 @@ export default createStore({
     },
     removeBeat(state) {
       state.beat.count = Math.max(state.beat.count - 1, 1);
+    },
+    setRythm(state, rythm: Rythm) {
+      if (VALID_RYTHMS.includes(rythm)) {
+        state.beat.rythm = rythm;
+      }
     },
     setVolume(state, payload: number) {
       state.settings.volume = Math.min(100, Math.max(0, payload));
