@@ -9,7 +9,10 @@
 
   <main>
     <h1>Metronome</h1>
-    <BeatIndicator></BeatIndicator>
+    <section>
+      <BeatIndicator></BeatIndicator>
+      <Rythm></Rythm>
+    </section>
     <section>
       <TempoControls />
       <ProgressTrack :progress="(bpm - min) / (max - min || 1)">
@@ -38,13 +41,14 @@ import { useStore } from "vuex";
 import BeatIndicator from "./components/beat/BeatIndicator.vue";
 import { useRegisterSW } from "virtual:pwa-register/vue";
 import Aside from "./components/Aside.vue";
-import Volume from "./components/settings/volume/Volume.vue";
-import Sound from "./components/settings/sound/Sound.vue";
+import Volume from "./components/settings/Volume.vue";
+import Sound from "./components/settings/Sound.vue";
 import FirstBeat from "./components/settings/FirstBeat.vue";
 import LargeIncrement from "./components/settings/LargeIncrement.vue";
 import BpmRange from "./components/settings/BpmRange.vue";
 import MobileSettings from "./components/settings/MobileSettings.vue";
 import Footer from "./components/Footer.vue";
+import Rythm from "./components/beat/Rythm.vue";
 
 useRegisterSW();
 
@@ -61,11 +65,15 @@ main {
   justify-content: center;
   gap: 2.4rem;
   align-items: center;
-  min-height: 100vh;
+  height: 100%;
   padding: 4vh 0;
 
   @include tablet-portrait-up {
     gap: 5rem;
+  }
+
+  @media (min-width: 1200px) and (max-height: 800px) {
+    gap: 2rem;
   }
 }
 

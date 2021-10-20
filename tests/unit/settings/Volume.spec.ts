@@ -1,5 +1,5 @@
 import { fireEvent, render } from "@testing-library/vue";
-import Volume from "@/components/settings/volume/Volume.vue";
+import Volume from "@/components/settings/Volume.vue";
 import store from "@/store/index";
 
 describe("Volume.vue", () => {

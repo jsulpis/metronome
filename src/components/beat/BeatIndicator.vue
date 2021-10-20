@@ -37,8 +37,14 @@ const beatCount = computed(() => state.beat.count);
 
 .controls {
   display: flex;
-  gap: 24px;
+  justify-content: center;
+  gap: 30px;
   margin-top: 16px;
+
+  @include phone-only {
+    gap: 24px;
+    transform: scale(0.9); // quick and dirty resizing for phones
+  }
 }
 
 .dots {
@@ -50,6 +56,10 @@ const beatCount = computed(() => state.beat.count);
   height: 40px;
   border-radius: 20px;
   background: var(--grey-40);
+
+  @include tablet-portrait-up {
+    width: 230px;
+  }
 
   span {
     width: 18px;

@@ -1,3 +1,4 @@
+import { Rythm, RYTHMS } from "../models/rythms";
 import { createStore } from "vuex";
 
 const getDefaultState = () => ({
@@ -8,7 +9,8 @@ const getDefaultState = () => ({
   },
   beat: {
     current: 0,
-    count: 4
+    count: 4,
+    rythm: "quarter"
   },
   settings: {
     volume: 100,
@@ -55,6 +57,11 @@ export default createStore({
     removeBeat(state) {
       state.beat.count = Math.max(state.beat.count - 1, 1);
     },
+    setRythm(state, rythm: Rythm) {
+      if (Object.keys(RYTHMS).includes(rythm)) {
+        state.beat.rythm = rythm;
+      }
+    },
     setVolume(state, payload: number) {
       state.settings.volume = Math.min(100, Math.max(0, payload));
     },
@@ -69,6 +76,11 @@ export default createStore({
     },
     resetState(state) {
       Object.assign(state, getDefaultState());
+    }
+  },
+  getters: {
+    intermediateBeats(state) {
+      return RYTHMS[state.beat.rythm as Rythm];
     }
   },
   strict: true

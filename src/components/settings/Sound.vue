@@ -3,19 +3,19 @@
     <h3>Sound</h3>
     <div class="content" @change="updateSound">
       <RadioButton :checked="sound === 'click'" :name="`${context}-sound`" value="click">
-        <ClickIcon></ClickIcon>
+        <Icon name="click"></Icon>
         <p>Click</p>
       </RadioButton>
       <RadioButton :checked="sound === 'sticks'" :name="`${context}-sound`" value="sticks">
-        <SticksIcon></SticksIcon>
+        <Icon name="sticks"></Icon>
         <p>Sticks</p>
       </RadioButton>
       <RadioButton :checked="sound === 'hi-hat'" :name="`${context}-sound`" value="hi-hat">
-        <HiHatIcon></HiHatIcon>
+        <Icon name="hi-hat"></Icon>
         <p>Hi-hat</p>
       </RadioButton>
       <RadioButton :checked="sound === 'kick'" :name="`${context}-sound`" value="kick">
-        <KickIcon></KickIcon>
+        <Icon name="kick"></Icon>
         <p>Kick</p>
       </RadioButton>
     </div>
@@ -23,13 +23,10 @@
 </template>
 
 <script setup lang="ts">
-import RadioButton from "./RadioButton.vue";
-import ClickIcon from "./icons/ClickIcon.vue";
-import SticksIcon from "./icons/SticksIcon.vue";
-import HiHatIcon from "./icons/HiHatIcon.vue";
-import KickIcon from "./icons/KickIcon.vue";
+import RadioButton from "../RadioButton.vue";
 import { useStore } from "vuex";
 import { computed } from "vue-demi";
+import Icon from "../icons/Icon.vue";
 
 defineProps({
   context: String

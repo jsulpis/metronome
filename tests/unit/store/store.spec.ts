@@ -1,6 +1,6 @@
 import store from "@/store";
 
-const { state, commit } = store;
+const { state, getters, commit } = store;
 
 const DEFAULT_STORE_VALUE = {
   bpm: {
@@ -10,7 +10,8 @@ const DEFAULT_STORE_VALUE = {
   },
   beat: {
     current: 0,
-    count: 4
+    count: 4,
+    rythm: "quarter"
   },
   settings: {
     volume: 100,
@@ -67,6 +68,17 @@ describe("store mutations", () => {
       expect(state.beat.count).toBe(1);
       commit("removeBeat");
       expect(state.beat.count).toBe(1);
+    });
+  });
+
+  describe("setRythm", () => {
+    it("should set the rythm amongst valid values", () => {
+      ["quarter", "eighth", "sixteenth", "triplet", "triplet-rest"].forEach((rythm) => {
+        commit("setRythm", rythm);
+        expect(state.beat.rythm).toBe(rythm);
+      });
+      commit("setRythm", "wrong");
+      expect(state.beat.rythm).toBe("triplet-rest");
     });
   });
 
@@ -166,6 +178,21 @@ describe("store mutations", () => {
       // Then: state is still reactive
       commit("addBeat");
       expect(state.beat.count).toBe(5);
+    });
+  });
+
+  describe("getters", () => {
+    it("intermediateBeats - should return an array of intermediate beats for the current rythm", () => {
+      commit("setRythm", "quarter");
+      expect(getters.intermediateBeats).toEqual([]);
+      commit("setRythm", "eighth");
+      expect(getters.intermediateBeats).toEqual([1 / 2]);
+      commit("setRythm", "sixteenth");
+      expect(getters.intermediateBeats).toEqual([1 / 4, 2 / 4, 3 / 4]);
+      commit("setRythm", "triplet");
+      expect(getters.intermediateBeats).toEqual([1 / 3, 2 / 3]);
+      commit("setRythm", "triplet-rest");
+      expect(getters.intermediateBeats).toEqual([2 / 3]);
     });
   });
 });
