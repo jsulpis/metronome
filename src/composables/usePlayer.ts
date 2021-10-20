@@ -2,14 +2,14 @@ import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import { Howl } from "howler";
 
-export default function usePlayer() {
-  let timeout: NodeJS.Timeout;
-  const { state, commit } = useStore();
+const sounds = new Map<string, Howl>();
+["click", "hi-hat", "kick", "sticks"].forEach((sound) => {
+  sounds.set(sound, new Howl({ src: [`sounds/${sound}.mp3`] }));
+});
 
-  const sounds = new Map<string, Howl>();
-  ["click", "hi-hat", "kick", "sticks"].forEach((sound) => {
-    sounds.set(sound, new Howl({ src: [`sounds/${sound}.mp3`] }));
-  });
+export default function usePlayer() {
+  let timeouts: NodeJS.Timeout[];
+  const { state, getters, commit } = useStore();
 
   const isPlaying = ref(false);
   const isFirstBeat = computed(() => state.beat.current === 1);
@@ -17,16 +17,33 @@ export default function usePlayer() {
 
   function loop() {
     commit("nextBeat");
+
+    const timeBeforeNextBeat = (60 / state.bpm.value) * 1000;
+    timeouts = [setTimeout(loop, timeBeforeNextBeat)];
+
+    const accentuateBeat = accentuateFirstBeat.value && isFirstBeat.value;
+    const pitch = accentuateBeat ? 1.4 : 1;
+    const volumeMultiplier = accentuateBeat ? 1 : 0.8;
+
+    playSound(pitch, volumeMultiplier);
+
+    const intermediateBeats: number[] = getters.intermediateBeats;
+    timeouts = timeouts.concat(
+      intermediateBeats.map((fraction) =>
+        setTimeout(() => playSound(0.9, 0.2), fraction * timeBeforeNextBeat)
+      )
+    );
+  }
+
+  function playSound(pitch: number, volumeMultipler: number) {
     const sound = sounds.get(state.settings.sound);
+    const volume = state.settings.volume;
+
     if (sound) {
-      sound.rate(accentuateFirstBeat.value && isFirstBeat.value ? 1.4 : 1); // increase the pitch
-      sound.volume(
-        ((accentuateFirstBeat.value && isFirstBeat.value ? 1 : 0.8) * state.settings.volume) / 100
-      );
+      sound.rate(pitch);
+      sound.volume((volumeMultipler * volume) / 100);
       sound.play();
     }
-
-    timeout = setTimeout(loop, (60 / state.bpm.value) * 1000);
   }
 
   function play() {
@@ -35,7 +52,7 @@ export default function usePlayer() {
   }
 
   function stop() {
-    clearTimeout(timeout);
+    timeouts.forEach((timeout) => clearTimeout(timeout));
     isPlaying.value = false;
   }
 

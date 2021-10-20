@@ -1,6 +1,6 @@
 import store from "@/store";
 
-const { state, commit } = store;
+const { state, getters, commit } = store;
 
 const DEFAULT_STORE_VALUE = {
   bpm: {
@@ -178,6 +178,21 @@ describe("store mutations", () => {
       // Then: state is still reactive
       commit("addBeat");
       expect(state.beat.count).toBe(5);
+    });
+  });
+
+  describe("getters", () => {
+    it("intermediateBeats - should return an array of intermediate beats for the current rythm", () => {
+      commit("setRythm", "quarter");
+      expect(getters.intermediateBeats).toEqual([]);
+      commit("setRythm", "eighth");
+      expect(getters.intermediateBeats).toEqual([1 / 2]);
+      commit("setRythm", "sixteenth");
+      expect(getters.intermediateBeats).toEqual([1 / 4, 2 / 4, 3 / 4]);
+      commit("setRythm", "triplet");
+      expect(getters.intermediateBeats).toEqual([1 / 3, 2 / 3]);
+      commit("setRythm", "triplet-rest");
+      expect(getters.intermediateBeats).toEqual([2 / 3]);
     });
   });
 });
