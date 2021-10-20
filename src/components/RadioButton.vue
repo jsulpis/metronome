@@ -31,9 +31,9 @@ label {
   width: 75px;
   height: 75px;
   border-radius: 12px;
-  background: white;
+  background: var(--grey-40);
   position: relative;
-  color: var(--grey-60);
+  color: var(--grey-70);
   font-size: 1.25rem;
   transition: color 100ms ease-in-out, background-color 100ms ease-in-out;
 }
