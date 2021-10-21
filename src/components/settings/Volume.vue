@@ -46,9 +46,5 @@ const volume = computed(() => state.settings.volume);
     font-size: 1.8rem;
     font-weight: 500;
   }
-
-  .slider {
-    width: 230px;
-  }
 }
 </style>

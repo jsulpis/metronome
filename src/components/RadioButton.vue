@@ -1,6 +1,6 @@
 <template>
   <label>
-    <input type="radio" :name="name" :value="value" :checked="checked" />
+    <input type="radio" :name="name" :value="value" :checked="checked" :aria-label="label" />
     <span class="custom-radio">
       <slot></slot>
     </span>
@@ -11,7 +11,8 @@
 defineProps({
   value: String,
   name: String,
-  checked: Boolean
+  checked: Boolean,
+  label: String
 });
 </script>
 

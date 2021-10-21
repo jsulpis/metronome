@@ -12,7 +12,7 @@
 
   <div ref="backdrop" class="backdrop" :class="{ visible: isOpen }" @click="closeSettings"></div>
 
-  <section ref="panel" class="mobile-settings" :class="{ visible: isOpen }">
+  <section ref="panel" class="mobile-settings" :aria-hidden="!isOpen" :class="{ visible: isOpen }">
     <button ref="handle" class="handle" @click="closeSettings" aria-label="close settings"></button>
 
     <div class="content">

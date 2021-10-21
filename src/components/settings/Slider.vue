@@ -52,10 +52,12 @@ export default defineComponent({
   padding: 6px;
   border-radius: 40px;
   width: 250px;
+  display: inline-flex;
+  align-self: center;
 }
 
-$track-height: 1rem;
-$thumb-size: 2.2rem;
+$track-height: 10px;
+$thumb-size: 22px;
 
 .slider {
   position: relative;
@@ -71,11 +73,11 @@ input:focus-visible {
   height: $track-height;
   display: inline-block;
   background: var(--primary-50);
-  border-radius: 0.5rem;
+  border-radius: 5px;
   position: absolute;
   left: 0;
   pointer-events: none;
-  min-width: 2.2rem;
+  min-width: 22px;
 }
 
 @mixin track() {
@@ -83,7 +85,7 @@ input:focus-visible {
   border: none;
   height: $track-height;
   background: var(--grey-50);
-  border-radius: 0.5rem;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -141,7 +143,7 @@ input:focus-visible {
   position: absolute;
   top: calc(50% - calc(#{$thumb-size} / 2));
   pointer-events: none;
-  left: 1.2rem;
+  left: 12px;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
 
   &::before {

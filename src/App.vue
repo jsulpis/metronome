@@ -63,17 +63,17 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2.4rem;
+  gap: 24px;
   align-items: center;
   height: 100%;
   padding: 4vh 0;
 
   @include tablet-portrait-up {
-    gap: 5rem;
+    gap: 50px;
   }
 
   @media (min-width: 1200px) and (max-height: 800px) {
-    gap: 2rem;
+    gap: 20px;
   }
 }
 
