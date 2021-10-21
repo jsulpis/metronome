@@ -1,5 +1,6 @@
 import { Rythm, RYTHMS } from "../models/rythms";
 import { createStore } from "vuex";
+import createPersistedState from "vuex-persistedstate";
 
 const getDefaultState = () => ({
   bpm: {
@@ -83,6 +84,6 @@ export default createStore({
       return RYTHMS[state.beat.rythm as Rythm];
     }
   },
-  strict: true
-  // plugins: [createLogger()]
+  strict: true,
+  plugins: [createPersistedState({ paths: ["settings", "bpm", "beat.count", "beat.rythm"] })] // persist everything except the current beat
 });
