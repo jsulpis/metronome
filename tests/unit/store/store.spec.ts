@@ -196,3 +196,36 @@ describe("store mutations", () => {
     });
   });
 });
+
+describe("persistence", () => {
+  let mockStorage: any;
+
+  beforeAll(() => {
+    global.Storage.prototype.setItem = jest.fn((key, value) => {
+      mockStorage[key] = value;
+    });
+    global.Storage.prototype.getItem = jest.fn((key) => mockStorage[key]);
+  });
+
+  beforeEach(() => {
+    mockStorage = {};
+  });
+
+  it("should persist the state in the LocalStorage", () => {
+    commit("setVolume", 42);
+    commit("setRythm", "sixteenth");
+    expect(JSON.parse(mockStorage.vuex).settings.volume).toBe(42);
+    expect(JSON.parse(mockStorage.vuex).beat.rythm).toBe("sixteenth");
+  });
+
+  it("should NOT persist the current beat", () => {
+    commit("nextBeat");
+    expect(state.beat.current).toBe(1);
+    expect(JSON.parse(mockStorage.vuex).beat.current).toBe(undefined);
+  });
+
+  afterAll(() => {
+    (global.Storage.prototype.setItem as jest.Mock).mockReset();
+    (global.Storage.prototype.getItem as jest.Mock).mockReset();
+  });
+});

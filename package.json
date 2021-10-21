@@ -43,7 +43,8 @@
     "vite": "^2.3.7",
     "vite-plugin-pwa": "^0.8.2",
     "vue-jest": "^5.0.0-0",
-    "vue-tsc": "^0.1.7"
+    "vue-tsc": "^0.1.7",
+    "vuex-persistedstate": "^4.1.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
