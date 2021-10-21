@@ -12,7 +12,6 @@
         :max="10"
         @update:modelValue="commit('setLargeIncrement', $event)"
         label="large increment"
-        class="slider"
       ></Slider>
       <p>10</p>
     </div>
@@ -51,10 +50,6 @@ const largeIncrement = computed(() => state.settings.largeIncrement);
   .value {
     font-size: 1.8rem;
     font-weight: 500;
-  }
-
-  .slider {
-    width: 200px;
   }
 }
 </style>

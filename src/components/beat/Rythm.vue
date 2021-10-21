@@ -6,6 +6,7 @@
       :key="rythm"
       :checked="currentRythm === rythm"
       :value="rythm"
+      :label="rythm"
     >
       <Icon :name="rythm"></Icon>
     </RadioButton>
@@ -32,21 +33,21 @@ function updateRythm(e: Event) {
 .rythms {
   display: flex;
   justify-content: center;
-  gap: 1.8rem;
-  margin: 1rem auto 0;
+  gap: 18px;
+  margin: 10px auto 0;
 
   @include phone-only {
     transform: scale(0.8); // quick and dirty resizing for phones
   }
 
   @include tablet-portrait-up {
-    margin: 3.5rem auto 3rem;
+    margin: 35px auto 30px;
   }
 
   .custom-radio {
-    width: 5.5rem;
-    height: 5.5rem;
-    border-radius: 0.9rem;
+    width: 55px;
+    height: 55px;
+    border-radius: 9px;
   }
 }
 </style>
