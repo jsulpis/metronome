@@ -58,6 +58,17 @@ aside {
     max-width: 23vw;
   }
 
+  @include big-desktop-up {
+    transform: scale(1.25);
+
+    &.left {
+      transform-origin: bottom left;
+    }
+    &.right {
+      transform-origin: bottom right;
+    }
+  }
+
   svg {
     position: absolute;
     bottom: 0;

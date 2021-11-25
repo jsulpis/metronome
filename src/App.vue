@@ -62,23 +62,26 @@ const max = computed(() => state.bpm.max);
 main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 24px;
+  justify-content: space-between;
+  margin: auto;
   align-items: center;
   height: 100%;
+  max-height: 950px;
   padding: 4vh 0;
+}
 
-  @include tablet-portrait-up {
-    gap: 50px;
-  }
-
-  @media (min-width: 1200px) and (max-height: 800px) {
-    gap: 20px;
+@include big-desktop-up {
+  main {
+    transform: scale(1.25);
   }
 }
 
 .progress-track {
   margin-top: 10px;
+
+  @include tablet-portrait-up {
+    margin-top: 20px;
+  }
 }
 
 .play-button {
@@ -86,12 +89,6 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-@include tablet-portrait-up {
-  .progress-track {
-    margin-top: 20px;
-  }
 }
 
 footer {
