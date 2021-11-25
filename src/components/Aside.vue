@@ -37,7 +37,7 @@ aside {
   position: relative;
   display: none;
   align-items: flex-end;
-  padding-bottom: 10vh;
+  padding-bottom: 15vh;
 
   .aside__content {
     display: flex;

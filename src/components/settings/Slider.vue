@@ -51,7 +51,7 @@ export default defineComponent({
   background: var(--grey-40);
   padding: 6px;
   border-radius: 40px;
-  width: 250px;
+  flex-grow: 1;
   display: inline-flex;
   align-self: center;
 }

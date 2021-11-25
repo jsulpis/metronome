@@ -77,7 +77,7 @@ useDrag(
 
 <style lang="scss" scoped>
 button#open-settings {
-  @include shadow-03;
+  @include shadow-02;
   position: fixed;
   width: 48px;
   height: 48px;
@@ -119,7 +119,7 @@ button#open-settings {
   gap: 40px;
   overflow: auto;
   text-align: left;
-  max-width: 500px;
+  max-width: 450px;
   margin: 0 auto;
 }
 
