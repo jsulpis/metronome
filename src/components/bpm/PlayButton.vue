@@ -16,7 +16,7 @@ const { isPlaying, play, stop } = usePlayer();
 <style lang="scss">
 button.play-button {
   background: var(--grey-50);
-  box-shadow: inset 2px 4px 6px rgb(0 0 0 / 15%), inset -1px -1px 2px #ffffff;
+  box-shadow: var(--shadow-02-inset);
   width: 50%;
   height: 50%;
 

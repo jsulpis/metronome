@@ -85,8 +85,10 @@ input {
   border-radius: 0.8rem;
   font-size: 2.1rem;
   text-align: center;
+  background: var(--grey-40);
   color: var(--grey-70);
   border: 1px solid var(--grey-60);
+  border: 0;
 
   &:focus-visible {
     outline: var(--primary-50) auto 1px;

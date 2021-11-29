@@ -154,7 +154,7 @@ input:focus-visible {
     bottom: 0;
     right: 0;
     border-radius: 50%;
-    border: 4px solid white;
+    border: 4px solid var(--grey-40);
     background: transparent;
     margin: 1px;
   }
