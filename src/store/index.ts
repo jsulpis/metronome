@@ -17,7 +17,8 @@ const getDefaultState = () => ({
     volume: 100,
     sound: "click",
     accentuateFirstBeat: true,
-    largeIncrement: 5
+    largeIncrement: 5,
+    theme: "auto"
   }
 });
 
@@ -74,6 +75,9 @@ export default createStore({
     },
     setLargeIncrement(state, payload: number) {
       state.settings.largeIncrement = payload;
+    },
+    setTheme(state, payload: "lith" | "dark" | "auto") {
+      state.settings.theme = payload;
     },
     resetState(state) {
       Object.assign(state, getDefaultState());

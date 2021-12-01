@@ -17,7 +17,8 @@ const DEFAULT_STORE_VALUE = {
     volume: 100,
     sound: "click",
     accentuateFirstBeat: true,
-    largeIncrement: 5
+    largeIncrement: 5,
+    theme: "auto"
   }
 };
 
@@ -178,6 +179,15 @@ describe("store mutations", () => {
       // Then: state is still reactive
       commit("addBeat");
       expect(state.beat.count).toBe(5);
+    });
+  });
+
+  describe("setTheme", () => {
+    it("should store the current theme", () => {
+      commit("setTheme", "dark");
+      expect(state.settings.theme).toBe("dark");
+      commit("setTheme", "auto");
+      expect(state.settings.theme).toBe("auto");
     });
   });
 
