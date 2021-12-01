@@ -11,7 +11,6 @@
         :modelValue="volume"
         @update:modelValue="commit('setVolume', $event)"
         label="volume"
-        class="slider"
       ></Slider>
     </div>
   </article>

@@ -71,7 +71,7 @@ const largeIncrement = computed(() => state.settings.largeIncrement);
 }
 
 button {
-  @include shadow-03;
+  @include shadow-02;
   background: var(--grey-40);
   font-weight: 600;
   border: 1px solid var(--grey-50);
@@ -87,7 +87,7 @@ button {
     height: 48px;
     font-size: 1.8rem;
     margin: 0 10px;
-    transform: translateY(30%);
+    transform: translateY(20%);
   }
 }
 

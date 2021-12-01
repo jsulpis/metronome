@@ -27,12 +27,10 @@ import RadioButton from "../RadioButton.vue";
 import { useStore } from "vuex";
 import { computed } from "vue-demi";
 import Icon from "../icons/Icon.vue";
-
-defineProps({
-  context: String
-});
+import { inject } from "vue";
 
 const { state, commit } = useStore();
+const context = inject("context", "desktop"); // make separate radio groups for the desktop and mobile settings
 
 const sound = computed(() => state.settings.sound);
 

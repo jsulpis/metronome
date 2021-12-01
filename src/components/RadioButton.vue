@@ -36,7 +36,6 @@ label {
   position: relative;
   color: var(--grey-70);
   font-size: 1.25rem;
-  transition: color 100ms ease-in-out, background-color 100ms ease-in-out;
 }
 
 input {

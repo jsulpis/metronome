@@ -146,7 +146,7 @@ export default defineComponent({
 .wheel {
   @include shadow-02;
   position: relative;
-  background: linear-gradient(330.65deg, #e2e8f0 13%, #f8fafc 92.84%);
+  background: var(--wheel-background);
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -167,8 +167,8 @@ export default defineComponent({
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: #e5ebf0;
-  box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.03), inset 1px 1px 4px rgba(147, 147, 147, 0.4);
+  background: var(--wheel-handle-background);
+  box-shadow: var(--wheel-handle-shadow);
 }
 
 .wheel__handle {

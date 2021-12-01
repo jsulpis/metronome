@@ -1,14 +1,9 @@
 @mixin shadow-01 {
-  box-shadow: -2px -2px 4px #ffffff, 1px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-01);
 }
 
 @mixin shadow-02 {
-  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.15), inset 1px 1px 2px #ffffff;
-}
-
-@mixin shadow-03 {
-  box-shadow: -3px -3px 15px rgba(255, 255, 255, 0.7), 4px 6px 20px rgba(0, 0, 0, 0.15),
-    inset -4px -6px 15px -2px rgba(0, 0, 0, 0.1), inset 6px 4px 12px rgba(255, 255, 255, 0.54);
+  box-shadow: var(--shadow-02);
 }
 
 @mixin phone-only {
@@ -38,6 +33,11 @@
 }
 @mixin desktop-up {
   @media (min-width: 1800px) {
+    @content;
+  }
+}
+@mixin big-desktop-up {
+  @media (min-width: 2200px) {
     @content;
   }
 }

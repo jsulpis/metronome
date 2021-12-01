@@ -20,8 +20,8 @@
           y2="755"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#F8FAFB" />
-          <stop offset="0.853346" stop-color="#DEE6ED" />
+          <stop stop-color="var(--aside-gradient-light)" />
+          <stop offset="0.853346" stop-color="var(--aside-gradient-dark)" />
         </linearGradient>
       </defs>
     </svg>
@@ -37,7 +37,7 @@ aside {
   position: relative;
   display: none;
   align-items: flex-end;
-  padding-bottom: 10vh;
+  padding-bottom: 15vh;
 
   .aside__content {
     display: flex;
@@ -56,6 +56,17 @@ aside {
 
   @include desktop-up {
     max-width: 23vw;
+  }
+
+  @include big-desktop-up {
+    transform: scale(1.25);
+
+    &.left {
+      transform-origin: bottom left;
+    }
+    &.right {
+      transform-origin: bottom right;
+    }
   }
 
   svg {

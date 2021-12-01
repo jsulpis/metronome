@@ -6,7 +6,7 @@
         :cy="radius"
         :r="radius - strokeWidth / 2"
         fill="none"
-        stroke="var(--grey-70)"
+        stroke="var(--progress-bar-background)"
         :stroke-width="strokeWidth"
         :stroke-dasharray="perimeter"
         :stroke-dashoffset="perimeter * (1 - 0.66)"
@@ -84,9 +84,7 @@ circle {
     right: 0;
     bottom: 0;
     border-radius: 50%;
-    box-shadow: inset -2px -4px 3px rgba(0, 0, 0, 0.05),
-      inset 6px 4px 12px rgba(255, 255, 255, 0.54), -3px -3px 15px rgba(255, 255, 255, 0.7),
-      4px 6px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--wheel-shadow);
   }
 }
 </style>

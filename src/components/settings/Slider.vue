@@ -51,7 +51,7 @@ export default defineComponent({
   background: var(--grey-40);
   padding: 6px;
   border-radius: 40px;
-  width: 250px;
+  flex-grow: 1;
   display: inline-flex;
   align-self: center;
 }
@@ -154,7 +154,7 @@ input:focus-visible {
     bottom: 0;
     right: 0;
     border-radius: 50%;
-    border: 4px solid white;
+    border: 4px solid var(--grey-40);
     background: transparent;
     margin: 1px;
   }
