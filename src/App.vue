@@ -1,11 +1,13 @@
 <template>
-  <Aside position="left">
-    <h2>Sound</h2>
-    <Volume></Volume>
-    <Sound context="desktop"></Sound>
-    <FirstBeat></FirstBeat>
-    <Footer></Footer>
-  </Aside>
+  <ContextProvider context="desktop">
+    <Aside position="left">
+      <h2>Sound</h2>
+      <Volume></Volume>
+      <Sound context="desktop"></Sound>
+      <FirstBeat></FirstBeat>
+      <Footer></Footer>
+    </Aside>
+  </ContextProvider>
 
   <main>
     <h1>Metronome</h1>
@@ -28,7 +30,9 @@
     <BpmRange></BpmRange>
   </Aside>
 
-  <MobileSettings></MobileSettings>
+  <ContextProvider context="mobile">
+    <MobileSettings></MobileSettings>
+  </ContextProvider>
 </template>
 
 <script setup lang="ts">
@@ -49,6 +53,7 @@ import BpmRange from "./components/settings/BpmRange.vue";
 import MobileSettings from "./components/settings/MobileSettings.vue";
 import Footer from "./components/Footer.vue";
 import Rythm from "./components/beat/Rythm.vue";
+import ContextProvider from "./components/ContextProvider.vue";
 
 useRegisterSW();
 

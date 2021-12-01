@@ -18,7 +18,7 @@
     <div class="content">
       <h1>Settings</h1>
       <Volume></Volume>
-      <Sound context="mobile"></Sound>
+      <Sound></Sound>
       <FirstBeat></FirstBeat>
       <LargeIncrement></LargeIncrement>
       <BpmRange></BpmRange>

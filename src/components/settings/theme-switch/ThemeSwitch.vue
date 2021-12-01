@@ -3,7 +3,7 @@
     <label title="light">
       <input
         type="radio"
-        name="theme"
+        :name="`${context}-theme`"
         value="light"
         aria-label="light"
         :checked="currentTheme === 'light'"
@@ -15,7 +15,7 @@
     <label title="dark">
       <input
         type="radio"
-        name="theme"
+        :name="`${context}-theme`"
         value="dark"
         aria-label="dark"
         :checked="currentTheme === 'dark'"
@@ -27,7 +27,7 @@
     <label title="auto">
       <input
         type="radio"
-        name="theme"
+        :name="`${context}-theme`"
         value="auto"
         aria-label="auto"
         :checked="currentTheme === 'auto'"
@@ -43,9 +43,10 @@ import SunIcon from "./SunIcon.vue";
 import MoonIcon from "./MoonIcon.vue";
 import ComputerIcon from "./ComputerIcon.vue";
 import { useStore } from "vuex";
-import { computed, onMounted } from "vue";
+import { computed, inject, onMounted } from "vue";
 
 const { state, commit } = useStore();
+const context = inject("context", "desktop"); // make separate radio groups for the desktop and mobile settings
 
 const currentTheme = computed(() => state.settings.theme);
 

@@ -60,6 +60,24 @@ describe("App.vue", () => {
     });
   });
 
+  it("should make separate input groups for the desktop and mobile settings", async () => {
+    const { container } = render(App, {
+      global: {
+        plugins: [store]
+      }
+    });
+
+    const desktopSoundRadios = container.querySelectorAll("input[type=radio][name=desktop-sound]");
+    expect(desktopSoundRadios.length).toBe(4);
+    const mobileSoundRadios = container.querySelectorAll("input[type=radio][name=mobile-sound]");
+    expect(mobileSoundRadios.length).toBe(4);
+
+    const desktopThemeRadios = container.querySelectorAll("input[type=radio][name=desktop-theme]");
+    expect(desktopThemeRadios.length).toBe(3);
+    const mobileThemeRadios = container.querySelectorAll("input[type=radio][name=mobile-theme]");
+    expect(mobileThemeRadios.length).toBe(3);
+  });
+
   it("should register a service worker for PWA", () => {
     mockUseRegisterSW.mockClear();
 
