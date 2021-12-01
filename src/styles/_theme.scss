@@ -24,9 +24,13 @@
   --shadow-02: 2px 4px 6px rgba(0, 0, 0, 0.15), inset -1px -1px 1px rgba(71, 85, 105, 0.1),
     inset 1px 1px 2px #ffffff;
   --shadow-02-inset: inset 2px 4px 6px rgba(0, 0, 0, 0.15), inset -1px -1px 2px #ffffff;
+  --switch-shadow: -1.20693px -1.20693px 2.41385px rgba(0, 0, 0, 0.02),
+    inset 1.20693px 1.20693px 4.82771px rgba(147, 147, 147, 0.4),
+    inset -1.20693px -2.41385px 4.82771px rgba(255, 255, 255, 0.8);
+  --switch-button-shadow: 1.03533px 2.07065px 4.1413px rgba(0, 0, 0, 0.1);
 }
 
-.dark {
+@mixin dark-theme {
   --grey-40: #677993;
   --grey-50: #55657d;
   --grey-60: #c5d0dd;
@@ -51,4 +55,18 @@
     inset 1px 1px 2px rgba(223, 230, 236, 0.3);
   --shadow-02-inset: inset 2px 4px 6px rgba(0, 0, 0, 0.15),
     inset -1px -1px 2px rgba(223, 230, 236, 0.3);
+  --switch-shadow: -1.16575px -1.16575px 2.33149px rgba(0, 0, 0, 0.03),
+    inset 1.16575px 1.16575px 4.66298px rgba(71, 85, 105, 0.7),
+    inset -1.17px -1.33px 1.66px rgba(223, 230, 236, 0.09);
+  --switch-button-shadow: 1.21739px 2.43478px 4.86957px rgba(71, 85, 105, 0.7);
+}
+
+[color-scheme="dark"] {
+  @include dark-theme;
+}
+
+@media (prefers-color-scheme: dark) {
+  [color-scheme="auto"] {
+    @include dark-theme;
+  }
 }

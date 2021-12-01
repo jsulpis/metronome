@@ -101,7 +101,6 @@ button#open-settings {
   transform: translateX(-50%);
   border-radius: 25px 25px 0 0;
   box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
-  // border: 1px solid var(--grey-60);
   display: grid;
   grid-template: 44px auto / auto;
   transition: transform 300ms ease;
