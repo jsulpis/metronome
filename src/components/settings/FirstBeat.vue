@@ -84,17 +84,16 @@ input {
 .custom-checkbox {
   width: 18px;
   height: 18px;
-  background: white;
+  background: var(--grey-40);
   border: 1px solid var(--grey-60);
   border-radius: 3px;
   position: relative;
   display: grid;
   place-items: center;
-  transition: background 100ms ease-out;
 
   path {
     stroke-dashoffset: 12;
-    transition: stroke-dashoffset 300ms ease-in-out;
+    transition: stroke-dashoffset 200ms ease-in-out;
   }
 }
 </style>

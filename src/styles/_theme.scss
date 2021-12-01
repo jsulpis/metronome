@@ -1,6 +1,7 @@
+// prettier-ignore
 :root {
   color-scheme: light dark; /* both supported */
-
+  
   --grey-40: #f8fafc;
   --grey-50: #dfe6ec;
   --grey-60: #94a3b8;
@@ -13,23 +14,18 @@
   --settings-background: #eef1f5;
   --settings-backdrop-color: #475569;
   --wheel-background: linear-gradient(330.65deg, #e2e8f0 13%, #f8fafc 92.84%);
-  --wheel-shadow: -3px -3px 15px rgba(255, 255, 255, 0.7), 4px 6px 20px rgba(0, 0, 0, 0.2),
-    inset -2px -4px 3px rgba(0, 0, 0, 0.05), inset 6px 4px 12px rgba(255, 255, 255, 0.54);
+  --wheel-shadow: -3px -3px 15px rgba(255, 255, 255, 0.7), 4px 6px 20px rgba(0, 0, 0, 0.2),inset -2px -4px 3px rgba(0, 0, 0, 0.05), inset 6px 4px 12px rgba(255, 255, 255, 0.54);
   --wheel-handle-background: #e5ebf0;
-  --wheel-handle-shadow: -1.16575px -1.16575px 2.33149px rgba(0, 0, 0, 0.02),
-    inset 1.16575px 1.16575px 4.66298px rgba(147, 147, 147, 0.4),
-    inset -1.16575px -2.33149px 4.66298px rgba(255, 255, 255, 0.8);
+  --wheel-handle-shadow: -1.16575px -1.16575px 2.33149px rgba(0, 0, 0, 0.02),inset 1.16575px 1.16575px 4.66298px rgba(147, 147, 147, 0.4),inset -1.16575px -2.33149px 4.66298px rgba(255, 255, 255, 0.8);
   --progress-bar-background: var(--grey-40);
   --shadow-01: -2px -1px 4px #ffffff, 1px 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-02: 2px 4px 6px rgba(0, 0, 0, 0.15), inset -1px -1px 1px rgba(71, 85, 105, 0.1),
-    inset 1px 1px 2px #ffffff;
+  --shadow-02: 2px 4px 6px rgba(0, 0, 0, 0.15), inset -1px -1px 1px rgba(71, 85, 105, 0.1),inset 1px 1px 2px #ffffff;
   --shadow-02-inset: inset 2px 4px 6px rgba(0, 0, 0, 0.15), inset -1px -1px 2px #ffffff;
-  --switch-shadow: -1.20693px -1.20693px 2.41385px rgba(0, 0, 0, 0.02),
-    inset 1.20693px 1.20693px 4.82771px rgba(147, 147, 147, 0.4),
-    inset -1.20693px -2.41385px 4.82771px rgba(255, 255, 255, 0.8);
+  --switch-shadow: -1.20693px -1.20693px 2.41385px rgba(0, 0, 0, 0.02),inset 1.20693px 1.20693px 4.82771px rgba(147, 147, 147, 0.4),inset -1.20693px -2.41385px 4.82771px rgba(255, 255, 255, 0.8);
   --switch-button-shadow: 1.03533px 2.07065px 4.1413px rgba(0, 0, 0, 0.1);
 }
 
+// prettier-ignore
 @mixin dark-theme {
   --grey-40: #677993;
   --grey-50: #55657d;
@@ -43,21 +39,14 @@
   --settings-background: #596b84;
   --settings-backdrop-color: #292f38;
   --wheel-background: linear-gradient(330.65deg, #5d6e86 13%, #677993 92.84%);
-  --wheel-shadow: -3px -3px 15px rgba(112, 136, 168, 0.6), 4px 6px 20px rgba(0, 0, 0, 0.3),
-    inset -2px -4px 3px rgba(0, 0, 0, 0.15), inset 6px 4px 12px rgba(148, 163, 184, 0.5);
+  --wheel-shadow: -3px -3px 15px rgba(112, 136, 168, 0.6), 4px 6px 20px rgba(0, 0, 0, 0.3), inset -2px -4px 3px rgba(0, 0, 0, 0.15), inset 6px 4px 12px rgba(148, 163, 184, 0.5);
   --wheel-handle-background: #58687e;
-  --wheel-handle-shadow: -1.16575px -1.16575px 2.33149px rgba(0, 0, 0, 0.03),
-    inset 1.16575px 1.16575px 4.66298px rgba(71, 85, 105, 0.7),
-    inset -1.17px -1.33px 1.66px rgba(223, 230, 236, 0.09);
+  --wheel-handle-shadow: -1.16575px -1.16575px 2.33149px rgba(0, 0, 0, 0.03), inset 1.16575px 1.16575px 4.66298px rgba(71, 85, 105, 0.7), inset -1.17px -1.33px 1.66px rgba(223, 230, 236, 0.09);
   --progress-bar-background: #404d5e;
   --shadow-01: -1px -1px 2px rgba(148, 163, 184, 0.6), 1px 2px 4px rgba(71, 85, 105, 0.7);
-  --shadow-02: 2px 4px 6px rgba(0, 0, 0, 0.15), inset -1px -1px 1px rgba(71, 85, 105, 0.7),
-    inset 1px 1px 2px rgba(223, 230, 236, 0.3);
-  --shadow-02-inset: inset 2px 4px 6px rgba(0, 0, 0, 0.15),
-    inset -1px -1px 2px rgba(223, 230, 236, 0.3);
-  --switch-shadow: -1.16575px -1.16575px 2.33149px rgba(0, 0, 0, 0.03),
-    inset 1.16575px 1.16575px 4.66298px rgba(71, 85, 105, 0.7),
-    inset -1.17px -1.33px 1.66px rgba(223, 230, 236, 0.09);
+  --shadow-02: 2px 4px 6px rgba(0, 0, 0, 0.15), inset -1px -1px 1px rgba(71, 85, 105, 0.7), inset 1px 1px 2px rgba(223, 230, 236, 0.3);
+  --shadow-02-inset: inset 2px 4px 6px rgba(0, 0, 0, 0.15), inset -1px -1px 2px rgba(223, 230, 236, 0.3);
+  --switch-shadow: -1.16575px -1.16575px 2.33149px rgba(0, 0, 0, 0.03), inset 1.16575px 1.16575px 4.66298px rgba(71, 85, 105, 0.7), inset -1.17px -1.33px 1.66px rgba(223, 230, 236, 0.09);
   --switch-button-shadow: 1.21739px 2.43478px 4.86957px rgba(71, 85, 105, 0.7);
 }
 

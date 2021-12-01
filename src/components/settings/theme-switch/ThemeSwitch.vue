@@ -80,7 +80,6 @@ function updateTheme(e: Event) {
   position: relative;
   display: inline-flex;
   border-radius: calc(var(--switch-height) / 2);
-  transition: background 150ms var(--standard-easing);
 
   &__button {
     width: var(--switch-button-size);
@@ -93,7 +92,7 @@ function updateTheme(e: Event) {
     pointer-events: none;
     left: var(--switch-padding);
     top: calc(50% - var(--switch-button-size) / 2);
-    transition: left 150ms var(--standard-easing), background 100ms;
+    transition: left 150ms var(--standard-easing);
   }
 
   // GENERAL STYLE
@@ -104,7 +103,6 @@ function updateTheme(e: Event) {
     justify-content: center;
     flex: 1;
     cursor: pointer;
-    transition: background 100ms;
 
     // for hover
     &::before {
@@ -129,10 +127,9 @@ function updateTheme(e: Event) {
       height: auto;
       z-index: 1;
       color: var(--icon-inactive-color);
-      transition: color 100ms;
 
       > * {
-        transition: color 100ms, transform 200ms, opacity 100ms;
+        transition: transform 200ms, opacity 100ms;
       }
     }
 
