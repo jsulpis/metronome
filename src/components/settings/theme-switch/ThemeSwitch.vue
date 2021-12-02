@@ -206,7 +206,7 @@ function updateTheme(e: Event) {
   // ICON AUTO
 
   [color-scheme="dark"] & input[value="auto"]:checked ~ svg {
-    color: inherit;
+    color: var(--grey-70);
   }
 
   input[value="auto"] ~ svg > .sun,
@@ -223,7 +223,7 @@ function updateTheme(e: Event) {
   @media (prefers-color-scheme: dark) {
     [color-scheme="auto"] & {
       input[value="auto"]:checked ~ svg {
-        color: inherit;
+        color: var(--grey-70);
 
         > .star {
           opacity: 1;
