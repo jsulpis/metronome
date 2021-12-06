@@ -54,6 +54,7 @@ export default function usePlayer() {
   function stop() {
     timeouts.forEach((timeout) => clearTimeout(timeout));
     isPlaying.value = false;
+    commit("resetBeat");
   }
 
   unlockAudioContext();

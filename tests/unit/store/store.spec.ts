@@ -48,6 +48,15 @@ describe("store mutations", () => {
     });
   });
 
+  describe("resetBeat", () => {
+    it("should reset the current beat to zero", () => {
+      commit("nextBeat");
+      expect(state.beat.current).toBe(1);
+      commit("resetBeat");
+      expect(state.beat.current).toBe(0);
+    });
+  });
+
   describe("addBeat", () => {
     it("should increment the beat count with a maximum of 6 beats", () => {
       commit("addBeat");

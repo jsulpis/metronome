@@ -24,7 +24,7 @@ describe("usePlayer", () => {
     jest.clearAllMocks();
   });
 
-  const { isPlaying, play } = usePlayer();
+  const { isPlaying, play, stop } = usePlayer();
 
   it("should play a sound", () => {
     expect(isPlaying.value).toBe(false);
@@ -35,6 +35,22 @@ describe("usePlayer", () => {
     // Then
     expect(isPlaying.value).toBe(true);
     expect(playSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it("should reset the current beat to zero when stopping", () => {
+    expect(store.state.beat.current).toBe(0);
+    
+    // When
+    play();
+    
+    // Then
+    expect(store.state.beat.current).toBe(1);
+    
+    // Then When
+    stop();
+    
+    // Then
+    expect(store.state.beat.current).toBe(0);
   });
 
   it("should play a louder sound on the first beat if accentuateFirstBeat = true (default)", async () => {
