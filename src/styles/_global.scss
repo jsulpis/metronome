@@ -27,12 +27,12 @@ html {
 body {
   color: var(--grey-70);
   text-align: center;
-  background: var(--main-background);
 }
 
 #app {
   display: grid;
   grid-template: auto / 1fr;
+  background: var(--main-background);
 
   @include laptop-up {
     grid-template: auto / repeat(3, minmax(0, 1fr));
