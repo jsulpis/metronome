@@ -7,12 +7,17 @@
   </label>
 </template>
 
-<script setup lang="ts">
-defineProps({
-  value: String,
-  name: String,
-  checked: Boolean,
-  label: String
+<script lang="ts">
+import { defineComponent } from "vue";
+
+// No use of <script setup> here because it causes 0% coverage on the file
+export default defineComponent({
+  props: {
+    value: String,
+    name: String,
+    checked: Boolean,
+    label: String
+  }
 });
 </script>
 
