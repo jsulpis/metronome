@@ -1,6 +1,6 @@
 <template>
   <ContextProvider context="desktop">
-    <Aside position="left">
+    <Aside position="left" aria-label="Sound settings">
       <h2>Sound</h2>
       <Volume></Volume>
       <Sound context="desktop"></Sound>
@@ -24,7 +24,7 @@
     </section>
   </main>
 
-  <Aside position="right">
+  <Aside position="right" aria-label="BPM settings">
     <h2>BPM</h2>
     <LargeIncrement></LargeIncrement>
     <BpmRange></BpmRange>

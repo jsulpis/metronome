@@ -70,8 +70,8 @@ export default defineComponent({
       onDragStart(e.x, e.y);
     });
 
-    function onDragStart(x: number, y: number) {
-      lastMousePos = new Vector2(x, y).minus(wheelCenter);
+    function onDragStart(mouseX: number, mouseY: number) {
+      lastMousePos = new Vector2(mouseX, mouseY).minus(wheelCenter);
       resumeLoop();
       useEventListener(document, "touchend", pauseLoop, { once: true });
       useEventListener(document, "mouseup", pauseLoop, { once: true });

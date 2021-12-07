@@ -47,9 +47,7 @@ const largeIncrement = computed(() => state.settings.largeIncrement);
   > * {
     flex-shrink: 0;
   }
-}
 
-.bpm {
   &__display {
     display: flex;
     flex-direction: column;
