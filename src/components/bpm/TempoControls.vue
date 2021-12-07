@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "@vue/runtime-core";
+import { computed } from "vue";
 import { useStore } from "vuex";
 
 const { state, commit } = useStore();

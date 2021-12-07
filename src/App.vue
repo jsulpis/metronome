@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
+import { computed, onMounted, watch } from "vue";
 import PlayButton from "./components/bpm/PlayButton.vue";
 import TempoControls from "./components/bpm/TempoControls.vue";
 import ProgressTrack from "./components/bpm/ProgressTrack.vue";

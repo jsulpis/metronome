@@ -9,7 +9,7 @@
 import IconPlay from "./IconPlay.vue";
 import IconStop from "./IconStop.vue";
 import usePlayer from "../../composables/usePlayer";
-import { onBeforeUnmount, onMounted } from "vue-demi";
+import { onBeforeUnmount, onMounted } from "vue";
 
 const { isPlaying, play, stop } = usePlayer();
 
