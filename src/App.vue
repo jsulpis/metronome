@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, watch } from "vue";
+import { computed, onMounted } from "vue";
 import PlayButton from "./components/bpm/PlayButton.vue";
 import TempoControls from "./components/bpm/TempoControls.vue";
 import ProgressTrack from "./components/bpm/ProgressTrack.vue";
@@ -63,16 +63,16 @@ const min = computed(() => state.bpm.min);
 const max = computed(() => state.bpm.max);
 
 onMounted(() => {
-  // I noticed that on my phone the browser goes crazy when entering in power saving mode
-  // and the beat is not steady at all.
-  // The following prevents from locking the screen (browser support is limited though)
-  navigator.wakeLock.request("screen");
-  document.addEventListener("visibilitychange", () => {
-    // the wake lock is released when leaving the app, we request it again when coming back
-    if (document.visibilityState === "visible") {
-      navigator.wakeLock.request("screen");
-    }
-  });
+  if (navigator.wakeLock) {
+    // prevents from locking the screen (browser support is limited)
+    navigator.wakeLock.request("screen");
+    document.addEventListener("visibilitychange", () => {
+      // the wake lock is released when leaving the app, we request it again when coming back
+      if (document.visibilityState === "visible") {
+        navigator.wakeLock.request("screen");
+      }
+    });
+  }
 });
 </script>
 

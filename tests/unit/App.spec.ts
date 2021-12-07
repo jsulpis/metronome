@@ -9,10 +9,6 @@ jest.mock("virtual:pwa-register/vue", () => ({
   useRegisterSW: () => mockUseRegisterSW()
 }));
 
-global.navigator.wakeLock = {
-  request: () => Promise.resolve()
-};
-
 Howl.prototype.play = jest.fn();
 
 describe("App.vue", () => {
