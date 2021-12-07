@@ -25,9 +25,8 @@
 <script setup lang="ts">
 import RadioButton from "../RadioButton.vue";
 import { useStore } from "vuex";
-import { computed } from "vue-demi";
 import Icon from "../icons/Icon.vue";
-import { inject } from "vue";
+import { inject, computed } from "vue";
 
 const { state, commit } = useStore();
 const context = inject("context", "desktop"); // make separate radio groups for the desktop and mobile settings

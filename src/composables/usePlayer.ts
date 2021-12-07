@@ -2,13 +2,17 @@ import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import { Howl } from "howler";
 
+let audioContextUnlocked = false;
+
 const sounds = new Map<string, Howl>();
 ["click", "hi-hat", "kick", "sticks"].forEach((sound) => {
-  sounds.set(sound, new Howl({ src: [`sounds/${sound}.mp3`] }));
+  const howl = new Howl({ src: [`sounds/${sound}.mp3`] });
+  howl.once("unlock", () => (audioContextUnlocked = true));
+  sounds.set(sound, howl);
 });
 
 export default function usePlayer() {
-  let timeouts: NodeJS.Timeout[];
+  let timeouts: NodeJS.Timeout[] = [];
   const { state, getters, commit } = useStore();
 
   const isPlaying = ref(false);
@@ -42,50 +46,47 @@ export default function usePlayer() {
     if (sound) {
       sound.rate(pitch);
       sound.volume((volumeMultipler * volume) / 100);
+      sound.stop();
       sound.play();
     }
   }
 
-  function play() {
-    loop();
+  async function unlockAudioContext() {
+    return new Promise<void>((resolve, reject) => {
+      const sound = sounds.get(state.settings.sound);
+      if (!sound) {
+        reject();
+        return;
+      }
+
+      sound.once("unlock", () => {
+        // I found that the AudioContext often skips the first sound even when it is unlocked
+        // so I play it silently to "wake it up"
+        sound.volume(0);
+        sound.play();
+        sound.once("end", () => resolve());
+      });
+    });
+  }
+
+  async function play() {
     isPlaying.value = true;
+
+    if (!audioContextUnlocked) {
+      await unlockAudioContext();
+    }
+    loop();
   }
 
   function stop() {
     timeouts.forEach((timeout) => clearTimeout(timeout));
     isPlaying.value = false;
+    commit("resetBeat");
   }
-
-  unlockAudioContext();
 
   return {
     isPlaying,
     play,
     stop
   };
-}
-
-/**
- * A dirty workaround for an issue with Chromium blocking audio before the first user interaction:
- *
- * for some reason, even if the audio is played after the click on a button, it takes a bit of time
- * to play the first sound. Which is noticeable and annoying in the case of a metronome application.
- *
- * It seems that playing a few sounds "wakes up" the AudioContext and enables to play the first sound
- * immediately after the click on the play button.
- *
- * You can comment the call to this function above to see the issue (on a Chromium browser)
- */
-function unlockAudioContext() {
-  const emptySound = new Howl({ src: ["sounds/empty.mp3"] });
-  let i = 0;
-
-  function silentLoop() {
-    emptySound.mute();
-    emptySound.play();
-    if (i++ < 5) {
-      setTimeout(silentLoop, 100);
-    }
-  }
-  silentLoop();
 }

@@ -3,21 +3,21 @@
     <title>Volume Mute Icon</title>
     <path
       d="M11 5L6 9H2V15H6L11 19V5Z"
-      stroke="#475569"
+      stroke="currentColor"
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M23 9L17 15"
-      stroke="#475569"
+      stroke="currentColor"
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M17 9L23 15"
-      stroke="#475569"
+      stroke="currentColor"
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"

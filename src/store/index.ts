@@ -53,6 +53,9 @@ export default createStore({
     nextBeat(state) {
       state.beat.current = (state.beat.current + 1) % (state.beat.count + 1) || 1;
     },
+    resetBeat(state) {
+      state.beat.current = 0;
+    },
     addBeat(state) {
       state.beat.count = Math.min(state.beat.count + 1, 6);
     },

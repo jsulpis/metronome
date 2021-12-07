@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@testing-library/vue";
+import { render } from "@testing-library/vue";
 import Sound from "@/components/settings/FirstBeat.vue";
 import store from "@/store/index";
 

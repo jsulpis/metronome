@@ -46,6 +46,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@use "sass:math";
+
 .slider-container {
   @include shadow-01;
   background: var(--grey-40);
@@ -76,6 +78,7 @@ input:focus-visible {
   border-radius: 5px;
   position: absolute;
   left: 0;
+  top: calc(50% - #{math.div($track-height, 2)});
   pointer-events: none;
   min-width: 22px;
 }
@@ -144,7 +147,7 @@ input:focus-visible {
   top: calc(50% - calc(#{$thumb-size} / 2));
   pointer-events: none;
   left: 12px;
-  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
 
   &::before {
     position: absolute;
@@ -156,7 +159,7 @@ input:focus-visible {
     border-radius: 50%;
     border: 4px solid var(--grey-40);
     background: transparent;
-    margin: 1px;
+    margin: 2px;
   }
 }
 </style>

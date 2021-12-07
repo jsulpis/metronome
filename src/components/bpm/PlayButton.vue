@@ -1,5 +1,5 @@
 <template>
-  <button type="button" class="play-button" @click="isPlaying ? stop() : play()">
+  <button type="button" class="play-button" @click="togglePlay()">
     <IconStop v-show="isPlaying"></IconStop>
     <IconPlay v-show="!isPlaying"></IconPlay>
   </button>
@@ -9,8 +9,27 @@
 import IconPlay from "./IconPlay.vue";
 import IconStop from "./IconStop.vue";
 import usePlayer from "../../composables/usePlayer";
+import { onBeforeUnmount, onMounted } from "vue";
 
 const { isPlaying, play, stop } = usePlayer();
+
+function onKeyPress(e: KeyboardEvent) {
+  if (e.code === "Space" && !document.activeElement?.classList.contains("play-button")) {
+    togglePlay();
+  }
+}
+
+function togglePlay() {
+  isPlaying.value ? stop() : play();
+}
+
+onMounted(() => {
+  document.addEventListener("keypress", onKeyPress);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("keypress", onKeyPress);
+});
 </script>
 
 <style lang="scss">

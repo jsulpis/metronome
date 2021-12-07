@@ -17,6 +17,10 @@ const volumeSpy = jest.fn();
 Howl.prototype.play = playSpy;
 Howl.prototype.rate = rateSpy;
 Howl.prototype.volume = volumeSpy;
+Howl.prototype.once = (arg, callback) => {
+  callback(0, 0);
+  return new Howl({ src: ["dummy.mp3"] });
+};
 
 describe("usePlayer", () => {
   beforeEach(() => {
@@ -24,22 +28,38 @@ describe("usePlayer", () => {
     jest.clearAllMocks();
   });
 
-  const { isPlaying, play } = usePlayer();
+  const { isPlaying, play, stop } = usePlayer();
 
-  it("should play a sound", () => {
+  it("should play a sound", async () => {
     expect(isPlaying.value).toBe(false);
 
     // When
-    play();
+    await play();
 
     // Then
     expect(isPlaying.value).toBe(true);
-    expect(playSpy).toHaveBeenCalledTimes(1);
+    expect(playSpy).toHaveBeenCalledTimes(2); // one time to "wake up" the AudioContext, one second time to actually play the sound
+  });
+
+  it("should reset the current beat to zero when stopping", async () => {
+    expect(store.state.beat.current).toBe(0);
+
+    // When
+    await play();
+
+    // Then
+    expect(store.state.beat.current).toBe(1);
+
+    // Then When
+    stop();
+
+    // Then
+    expect(store.state.beat.current).toBe(0);
   });
 
   it("should play a louder sound on the first beat if accentuateFirstBeat = true (default)", async () => {
     // When
-    play();
+    await play();
 
     // Then: louder
     expect(rateSpy).toHaveBeenCalledWith(1.4);
@@ -47,7 +67,7 @@ describe("usePlayer", () => {
 
     // Then When
     store.commit("nextBeat");
-    play();
+    await play();
 
     // Then: normal
     expect(rateSpy).toHaveBeenCalledWith(1);
@@ -58,7 +78,7 @@ describe("usePlayer", () => {
     store.commit("setAccentuateFirstBeat", false);
 
     // When
-    play();
+    await play();
 
     // Then: normal
     expect(rateSpy).toHaveBeenCalledWith(1);

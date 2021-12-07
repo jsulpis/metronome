@@ -1,7 +1,7 @@
 import { render } from "@testing-library/vue";
 import BpmRange from "@/components/settings/BpmRange.vue";
 import store from "@/store/index";
-import { fireEvent } from "@testing-library/dom";
+import { fireEvent } from "@testing-library/vue";
 
 describe("BpmRange.vue", () => {
   it("should forward the value of min and max from the store to the inputs", async () => {
