@@ -7,6 +7,10 @@ describe("PlayButton.vue", () => {
   it("should play a sound and change the visible icon when clicking on the button", async () => {
     const playSpy = jest.fn();
     Howl.prototype.play = playSpy;
+    Howl.prototype.once = (arg, callback) => {
+      callback(0, 0);
+      return new Howl({ src: ["dummy.mp3"] });
+    };
 
     const { getByTitle, getByRole } = render(PlayButton, {
       global: {
