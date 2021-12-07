@@ -42,4 +42,42 @@ describe("PlayButton.vue", () => {
     expect(playIcon).toBeVisible();
     expect(stopIcon).not.toBeVisible();
   });
+
+  it("should play a sound and change the visible icon when hitting the space bar", async () => {
+    const playSpy = jest.fn();
+    Howl.prototype.play = playSpy;
+    Howl.prototype.once = (arg, callback) => {
+      callback(0, 0);
+      return new Howl({ src: ["dummy.mp3"] });
+    };
+
+    const { getByTitle } = render(PlayButton, {
+      global: {
+        plugins: [store]
+      }
+    });
+
+    const playIcon = getByTitle("Play Icon").parentElement;
+    const stopIcon = getByTitle("Stop Icon").parentElement;
+
+    // Initial state
+    expect(playIcon).toBeVisible();
+    expect(stopIcon).not.toBeVisible();
+
+    // When
+    await fireEvent.keyPress(document.documentElement, { code: "Space" });
+
+    // Then
+    expect(playIcon).not.toBeVisible();
+    expect(stopIcon).toBeVisible();
+
+    expect(playSpy).toHaveBeenCalled();
+
+    // When : back to pause
+    await fireEvent.keyPress(document.documentElement, { code: "Space" });
+
+    // Then
+    expect(playIcon).toBeVisible();
+    expect(stopIcon).not.toBeVisible();
+  });
 });
