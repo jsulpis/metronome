@@ -1,27 +1,54 @@
-# Vue 3 + Typescript + Vite
+<div align="center">
+  
+<h1>Metronome</h1>
+<h3>Online metronome application with a modern UI</h3>
 
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+<p>
 
-## Recommended IDE Setup
+[![CI](https://github.com/jsulpis/metronome/actions/workflows/build.yml/badge.svg)](https://github.com/jsulpis/metronome/actions/workflows/build.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jsulpis_metronome&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jsulpis_metronome)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=jsulpis_metronome&metric=coverage)](https://sonarcloud.io/summary/new_code?id=jsulpis_metronome)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-[VSCode](https://code.visualstudio.com/) + [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur). Make sure to enable `vetur.experimental.templateInterpolationService` in settings!
+</p>
 
-### If Using `<script setup>`
+<a href="https://metronome-blue.vercel.app/" >
+  <img width="700" src="https://raw.githubusercontent.com/jsulpis/metronome/main/designs/mockup.png" alt="Application mockups"/>
+</a>
 
-[`<script setup>`](https://github.com/vuejs/rfcs/pull/227) is a feature that is currently in RFC stage. To get proper IDE support for the syntax, use [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) instead of Vetur (and disable Vetur).
+</div>
 
-## Type Support For `.vue` Imports in TS
+## What is this ?
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can use the following:
+This app is an attempt to make a good-looking but functional metronome application on the web.
+It is a PWA so you can install it on your device (which is how it is intended to be used).
 
-### If Using Volar
+Feel free to open an issue if you have any suggestion or if you find a bug.
 
-Run `Volar: Switch TS Plugin on/off` from VSCode command palette.
+## Local development
 
-### If Using Vetur
+### Installation
 
-1. Install and add `@vuedx/typescript-plugin-vue` to the [plugins section](https://www.typescriptlang.org/tsconfig#plugins) in `tsconfig.json`
-2. Delete `src/shims-vue.d.ts` as it is no longer needed to provide module info to Typescript
-3. Open `src/main.ts` in VSCode
-4. Open the VSCode command palette
-5. Search and run "Select TypeScript version" -> "Use workspace version"
+This repo uses pnpm so you will need to have it installed globally :
+
+```shell
+pnpm i # If you don't have pnpm installed, run: npm i -g pnpm
+```
+
+### Development
+
+Serve with hot reload at http://localhost:3000
+
+```
+pnpm dev
+```
+
+### Build
+
+```
+pnpm build
+```
+
+## License
+
+Released under the [GPL-3.0](https://github.com/jsulpis/metronome/blob/main/LICENSE) license.

@@ -1,7 +1,10 @@
 <template>
   <footer>
     <ThemeSwitch></ThemeSwitch>
-    <p>@2021 Made by <a href="https://twitter.com/jsulpis">Julien Sulpis</a></p>
+    <p>
+      @ {{ new Date().getFullYear() }} • Design & code by
+      <a href="https://twitter.com/jsulpis">Julien Sulpis</a>
+    </p>
   </footer>
 </template>
 

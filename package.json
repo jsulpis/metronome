@@ -1,6 +1,6 @@
 {
   "version": "0.0.0",
-  "description": "Metronome web application with a modern UI",
+  "description": "Online metronome application with a modern UI",
   "scripts": {
     "dev": "vite",
     "serve": "vite preview",
