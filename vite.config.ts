@@ -25,7 +25,8 @@ export default defineConfig({
             sizes: "512x512"
           }
         ]
-      }
+      },
+      includeAssets: ["thumbnail.jpg"]
     })
   ],
   css: {
