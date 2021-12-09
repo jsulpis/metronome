@@ -29,7 +29,7 @@ Feel free to open an issue if you have any suggestion or if you find a bug.
 
 ### Installation
 
-This repo uses pnpm so you will need to have it installed globally :
+Clone the repo, then :
 
 ```shell
 pnpm i # If you don't have pnpm installed, run: npm i -g pnpm
