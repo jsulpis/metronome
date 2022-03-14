@@ -79,7 +79,7 @@ aside {
   svg {
     position: absolute;
     bottom: 0;
-    z-index: -1;
+    z-index: z-index(aside-background);
     max-height: 125%;
     min-height: 100%;
     width: auto;

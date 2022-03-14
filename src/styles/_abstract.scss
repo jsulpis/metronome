@@ -1,3 +1,26 @@
+// The content of this file must not generate any CSS
+// so it can be imported in all Sass stylesheets
+
+// Variables
+
+$z-index: (
+  main: 1,
+  aside-background: -1,
+  settings-button: 1,
+  mobile-backdrop: 1,
+  mobile-settings: 2
+);
+
+@function z-index($key) {
+  @if (map-has-key($z-index, $key)) {
+    @return map-get($z-index, $key);
+  } @else {
+    @error "No z-index registered for key '#{$key}'";
+  }
+}
+
+// Mixins
+
 @mixin shadow-01 {
   box-shadow: var(--shadow-01);
 }

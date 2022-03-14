@@ -33,9 +33,10 @@
   --grey-70: #EAF0F6;
   --primary-50: #2EB5FF;
   --primary-40: #{lighten(#2EB5FF, 10%)};
-  --aside-gradient-light: #4A5769;
+  --aside-gradient-light: #4e5c6e;
   --aside-gradient-dark: #374353;
-  --main-background: linear-gradient(0deg, #303B4A 0.39%, #515E71 111.94%);
+  --main-background: linear-gradient(0deg, #374353 0.39%, #515E71 111.94%);
+  --main-background-transparent: linear-gradient(0deg, transparent 70%, hsl(216deg 18% 35%) 100%);
   --settings-background: #445165;
   --settings-backdrop-color: #21252c;
   --wheel-background: linear-gradient(330.65deg, #495669 13%, #526075 92.84%);
