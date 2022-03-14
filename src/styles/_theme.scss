@@ -27,25 +27,25 @@
 
 // prettier-ignore
 @mixin dark-theme {
-  --grey-40: #677993;
-  --grey-50: #55657d;
-  --grey-60: #c5d0dd;
-  --grey-70: #eaf0f6;
-  --primary-50: #2eb5ff;
-  --primary-40: #{lighten(#2eb5ff, 10%)};
-  --aside-gradient-light: #61728a;
-  --aside-gradient-dark: #49596e;
-  --main-background: linear-gradient(0deg, #3e4c60 0.39%, #687991 111.94%);
-  --settings-background: #596b84;
-  --settings-backdrop-color: #292f38;
-  --wheel-background: linear-gradient(330.65deg, #5d6e86 13%, #677993 92.84%);
-  --wheel-shadow: -3px -3px 15px rgba(112, 136, 168, 0.6), 4px 6px 20px rgba(0, 0, 0, 0.3), inset -2px -4px 3px rgba(0, 0, 0, 0.15), inset 6px 4px 12px rgba(148, 163, 184, 0.5);
-  --wheel-handle-background: #58687e;
-  --wheel-handle-shadow: -1.16575px -1.16575px 2.33149px rgba(0, 0, 0, 0.03), inset 1.16575px 1.16575px 4.66298px rgba(71, 85, 105, 0.7), inset -1.17px -1.33px 1.66px rgba(223, 230, 236, 0.09);
-  --progress-bar-background: #404d5e;
-  --shadow-01: -1px -1px 2px rgba(148, 163, 184, 0.6), 1px 2px 4px rgba(71, 85, 105, 0.7);
-  --shadow-02: 2px 4px 6px rgba(0, 0, 0, 0.15), inset -1px -1px 1px rgba(71, 85, 105, 0.7), inset 1px 1px 2px rgba(223, 230, 236, 0.3);
-  --shadow-02-inset: inset 2px 4px 6px rgba(0, 0, 0, 0.15), inset -1px -1px 2px rgba(223, 230, 236, 0.3);
+  --grey-40: #526075;
+  --grey-50: #3C4858;
+  --grey-60: #C5D0DD;
+  --grey-70: #EAF0F6;
+  --primary-50: #2EB5FF;
+  --primary-40: #{lighten(#2EB5FF, 10%)};
+  --aside-gradient-light: #4A5769;
+  --aside-gradient-dark: #374353;
+  --main-background: linear-gradient(0deg, #303B4A 0.39%, #515E71 111.94%);
+  --settings-background: #445165;
+  --settings-backdrop-color: #21252c;
+  --wheel-background: linear-gradient(330.65deg, #495669 13%, #526075 92.84%);
+  --wheel-shadow: -3px -3px 15px rgba(87, 110, 143, 0.5), 4px 6px 20px rgba(0, 0, 0, 0.4), inset -2px -4px 3px rgba(0, 0, 0, 0.2), inset 6px 4px 12px rgba(117, 136, 163, 0.5);
+  --wheel-handle-background: #434F60;
+  --wheel-handle-shadow: -1.16575px -1.16575px 2.33149px rgba(0, 0, 0, 0.13), inset 1.16575px 1.16575px 4.66298px rgba(51, 62, 76, 0.7), inset -1.17px -1.33px 1.66px rgba(159, 179, 198, 0.09);
+  --progress-bar-background: #2B3440;
+  --shadow-01: -1px -1px 2px rgba(148, 163, 184, 0.6), 1px 2px 4px rgba(51, 62, 76, 0.7);
+  --shadow-02: 2px 4px 6px rgba(0, 0, 0, 0.2), inset -1px -1px 1px rgba(51, 62, 76, 0.7), inset 1px 1px 2px rgba(223, 230, 236, 0.3);
+  --shadow-02-inset: inset 2px 4px 6px rgba(0, 0, 0, 0.2), inset 1px 1px 1px rgba(51, 62, 76, 0.7), inset -1px -1px 2px rgba(223, 230, 236, 0.3);
   --switch-shadow: -1.16575px -1.16575px 2.33149px rgba(0, 0, 0, 0.03), inset 1.16575px 1.16575px 4.66298px rgba(71, 85, 105, 0.7), inset -1.17px -1.33px 1.66px rgba(223, 230, 236, 0.09);
   --switch-button-shadow: 1.21739px 2.43478px 4.86957px rgba(71, 85, 105, 0.7);
 }
