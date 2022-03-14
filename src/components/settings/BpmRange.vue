@@ -90,8 +90,9 @@ input {
   border: 1px solid var(--grey-60);
   border: 0;
 
-  &:focus-visible {
-    outline: var(--primary-50) auto 1px;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--primary-40);
   }
 }
 </style>

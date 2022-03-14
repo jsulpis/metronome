@@ -85,6 +85,7 @@ button#open-settings {
   right: 25px;
   background: var(--grey-40);
   border: 1px solid var(--grey-50);
+  z-index: z-index(settings-button);
 
   @include laptop-up {
     display: none;
@@ -105,6 +106,7 @@ button#open-settings {
   grid-template: 44px auto / auto;
   transition: transform 300ms ease;
   overflow: hidden;
+  z-index: z-index(mobile-settings);
 
   &.visible {
     display: grid;
@@ -160,6 +162,7 @@ h1 {
   transition: opacity 200ms;
   opacity: 0;
   pointer-events: none;
+  z-index: z-index(mobile-backdrop);
 
   &.visible {
     opacity: 0.8;

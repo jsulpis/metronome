@@ -56,7 +56,7 @@ input {
 
   &:focus + .custom-radio,
   &:focus-visible + .custom-radio {
-    box-shadow: 0 0 0 3px var(--primary-40);
+    box-shadow: 0 0 0 2px var(--primary-40);
   }
 
   // no focus ring on browsers that support :focus-visible

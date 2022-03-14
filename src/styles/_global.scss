@@ -1,4 +1,4 @@
-@use "./mixins" as *;
+@use "./abstract" as *;
 
 // Reset styles
 * {
@@ -33,6 +33,18 @@ body {
   display: grid;
   grid-template: auto / 1fr;
   background: var(--main-background);
+
+  // Fade out the aside background on the top of the screen
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: var(--main-background-transparent);
+  }
+
+  main {
+    z-index: map-get($z-index, main);
+  }
 
   @include laptop-up {
     grid-template: auto / repeat(3, minmax(0, 1fr));
