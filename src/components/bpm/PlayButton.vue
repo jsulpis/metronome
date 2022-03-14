@@ -14,7 +14,9 @@ import { onBeforeUnmount, onMounted } from "vue";
 const { isPlaying, play, stop } = usePlayer();
 
 function onKeyPress(e: KeyboardEvent) {
-  if (e.code === "Space" && !document.activeElement?.classList.contains("play-button")) {
+  const nothingInFocus = !document.activeElement || document.activeElement === document.body;
+
+  if (e.code === "Space" && nothingInFocus) {
     togglePlay();
   }
 }

@@ -2,6 +2,7 @@ import { render, fireEvent } from "@testing-library/vue";
 import store from "@/store/index";
 import PlayButton from "@/components/bpm/PlayButton.vue";
 import { Howl } from "howler";
+import { defineComponent } from "vue";
 
 describe("PlayButton.vue", () => {
   it("should play a sound and change the visible icon when clicking on the button", async () => {
@@ -79,5 +80,42 @@ describe("PlayButton.vue", () => {
     // Then
     expect(playIcon).toBeVisible();
     expect(stopIcon).not.toBeVisible();
+  });
+
+  it("should NOT play a sound when hitting the space bar while something is in focus", async () => {
+    const playSpy = jest.fn();
+    Howl.prototype.play = playSpy;
+
+    const TestComponent = defineComponent({
+      template: `
+        <button>Focus Me</button>
+        <play-button />
+      `,
+      components: { PlayButton }
+    });
+
+    const { getByTitle, getByText } = render(TestComponent, {
+      global: {
+        plugins: [store]
+      }
+    });
+
+    const playIcon = getByTitle("Play Icon").parentElement;
+    const stopIcon = getByTitle("Stop Icon").parentElement;
+    const focusTarget = getByText("Focus Me");
+
+    // Initial state
+    expect(playIcon).toBeVisible();
+    expect(stopIcon).not.toBeVisible();
+
+    // When
+    focusTarget.focus();
+    await fireEvent.keyPress(document.documentElement, { code: "Space" });
+
+    // Then
+    expect(playIcon).toBeVisible();
+    expect(stopIcon).not.toBeVisible();
+
+    expect(playSpy).not.toHaveBeenCalled();
   });
 });
