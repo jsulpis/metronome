@@ -29,7 +29,7 @@ footer {
     bottom: 2rem;
   }
 
-  a:not(:visited) {
+  a {
     color: var(--primary-50);
     font-weight: bold;
   }
