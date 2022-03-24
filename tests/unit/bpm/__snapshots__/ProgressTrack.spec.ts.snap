@@ -1,10 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`ProgressTrack.vue should match snapshot with progress = 0 1`] = `
+exports[`ProgressTrack.vue > should match snapshot with progress = 0 1`] = `
 <div
   class="progress-track"
+  data-v-49728824=""
 >
   <svg
+    data-v-49728824=""
     height="300"
     viewBox="0 0 300 300"
     width="300"
@@ -12,6 +14,7 @@ exports[`ProgressTrack.vue should match snapshot with progress = 0 1`] = `
     <circle
       cx="150"
       cy="150"
+      data-v-49728824=""
       fill="none"
       r="144"
       stroke="var(--progress-bar-background)"
@@ -23,6 +26,7 @@ exports[`ProgressTrack.vue should match snapshot with progress = 0 1`] = `
     <circle
       cx="150"
       cy="150"
+      data-v-49728824=""
       fill="none"
       r="144"
       stroke="var(--primary-50)"
@@ -37,11 +41,13 @@ exports[`ProgressTrack.vue should match snapshot with progress = 0 1`] = `
 </div>
 `;
 
-exports[`ProgressTrack.vue should match snapshot with progress = 60 1`] = `
+exports[`ProgressTrack.vue > should match snapshot with progress = 60 1`] = `
 <div
   class="progress-track"
+  data-v-49728824=""
 >
   <svg
+    data-v-49728824=""
     height="300"
     viewBox="0 0 300 300"
     width="300"
@@ -49,6 +55,7 @@ exports[`ProgressTrack.vue should match snapshot with progress = 60 1`] = `
     <circle
       cx="150"
       cy="150"
+      data-v-49728824=""
       fill="none"
       r="144"
       stroke="var(--progress-bar-background)"
@@ -60,6 +67,7 @@ exports[`ProgressTrack.vue should match snapshot with progress = 60 1`] = `
     <circle
       cx="150"
       cy="150"
+      data-v-49728824=""
       fill="none"
       r="144"
       stroke="var(--primary-50)"
@@ -74,11 +82,13 @@ exports[`ProgressTrack.vue should match snapshot with progress = 60 1`] = `
 </div>
 `;
 
-exports[`ProgressTrack.vue should match snapshot with progress = 100 1`] = `
+exports[`ProgressTrack.vue > should match snapshot with progress = 100 1`] = `
 <div
   class="progress-track"
+  data-v-49728824=""
 >
   <svg
+    data-v-49728824=""
     height="300"
     viewBox="0 0 300 300"
     width="300"
@@ -86,6 +96,7 @@ exports[`ProgressTrack.vue should match snapshot with progress = 100 1`] = `
     <circle
       cx="150"
       cy="150"
+      data-v-49728824=""
       fill="none"
       r="144"
       stroke="var(--progress-bar-background)"
@@ -97,6 +108,7 @@ exports[`ProgressTrack.vue should match snapshot with progress = 100 1`] = `
     <circle
       cx="150"
       cy="150"
+      data-v-49728824=""
       fill="none"
       r="144"
       stroke="var(--primary-50)"

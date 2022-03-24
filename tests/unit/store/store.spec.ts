@@ -220,10 +220,10 @@ describe("persistence", () => {
   let mockStorage: any;
 
   beforeAll(() => {
-    global.Storage.prototype.setItem = jest.fn((key, value) => {
+    global.Storage.prototype.setItem = vi.fn((key, value) => {
       mockStorage[key] = value;
     });
-    global.Storage.prototype.getItem = jest.fn((key) => mockStorage[key]);
+    global.Storage.prototype.getItem = vi.fn((key) => mockStorage[key]);
   });
 
   beforeEach(() => {
