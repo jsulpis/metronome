@@ -3,13 +3,13 @@ import store from "@/store/index";
 import App from "@/App.vue";
 import { Howl } from "howler";
 
-const mockUseRegisterSW = jest.fn();
+const mockUseRegisterSW = vi.fn();
 
-jest.mock("virtual:pwa-register/vue", () => ({
+vi.mock("virtual:pwa-register/vue", () => ({
   useRegisterSW: () => mockUseRegisterSW()
 }));
 
-Howl.prototype.play = jest.fn();
+Howl.prototype.play = vi.fn();
 
 describe("App.vue", () => {
   describe("Tempo Section", () => {

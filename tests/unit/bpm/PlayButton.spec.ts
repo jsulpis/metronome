@@ -6,7 +6,7 @@ import { defineComponent } from "vue";
 
 describe("PlayButton.vue", () => {
   it("should play a sound and change the visible icon when clicking on the button", async () => {
-    const playSpy = jest.fn();
+    const playSpy = vi.fn();
     Howl.prototype.play = playSpy;
     Howl.prototype.once = (arg, callback) => {
       callback(0, 0);
@@ -45,7 +45,7 @@ describe("PlayButton.vue", () => {
   });
 
   it("should play a sound and change the visible icon when hitting the space bar", async () => {
-    const playSpy = jest.fn();
+    const playSpy = vi.fn();
     Howl.prototype.play = playSpy;
     Howl.prototype.once = (arg, callback) => {
       callback(0, 0);
@@ -83,7 +83,7 @@ describe("PlayButton.vue", () => {
   });
 
   it("should NOT play a sound when hitting the space bar while something is in focus", async () => {
-    const playSpy = jest.fn();
+    const playSpy = vi.fn();
     Howl.prototype.play = playSpy;
 
     const TestComponent = defineComponent({

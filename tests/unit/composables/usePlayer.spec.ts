@@ -3,17 +3,17 @@ import { Howl } from "howler";
 import store from "@/store";
 
 // only mock the useStore function
-jest.mock("vuex", () => {
-  const original = jest.requireActual("vuex");
+vi.mock("vuex", async () => {
+  const original = await vi.importActual<Record<string, unknown>>("vuex");
   return {
     ...original,
     useStore: () => store
   };
 });
 
-const playSpy = jest.fn();
-const rateSpy = jest.fn();
-const volumeSpy = jest.fn();
+const playSpy = vi.fn();
+const rateSpy = vi.fn();
+const volumeSpy = vi.fn();
 Howl.prototype.play = playSpy;
 Howl.prototype.rate = rateSpy;
 Howl.prototype.volume = volumeSpy;
@@ -25,7 +25,7 @@ Howl.prototype.once = (arg, callback) => {
 describe("usePlayer", () => {
   beforeEach(() => {
     store.commit("resetState");
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   const { isPlaying, play, stop } = usePlayer();
