@@ -1,6 +1,6 @@
+import { Howl } from "howler";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
-import { Howl } from "howler";
 
 let audioContextUnlocked = false;
 
