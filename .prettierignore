@@ -1,0 +1,8 @@
+node_modules
+dist
+coverage
+
+.vercel
+
+*.d.ts
+pnpm-lock.yaml

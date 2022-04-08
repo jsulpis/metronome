@@ -1,14 +1,22 @@
 {
-  "version": "0.0.0",
+  "private": true,
   "description": "Online metronome application with a modern UI",
   "scripts": {
-    "dev": "vite --open",
-    "serve": "vite preview",
     "build": "vue-tsc --noEmit && vite build",
+    "dev": "vite --open",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
     "lint": "vue-cli-service lint --ext .vue,.js,.ts",
+    "serve": "vite preview",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,vue}": [
+      "vue-cli-service lint",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "howler": "^2.2.3",
@@ -48,10 +56,5 @@
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,jsx,vue}": [
-      "vue-cli-service lint"
-    ]
   }
 }
