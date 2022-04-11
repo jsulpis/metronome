@@ -1,124 +1,130 @@
 // Vitest Snapshot v1
 
 exports[`ProgressTrack.vue > should match snapshot with progress = 0 1`] = `
-<div
-  class="progress-track"
-  data-v-49728824=""
->
-  <svg
+<div>
+  <div
+    class="progress-track"
     data-v-49728824=""
-    height="300"
-    viewBox="0 0 300 300"
-    width="300"
   >
-    <circle
-      cx="150"
-      cy="150"
+    <svg
       data-v-49728824=""
-      fill="none"
-      r="144"
-      stroke="var(--progress-bar-background)"
-      stroke-dasharray="942.4777960769379"
-      stroke-dashoffset="320.4424506661589"
-      stroke-linecap="round"
-      stroke-width="12"
-    />
-    <circle
-      cx="150"
-      cy="150"
-      data-v-49728824=""
-      fill="none"
-      r="144"
-      stroke="var(--primary-50)"
-      stroke-dasharray="942.4777960769379"
-      stroke-dashoffset="942.4777960769379"
-      stroke-linecap="round"
-      stroke-width="12"
-    />
-  </svg>
-  
-  
+      height="300"
+      viewBox="0 0 300 300"
+      width="300"
+    >
+      <circle
+        cx="150"
+        cy="150"
+        data-v-49728824=""
+        fill="none"
+        r="144"
+        stroke="var(--progress-bar-background)"
+        stroke-dasharray="942.4777960769379"
+        stroke-dashoffset="320.4424506661589"
+        stroke-linecap="round"
+        stroke-width="12"
+      />
+      <circle
+        cx="150"
+        cy="150"
+        data-v-49728824=""
+        fill="none"
+        r="144"
+        stroke="var(--primary-50)"
+        stroke-dasharray="942.4777960769379"
+        stroke-dashoffset="942.4777960769379"
+        stroke-linecap="round"
+        stroke-width="12"
+      />
+    </svg>
+    
+    
+  </div>
 </div>
 `;
 
 exports[`ProgressTrack.vue > should match snapshot with progress = 60 1`] = `
-<div
-  class="progress-track"
-  data-v-49728824=""
->
-  <svg
+<div>
+  <div
+    class="progress-track"
     data-v-49728824=""
-    height="300"
-    viewBox="0 0 300 300"
-    width="300"
   >
-    <circle
-      cx="150"
-      cy="150"
+    <svg
       data-v-49728824=""
-      fill="none"
-      r="144"
-      stroke="var(--progress-bar-background)"
-      stroke-dasharray="942.4777960769379"
-      stroke-dashoffset="320.4424506661589"
-      stroke-linecap="round"
-      stroke-width="12"
-    />
-    <circle
-      cx="150"
-      cy="150"
-      data-v-49728824=""
-      fill="none"
-      r="144"
-      stroke="var(--primary-50)"
-      stroke-dasharray="942.4777960769379"
-      stroke-dashoffset="569.2565888304705"
-      stroke-linecap="round"
-      stroke-width="12"
-    />
-  </svg>
-  
-  
+      height="300"
+      viewBox="0 0 300 300"
+      width="300"
+    >
+      <circle
+        cx="150"
+        cy="150"
+        data-v-49728824=""
+        fill="none"
+        r="144"
+        stroke="var(--progress-bar-background)"
+        stroke-dasharray="942.4777960769379"
+        stroke-dashoffset="320.4424506661589"
+        stroke-linecap="round"
+        stroke-width="12"
+      />
+      <circle
+        cx="150"
+        cy="150"
+        data-v-49728824=""
+        fill="none"
+        r="144"
+        stroke="var(--primary-50)"
+        stroke-dasharray="942.4777960769379"
+        stroke-dashoffset="569.2565888304705"
+        stroke-linecap="round"
+        stroke-width="12"
+      />
+    </svg>
+    
+    
+  </div>
 </div>
 `;
 
 exports[`ProgressTrack.vue > should match snapshot with progress = 100 1`] = `
-<div
-  class="progress-track"
-  data-v-49728824=""
->
-  <svg
+<div>
+  <div
+    class="progress-track"
     data-v-49728824=""
-    height="300"
-    viewBox="0 0 300 300"
-    width="300"
   >
-    <circle
-      cx="150"
-      cy="150"
+    <svg
       data-v-49728824=""
-      fill="none"
-      r="144"
-      stroke="var(--progress-bar-background)"
-      stroke-dasharray="942.4777960769379"
-      stroke-dashoffset="320.4424506661589"
-      stroke-linecap="round"
-      stroke-width="12"
-    />
-    <circle
-      cx="150"
-      cy="150"
-      data-v-49728824=""
-      fill="none"
-      r="144"
-      stroke="var(--primary-50)"
-      stroke-dasharray="942.4777960769379"
-      stroke-dashoffset="320.4424506661589"
-      stroke-linecap="round"
-      stroke-width="12"
-    />
-  </svg>
-  
-  
+      height="300"
+      viewBox="0 0 300 300"
+      width="300"
+    >
+      <circle
+        cx="150"
+        cy="150"
+        data-v-49728824=""
+        fill="none"
+        r="144"
+        stroke="var(--progress-bar-background)"
+        stroke-dasharray="942.4777960769379"
+        stroke-dashoffset="320.4424506661589"
+        stroke-linecap="round"
+        stroke-width="12"
+      />
+      <circle
+        cx="150"
+        cy="150"
+        data-v-49728824=""
+        fill="none"
+        r="144"
+        stroke="var(--primary-50)"
+        stroke-dasharray="942.4777960769379"
+        stroke-dashoffset="320.4424506661589"
+        stroke-linecap="round"
+        stroke-width="12"
+      />
+    </svg>
+    
+    
+  </div>
 </div>
 `;

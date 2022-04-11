@@ -4,6 +4,7 @@ coverage
 
 .vercel
 
+*.snap
 .eslintignore
 .prettierignore
 sonar-project.properties
