@@ -6,7 +6,7 @@
     <div class="controls">
       <button aria-label="remove one beat" @click="commit('removeBeat')">-</button>
       <div class="dots">
-        <span v-for="i in beatCount" :class="{ active: i === currentBeat }" :key="i"></span>
+        <span v-for="i in beatCount" :key="i" :class="{ active: i === currentBeat }"></span>
       </div>
       <button aria-label="add one beat" @click="commit('addBeat')">+</button>
     </div>

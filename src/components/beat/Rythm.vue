@@ -2,8 +2,8 @@
   <div class="rythms" @change="updateRythm">
     <RadioButton
       v-for="rythm in rythms"
-      name="rythm"
       :key="rythm"
+      name="rythm"
       :checked="currentRythm === rythm"
       :value="rythm"
       :label="rythm"

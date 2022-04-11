@@ -1,7 +1,7 @@
 <template>
   <div
-    class="wheel"
     ref="wheel"
+    class="wheel"
     tabindex="0"
     role="slider"
     aria-label="BPM"

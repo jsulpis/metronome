@@ -7,11 +7,11 @@
     <div class="content">
       <p>2</p>
       <Slider
-        :modelValue="largeIncrement"
+        :model-value="largeIncrement"
         :min="2"
         :max="10"
-        @update:modelValue="commit('setLargeIncrement', $event)"
         label="large increment"
+        @update:model-value="commit('setLargeIncrement', $event)"
       ></Slider>
       <p>10</p>
     </div>

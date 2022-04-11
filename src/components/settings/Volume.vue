@@ -5,12 +5,12 @@
       <p class="value">{{ volume }}%</p>
     </div>
     <div class="content">
-      <Icon name="volume" v-if="volume > 0"></Icon>
-      <Icon name="volume-mute" v-else></Icon>
+      <Icon v-if="volume > 0" name="volume"></Icon>
+      <Icon v-else name="volume-mute"></Icon>
       <Slider
-        :modelValue="volume"
-        @update:modelValue="commit('setVolume', $event)"
+        :model-value="volume"
         label="volume"
+        @update:model-value="commit('setVolume', $event)"
       ></Slider>
     </div>
   </article>

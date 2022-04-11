@@ -217,7 +217,7 @@ describe("store mutations", () => {
 });
 
 describe("persistence", () => {
-  let mockStorage: any;
+  let mockStorage: Record<string, string>;
 
   beforeAll(() => {
     global.Storage.prototype.setItem = vi.fn((key, value) => {
