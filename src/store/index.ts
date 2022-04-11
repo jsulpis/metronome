@@ -1,4 +1,5 @@
-import { Rythm, RYTHMS } from "../models/rythms";
+import { RYTHMS } from "../models/rythms";
+import type { Rythm } from "../models/rythms";
 import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 

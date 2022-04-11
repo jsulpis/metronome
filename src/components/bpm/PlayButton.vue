@@ -1,5 +1,5 @@
 <template>
-  <button type="button" class="play-button" @click="togglePlay()">
+  <button type="button" @click="togglePlay()">
     <IconStop v-show="isPlaying"></IconStop>
     <IconPlay v-show="!isPlaying"></IconPlay>
   </button>
@@ -34,8 +34,8 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style lang="scss">
-button.play-button {
+<style lang="scss" scoped>
+button {
   background: var(--grey-50);
   box-shadow: var(--shadow-02-inset);
   width: 50%;

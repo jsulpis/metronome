@@ -12,7 +12,7 @@
 import ThemeSwitch from "./settings/theme-switch/ThemeSwitch.vue";
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 footer {
   color: var(--grey-60);
   margin-top: 2rem;
