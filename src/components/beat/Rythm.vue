@@ -7,6 +7,7 @@
       :checked="currentRythm === rythm"
       :value="rythm"
       :label="rythm"
+      class="rythm-radio"
     >
       <Icon :name="rythm"></Icon>
     </RadioButton>
@@ -29,7 +30,7 @@ function updateRythm(e: Event) {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .rythms {
   display: flex;
   justify-content: center;
@@ -44,7 +45,7 @@ function updateRythm(e: Event) {
     margin: 35px auto 30px;
   }
 
-  .custom-radio {
+  .rythm-radio {
     width: 55px;
     height: 55px;
     border-radius: 9px;

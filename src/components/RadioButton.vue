@@ -24,6 +24,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 label {
   -webkit-tap-highlight-color: transparent;
+  width: 75px;
+  height: 75px;
+  border-radius: 12px;
 }
 
 .custom-radio {
@@ -34,9 +37,9 @@ label {
   justify-content: center;
   gap: 6px;
   cursor: pointer;
-  width: 75px;
-  height: 75px;
-  border-radius: 12px;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
   background: var(--grey-40);
   position: relative;
   color: var(--grey-70);
