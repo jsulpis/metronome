@@ -87,11 +87,11 @@ describe("PlayButton.vue", () => {
     Howl.prototype.play = playSpy;
 
     const TestComponent = defineComponent({
+      components: { PlayButton },
       template: `
         <button>Focus Me</button>
         <play-button />
-      `,
-      components: { PlayButton }
+      `
     });
 
     const { getByTitle, getByText } = render(TestComponent, {

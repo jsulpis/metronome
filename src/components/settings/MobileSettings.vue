@@ -1,5 +1,5 @@
 <template>
-  <button ref="buttonOpen" id="open-settings" aria-label="open settings" @click="openSettings">
+  <button id="open-settings" ref="buttonOpen" aria-label="open settings" @click="openSettings">
     <svg width="26" height="22" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fill-rule="evenodd"
@@ -13,7 +13,7 @@
   <div ref="backdrop" class="backdrop" :class="{ visible: isOpen }" @click="closeSettings"></div>
 
   <section ref="panel" class="mobile-settings" :aria-hidden="!isOpen" :class="{ visible: isOpen }">
-    <button ref="handle" class="handle" @click="closeSettings" aria-label="close settings"></button>
+    <button ref="handle" class="handle" aria-label="close settings" @click="closeSettings"></button>
 
     <div class="content">
       <h1>Settings</h1>

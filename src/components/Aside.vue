@@ -28,15 +28,8 @@
   </aside>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-// No use of <script setup> here because it causes 0% coverage on the file
-export default defineComponent({
-  props: {
-    position: String
-  }
-});
+<script setup lang="ts">
+defineProps<{ position: string }>();
 </script>
 
 <style lang="scss" scoped>

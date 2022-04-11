@@ -1,26 +1,18 @@
+/* eslint-env node */
+require("@rushstack/eslint-patch/modern-module-resolution");
+
 module.exports = {
   root: true,
-  env: {
-    node: true
-  },
   extends: [
+    "plugin:vue/vue3-recommended",
     "eslint:recommended",
-    "@vue/typescript/recommended",
-    "@vue/prettier/@typescript-eslint",
-    "plugin:vue/vue3-essential"
+    "@vue/eslint-config-typescript/recommended",
+    "@vue/eslint-config-prettier"
   ],
-  parserOptions: {
-    ecmaVersion: 2020
-  },
-  globals: {
-    NodeJS: "readonly",
-    defineProps: "readonly",
-    defineEmits: "readonly",
-    defineExpose: "readonly",
-    withDefaults: "readonly"
+  env: {
+    "vue/setup-compiler-macros": true
   },
   rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off"
+    "vue/multi-word-component-names": "off"
   }
 };
