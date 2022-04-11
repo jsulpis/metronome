@@ -6,5 +6,6 @@ coverage
 
 .eslintignore
 .prettierignore
+sonar-project.properties
 *.d.ts
 pnpm-lock.yaml
