@@ -1,6 +1,18 @@
 {
+  "name": "metronome",
   "private": true,
   "description": "Online metronome application with a modern UI",
+  "homepage": "https://github.com/jsulpis/metronome",
+  "bugs": "https://github.com/jsulpis/metronome/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsulpis/metronome.git"
+  },
+  "license": "GPL-3.0",
+  "author": {
+    "name": "Julien Sulpis",
+    "url": "https://twitter.com/jsulpis"
+  },
   "scripts": {
     "build": "vue-tsc --noEmit && vite build",
     "dev": "vite --open",
