@@ -13,8 +13,8 @@ describe("BpmRange.vue", () => {
       }
     });
 
-    const inputMin = getByRole("spinbutton", { name: "minimum bpm value" }) as HTMLInputElement;
-    const inputMax = getByRole("spinbutton", { name: "maximum bpm value" }) as HTMLInputElement;
+    const inputMin = getByRole<HTMLInputElement>("spinbutton", { name: "minimum bpm value" });
+    const inputMax = getByRole<HTMLInputElement>("spinbutton", { name: "maximum bpm value" });
 
     expect(inputMin.value).toBe("50");
     expect(inputMax.value).toBe("140");
@@ -29,7 +29,7 @@ describe("BpmRange.vue", () => {
       }
     });
 
-    const inputMax = getByRole("spinbutton", { name: "maximum bpm value" }) as HTMLInputElement;
+    const inputMax = getByRole<HTMLInputElement>("spinbutton", { name: "maximum bpm value" });
 
     expect(inputMax.min).toBe("50");
   });
@@ -43,7 +43,7 @@ describe("BpmRange.vue", () => {
       }
     });
 
-    const inputMin = getByRole("spinbutton", { name: "minimum bpm value" }) as HTMLInputElement;
+    const inputMin = getByRole<HTMLInputElement>("spinbutton", { name: "minimum bpm value" });
 
     expect(inputMin.max).toBe("140");
   });
@@ -55,8 +55,8 @@ describe("BpmRange.vue", () => {
       }
     });
 
-    const inputMin = getByRole("spinbutton", { name: "minimum bpm value" }) as HTMLInputElement;
-    const inputMax = getByRole("spinbutton", { name: "maximum bpm value" }) as HTMLInputElement;
+    const inputMin = getByRole<HTMLInputElement>("spinbutton", { name: "minimum bpm value" });
+    const inputMax = getByRole<HTMLInputElement>("spinbutton", { name: "maximum bpm value" });
 
     inputMin.value = "58";
     fireEvent.change(inputMin);

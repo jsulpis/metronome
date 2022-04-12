@@ -10,7 +10,7 @@ describe("LargeIncrement.vue", () => {
       }
     });
 
-    const slider = getByRole("slider", { name: "large increment" }) as HTMLInputElement;
+    const slider = getByRole<HTMLInputElement>("slider", { name: "large increment" });
     expect(slider.value).toBe(store.state.settings.largeIncrement.toString());
   });
 
@@ -21,7 +21,7 @@ describe("LargeIncrement.vue", () => {
       }
     });
 
-    const slider = getByRole("slider", { name: "large increment" }) as HTMLInputElement;
+    const slider = getByRole<HTMLInputElement>("slider", { name: "large increment" });
     slider.value = "6";
     await fireEvent(slider, new Event("input"));
     expect(store.state.settings.largeIncrement).toBe(6);

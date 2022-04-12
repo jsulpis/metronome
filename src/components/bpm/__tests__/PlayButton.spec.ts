@@ -8,7 +8,7 @@ describe("PlayButton.vue", () => {
   it("should play a sound and change the visible icon when clicking on the button", async () => {
     const playSpy = vi.fn();
     Howl.prototype.play = playSpy;
-    Howl.prototype.once = (arg, callback) => {
+    Howl.prototype.once = (_, callback) => {
       callback(0, 0);
       return new Howl({ src: ["dummy.mp3"] });
     };
@@ -47,7 +47,7 @@ describe("PlayButton.vue", () => {
   it("should play a sound and change the visible icon when hitting the space bar", async () => {
     const playSpy = vi.fn();
     Howl.prototype.play = playSpy;
-    Howl.prototype.once = (arg, callback) => {
+    Howl.prototype.once = (_, callback) => {
       callback(0, 0);
       return new Howl({ src: ["dummy.mp3"] });
     };

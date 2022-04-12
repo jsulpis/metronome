@@ -12,7 +12,7 @@ describe("ThemeSwitch.vue", () => {
       }
     });
 
-    const checkedRadio = getByRole("radio", { checked: true }) as HTMLInputElement;
+    const checkedRadio = getByRole<HTMLInputElement>("radio", { checked: true });
     expect(checkedRadio.value).toBe("dark");
   });
 
@@ -25,7 +25,7 @@ describe("ThemeSwitch.vue", () => {
       }
     });
 
-    const lightRadio = getByLabelText("light") as HTMLInputElement;
+    const lightRadio = getByLabelText<HTMLInputElement>("light");
 
     await fireEvent.click(lightRadio);
 

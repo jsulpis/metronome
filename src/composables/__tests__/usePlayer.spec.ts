@@ -17,7 +17,7 @@ const volumeSpy = vi.fn();
 Howl.prototype.play = playSpy;
 Howl.prototype.rate = rateSpy;
 Howl.prototype.volume = volumeSpy;
-Howl.prototype.once = (arg, callback) => {
+Howl.prototype.once = (_, callback) => {
   callback(0, 0);
   return new Howl({ src: ["dummy.mp3"] });
 };
