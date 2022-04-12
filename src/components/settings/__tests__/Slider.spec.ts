@@ -12,7 +12,7 @@ describe("Slider.vue", () => {
       }
     });
 
-    const nativeInput = getByRole("slider") as HTMLInputElement;
+    const nativeInput = getByRole<HTMLInputElement>("slider");
     expect(nativeInput.value).toBe("12");
     expect(nativeInput.getAttribute("min")).toBe("0");
     expect(nativeInput.getAttribute("max")).toBe("100");
@@ -29,7 +29,7 @@ describe("Slider.vue", () => {
       }
     });
 
-    const nativeInput = getByRole("slider") as HTMLInputElement;
+    const nativeInput = getByRole<HTMLInputElement>("slider");
     expect(nativeInput.value).toBe("12");
 
     await rerender({ modelValue: 20 });
@@ -47,7 +47,7 @@ describe("Slider.vue", () => {
       }
     });
 
-    const nativeInput = getByRole("slider") as HTMLInputElement;
+    const nativeInput = getByRole<HTMLInputElement>("slider");
     nativeInput.value = "40";
     await fireEvent(nativeInput, new Event("input"));
 

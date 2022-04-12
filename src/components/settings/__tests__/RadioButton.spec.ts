@@ -10,7 +10,7 @@ describe("RadioButton.vue", () => {
       }
     });
 
-    const input = getByRole("radio") as HTMLInputElement;
+    const input = getByRole<HTMLInputElement>("radio");
 
     expect(input.value).toBe("sound-value");
     expect(input.name).toBe("sound-group");

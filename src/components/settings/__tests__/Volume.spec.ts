@@ -10,7 +10,7 @@ describe("Volume.vue", () => {
       }
     });
 
-    const slider = getByRole("slider", { name: "volume" }) as HTMLInputElement;
+    const slider = getByRole<HTMLInputElement>("slider", { name: "volume" });
     expect(slider.value).toBe(store.state.settings.volume.toString());
   });
 
@@ -21,7 +21,7 @@ describe("Volume.vue", () => {
       }
     });
 
-    const slider = getByRole("slider", { name: "volume" }) as HTMLInputElement;
+    const slider = getByRole<HTMLInputElement>("slider", { name: "volume" });
     slider.value = "12";
     await fireEvent(slider, new Event("input"));
     expect(store.state.settings.volume).toBe(12);

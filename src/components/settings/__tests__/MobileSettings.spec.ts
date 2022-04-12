@@ -16,7 +16,7 @@ describe("MobileSettings.vue", () => {
     expect(panel).not.toHaveClass("visible");
     expect(backdrop).not.toHaveClass("visible");
 
-    const button = getByRole("button", { name: "open settings" }) as HTMLButtonElement;
+    const button = getByRole<HTMLButtonElement>("button", { name: "open settings" });
     await fireEvent(button, new Event("click"));
 
     expect(panel).toHaveClass("visible");
@@ -32,7 +32,7 @@ describe("MobileSettings.vue", () => {
     const panel = container.querySelector(".mobile-settings");
     const backdrop = container.querySelector(".backdrop");
 
-    const button = getByRole("button", { name: "open settings" }) as HTMLButtonElement;
+    const button = getByRole<HTMLButtonElement>("button", { name: "open settings" });
     await fireEvent(button, new Event("click"));
 
     expect(panel).toHaveClass("visible");
@@ -56,13 +56,13 @@ describe("MobileSettings.vue", () => {
     const panel = container.querySelector(".mobile-settings");
     const backdrop = container.querySelector(".backdrop");
 
-    const button = getByRole("button", { name: "open settings" }) as HTMLButtonElement;
+    const button = getByRole<HTMLButtonElement>("button", { name: "open settings" });
     await fireEvent(button, new Event("click"));
 
     expect(panel).toHaveClass("visible");
     expect(backdrop).toHaveClass("visible");
 
-    const handle = getByRole("button", { name: "close settings" }) as HTMLButtonElement;
+    const handle = getByRole<HTMLButtonElement>("button", { name: "close settings" });
     if (handle == null) {
       fail("handle not found");
     }

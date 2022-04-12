@@ -12,7 +12,7 @@ describe("FirstBeat.vue", () => {
       }
     });
 
-    const checkbox = getByRole("checkbox") as HTMLInputElement;
+    const checkbox = getByRole<HTMLInputElement>("checkbox");
     expect(checkbox.checked).toBe(true);
   });
 
@@ -23,7 +23,7 @@ describe("FirstBeat.vue", () => {
       }
     });
 
-    const checkbox = getByRole("checkbox") as HTMLInputElement;
+    const checkbox = getByRole<HTMLInputElement>("checkbox");
 
     // Check the initial value
     expect(checkbox.checked).toBe(true);
