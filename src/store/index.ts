@@ -7,20 +7,20 @@ const getDefaultState = () => ({
   bpm: {
     value: 120,
     min: 40,
-    max: 180
+    max: 225,
   },
   beat: {
     current: 0,
     count: 4,
-    rythm: "quarter"
+    rythm: "quarter",
   },
   settings: {
     volume: 100,
     sound: "click",
     accentuateFirstBeat: true,
     largeIncrement: 5,
-    theme: "auto"
-  }
+    theme: "auto",
+  },
 });
 
 export default createStore({
@@ -52,7 +52,8 @@ export default createStore({
       }
     },
     nextBeat(state) {
-      state.beat.current = (state.beat.current + 1) % (state.beat.count + 1) || 1;
+      state.beat.current =
+        (state.beat.current + 1) % (state.beat.count + 1) || 1;
     },
     resetBeat(state) {
       state.beat.current = 0;
@@ -85,13 +86,17 @@ export default createStore({
     },
     resetState(state) {
       Object.assign(state, getDefaultState());
-    }
+    },
   },
   getters: {
     intermediateBeats(state) {
       return RYTHMS[state.beat.rythm as Rythm];
-    }
+    },
   },
   strict: true,
-  plugins: [createPersistedState({ paths: ["settings", "bpm", "beat.count", "beat.rythm"] })] // persist everything except the current beat
+  plugins: [
+    createPersistedState({
+      paths: ["settings", "bpm", "beat.count", "beat.rythm"],
+    }),
+  ], // persist everything except the current beat
 });
